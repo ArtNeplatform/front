@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from '@pages/notFound.tsx';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
 import Home from '@pages/home.tsx';
+import Test from '@pages/test.tsx';
 
 type TRoutes = {
   path: string;
@@ -29,6 +30,7 @@ export default function Router() {
           <Route key={path} path={path} element={element} />
         ),
       )}
+      <Route path="test" element={<Test/>}/>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
