@@ -3,7 +3,7 @@ import { Text } from "@/styles/text";
 
 export default function Home() {
   return (
-    <PageLayout isLoggedIn={false}>
+    <PageLayout>
       <Text size={56} color="black">
         홈입니다요
       </Text>
