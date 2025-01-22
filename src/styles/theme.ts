@@ -28,6 +28,8 @@ const theme = {
   },
   colors: {
     black: '#000',
+    gray: '#787878',
+    lightGray: '#E5E5EC',
     white: '#FFFFFF',
     dark: '#191a20',
     primary: '#3f4150',
@@ -43,6 +45,8 @@ declare module '@emotion/react' {
     typography: Typography;
     colors: {
       black: string;
+      gray: string;
+      lightGray: string;
       dark: string;
       white: string;
       primary: string;
