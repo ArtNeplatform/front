@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { StyledImage } from '@components/common/CustomImageContainer/index.style.ts';
 
 interface ImageProps {
   imageUrl: string;
@@ -9,13 +9,7 @@ interface ImageProps {
   className?: string;
 }
 
-const StyledImage = styled.img<{ isLoaded?: boolean }>`
-  width: ${({ width }) => width || '100%'};
-  height: ${({ height }) => height || '100%'};
-  object-fit: cover;
-  opacity: ${({ isLoaded }) => (isLoaded ? 1 : 0)};
-  transition: opacity 0.3s ease-in-out;
-`;
+
 /**
  * 이 이미지는 페이지가 뜨자마자 
  * 바로 보여지는 화면에 빌드된 Image에 사용합니다.

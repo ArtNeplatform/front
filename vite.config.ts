@@ -1,8 +1,14 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
+  define: {
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    },
+  },
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
@@ -17,12 +23,8 @@ export default defineConfig({
         ],
       ],
     }),
+    svgr(),
   ],
-  define: {
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    },
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -36,6 +38,7 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@styles': path.resolve(__dirname, './src/styles'),
+      '@test': path.resolve(__dirname, './src/test'),
     },
   },
 });
