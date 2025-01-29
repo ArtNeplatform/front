@@ -8,6 +8,7 @@ import {
 } from "@/test/TestComponent/index.style.ts";
 import { HeaderContent } from "@components/common/Header";
 import { ThemeChooser } from "@/components/common/ThemeChooser";
+import SortingTextButton from "@/components/common/SortingTextButton";
 
 const TestComponents = () => {
   const sampleData = {
@@ -41,6 +42,10 @@ const TestComponents = () => {
         <TestCase>
           <SubTitle>Header(non-loggedIn)</SubTitle>
           <HeaderContent />
+        </TestCase>
+        <TestCase>
+          <SubTitle>Sorting</SubTitle>
+          <SortingTextButton />
         </TestCase>
       </ComponentSection>
 
