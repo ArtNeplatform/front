@@ -11,6 +11,7 @@ import { HeaderContent } from "@components/common/Header";
 import { ThemeChooser } from "@/components/common/ThemeChooser";
 import SortingTextButton from "@/components/common/SortingTextButton";
 import AuthorProfile from "@/components/common/AuthorProfile";
+import HoveringModal from "@/components/common/HoveringModal";
 
 const TestComponents = () => {
   const sampleData = {
@@ -29,6 +30,11 @@ const TestComponents = () => {
     exhibitionCount: 99,
     profileImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s",
+  };
+
+  const samplePriceData = {
+    startPrice: 99999999,
+    currentPrice: 99999999,
   };
 
   return (
@@ -70,6 +76,10 @@ const TestComponents = () => {
       <AuthorProfile {...sampleProfileData} />
       <Spacing />
 
+      <Spacing />
+      <SubTitle>Price Hovering Modal</SubTitle>
+      <HoveringModal isOpen={true} {...samplePriceData} />
+      <Spacing />
     </TestContainer>
   );
 };

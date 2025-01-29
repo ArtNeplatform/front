@@ -50,6 +50,7 @@ const theme = {
     lineLightColor: "#F1F1F5",
     font03gray: "#505050",
     fontGray: "#767676",
+    priceBox: "#F7F7FB",
   },
 } as const;
 
