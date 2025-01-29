@@ -1,6 +1,7 @@
 import { Artwork } from "@components/common/ArtWork";
 import {
   ComponentSection,
+  Spacing,
   SubTitle,
   TestCase,
   TestContainer,
@@ -9,6 +10,7 @@ import {
 import { HeaderContent } from "@components/common/Header";
 import { ThemeChooser } from "@/components/common/ThemeChooser";
 import SortingTextButton from "@/components/common/SortingTextButton";
+import AuthorProfile from "@/components/common/AuthorProfile";
 
 const TestComponents = () => {
   const sampleData = {
@@ -19,6 +21,14 @@ const TestComponents = () => {
     artworkWidth: 100,
     artworkHeight: 100,
     price: 1000000,
+  };
+
+  const sampleProfileData = {
+    AuthorName: "Sample Author",
+    artworkCount: 99,
+    exhibitionCount: 99,
+    profileImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s",
   };
 
   return (
@@ -43,14 +53,23 @@ const TestComponents = () => {
           <SubTitle>Header(non-loggedIn)</SubTitle>
           <HeaderContent />
         </TestCase>
-        <TestCase>
-          <SubTitle>Sorting</SubTitle>
-          <SortingTextButton />
-        </TestCase>
       </ComponentSection>
 
+      <Spacing />
+      <SubTitle>Sorting</SubTitle>
+      <SortingTextButton />
+      <Spacing />
+
+      <Spacing />
       <SubTitle>Theme Chooser</SubTitle>
       <ThemeChooser />
+      <Spacing />
+
+      <Spacing />
+      <SubTitle>Author Profile</SubTitle>
+      <AuthorProfile {...sampleProfileData} />
+      <Spacing />
+
     </TestContainer>
   );
 };

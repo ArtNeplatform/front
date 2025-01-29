@@ -49,6 +49,7 @@ const theme = {
     secondary: "#8c8d96",
     lineLightColor: "#F1F1F5",
     font03gray: "#505050",
+    fontGray: "#767676",
   },
 } as const;
 
