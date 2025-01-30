@@ -26,7 +26,8 @@ export const MenuWrapper = styled.div`
 
 export const Menu = styled.div<MenuProps>`
   padding: 20px 32px;
-  color: ${({ isActive }) => (isActive ? theme.colors.black : "#767676")};
+  color: ${({ isActive }) =>
+    isActive ? theme.colors.black : theme.colors.gray};
   ${theme.typography["16"]}
   line-height: 26px;
   font-weight: ${({ isActive }) => (isActive ? 500 : 400)};
