@@ -4,16 +4,17 @@ import theme from "@/styles/theme";
 export const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 2.4rem 3.1rem 2.7rem 1.4rem;
-  width: 25.3rem;
-  gap: 1.6rem;
+  width: 208px;
+  height: 74px;
+  gap: 16px;
+  padding: 24px 31px 27px 14px;
 
   background-color: ${theme.colors.white};
 `;
 
 export const ProfileImage = styled.img`
-  width: 7.4rem;
-  height: 7.4rem;
+  width: 74px;
+  height: 74px;
   border-radius: 74px;
   object-fit: cover;
 `;
@@ -22,18 +23,21 @@ export const ProfileInfo = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+  justify-content: center;
+  gap: 6px;
 `;
 
-export const Name = styled.p`
+export const Name = styled.span`
   display: flex;
-  ${(theme) => theme.theme.typography["16"]}
+  ${(theme) => theme.theme.typography["24"]}
   font-weight: 600;
   color: ${theme.colors.black};
 `;
 
-export const Stats = styled.p`
+export const Stats = styled.span`
   display: flex;
   ${(theme) => theme.theme.typography["16"]}
   font-weight: 400;
   color: ${theme.colors.fontGray};
+  gap: 8px;
 `;

@@ -7,7 +7,7 @@ export const ModalWrapper = styled.div`
   right: 0;
   background-color: ${theme.colors.white};
   display: flex;
-  width: 14rem;
+  width: 140px;
   flex-direction: column;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.06);
 `;
@@ -15,7 +15,7 @@ export const ModalWrapper = styled.div`
 export const SortingOption = styled.div<{ $isSelected: boolean }>`
   display: -webkit-box;
   width: 100%;
-  padding: 1.1rem 1.6rem;
+  padding: 11px 16px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   ${(theme) => theme.theme.typography["16"]}

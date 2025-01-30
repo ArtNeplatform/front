@@ -25,7 +25,7 @@ const TestComponents = () => {
   };
 
   const sampleProfileData = {
-    AuthorName: "Sample Author",
+    AuthorName: "홍길동",
     artworkCount: 99,
     exhibitionCount: 99,
     profileImage:

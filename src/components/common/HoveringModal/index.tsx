@@ -22,7 +22,7 @@ export const HoveringModal = ({
   return (
     <HoveringModalContainer>
       <PriceInfo>
-        <p>가격 정보</p>
+        <h1>가격 정보</h1>
         <PriceBox>
           <PriceRow>
             <span>시작가</span>
@@ -35,8 +35,8 @@ export const HoveringModal = ({
         </PriceBox>
       </PriceInfo>
       <Notice>
-        <p>유의사항</p>
-        <small>• 해당 가격은 시장 현황 등에 따라 변경될 수 있습니다.</small>
+        <h2>유의사항</h2>
+        <span>• 해당 가격은 시장 현황 등에 따라 변경될 수 있습니다.</span>
       </Notice>
     </HoveringModalContainer>
   );

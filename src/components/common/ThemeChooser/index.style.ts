@@ -3,7 +3,7 @@ import theme from "@styles/theme.ts";
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 99.6rem;
+  width: 996px;
   align-items: center;
 
   background-color: ${theme.colors.white};
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const ThemeButton = styled.button<{ $isActive: boolean }>`
   width: 100%;
-  padding: 1.4rem 1.6rem;
+  padding: 14px 16px;
   border: none;
   &:hover {
     cursor: pointer;

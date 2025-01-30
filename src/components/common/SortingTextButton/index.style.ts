@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const Button = styled.button`
   display: flex;
-  gap: 0.4rem;
+  gap: 4px;
   align-items: center;
   color: ${theme.colors.black};
   ${(theme) => theme.theme.typography["16"]}
