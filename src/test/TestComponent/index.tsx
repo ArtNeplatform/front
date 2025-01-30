@@ -9,6 +9,7 @@ import {
 import { Header } from "@components/common/Header/index.style.ts";
 import { HeaderContent } from "@components/common/Header";
 import { AuthorDetailCategory } from "@/components/common/AuthorDetailCategory";
+import { CommonInput } from "@/components/common/CommonInput";
 
 const TestComponents = () => {
   const sampleData = {
@@ -19,6 +20,10 @@ const TestComponents = () => {
     artworkWidth: 100,
     artworkHeight: 100,
     price: 1000000,
+  };
+
+  const sampleInputData = {
+    placeholder: "작품 제목을 입력해주세요",
   };
 
   return (
@@ -45,6 +50,8 @@ const TestComponents = () => {
       </ComponentSection>
       <SubTitle>AuthorDetailCategory</SubTitle>
       <AuthorDetailCategory />
+      <SubTitle>CommonInput</SubTitle>
+      <CommonInput {...sampleInputData} />
     </TestContainer>
   );
 };
