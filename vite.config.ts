@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import svgr from 'vite-plugin-svgr';
+import eslintPlugin from 'vite-plugin-eslint';
 
 export default defineConfig({
   define: {
@@ -24,6 +25,7 @@ export default defineConfig({
       ],
     }),
     svgr(),
+    eslintPlugin(),
   ],
   resolve: {
     alias: {
