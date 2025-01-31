@@ -1,7 +1,10 @@
-import { Artwork } from '@components/common/ArtWork';
-import { ComponentSection,  SubTitle, TestCase, TestContainer, TestHeader } from '@/test/TestComponent/index.style.ts';
-import { Header } from '@components/common/Header/index.style.ts';
-import { HeaderContent } from '@components/common/Header';
+import { Artwork } from "@components/common/ArtWork";
+import { ComponentSection, SubTitle, TestCase, TestContainer, TestHeader } from "@/test/TestComponent/index.style.ts";
+import { Header } from "@components/common/Header/index.style.ts";
+import { HeaderContent } from "@components/common/Header";
+import { RectangleCheckBox } from "@components/common/RectangleCheckBox";
+import { CircleCheckBox } from "@components/common/CircleCheckBox";
+import { CommonButton } from "@/components/common/CommonButton";
 
 const TestComponents = () => {
   const sampleData = {
@@ -10,7 +13,11 @@ const TestComponents = () => {
     title: "Sample Title",
     artworkWidth: 100,
     artworkHeight: 100,
-    price: 1000000
+    price: 1000000,
+  };
+
+  const sampleClose = () => {
+    alert("닫기 버튼이 클릭되었습니다.");
   };
 
   return (
@@ -28,14 +35,25 @@ const TestComponents = () => {
         </TestCase>
         <TestCase>
           <SubTitle>Lazy Loading Image</SubTitle>
-          <Artwork {...sampleData} variant='lazy' />
+          <Artwork {...sampleData} variant="lazy" />
         </TestCase>
         <TestCase>
           <SubTitle>Header(non-loggedIn)</SubTitle>
-          <HeaderContent   />
+          <HeaderContent />
         </TestCase>
-
       </ComponentSection>
+
+      <SubTitle>RectangleCheckBox</SubTitle>
+      <RectangleCheckBox id="1" />
+
+      <SubTitle>CircleCheckBox</SubTitle>
+      <CircleCheckBox id="2" />
+
+      <SubTitle>CommonButton</SubTitle>
+      <div style={{ display: "flex", gap: "20px" }}>
+        <CommonButton onClick={sampleClose} text="확인" color="#fff" background="#111" border="#111" />
+        <CommonButton onClick={sampleClose} text="취소" color="#111" background="#fff" border="#E5E5EC" />
+      </div>
     </TestContainer>
   );
 };
