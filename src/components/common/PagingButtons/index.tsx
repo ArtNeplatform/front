@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, StyledButton, PageButton, IconButton } from "./index.style";
 import {
   HiChevronDoubleLeft,

@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, StyledInput } from "./index.style";
 
 type CommonInputProps = {

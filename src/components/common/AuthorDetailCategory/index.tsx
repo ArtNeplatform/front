@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, MenuWrapper, Menu } from "./index.style";
 
 const category = ["작가소개", "작품", "전시"];

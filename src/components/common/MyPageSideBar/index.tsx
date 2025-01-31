@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, MenuWrapper, Menu } from "./index.style.ts";
 
 const menuItems = ["작품", "경매 중인 작품", "진행 중인 전시"];

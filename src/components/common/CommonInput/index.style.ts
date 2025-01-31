@@ -20,7 +20,6 @@ export const StyledInput = styled.input`
   color: ${theme.colors.secondary};
   text-align: left;
   ${theme.typography["16"]}
-  line-height: 26px;
   flex: 1;
   height: 26px;
   text-overflow: ellipsis;
