@@ -7,7 +7,7 @@ interface GridContainerProps {
 export const GridContainer = styled.div<GridContainerProps>`
   display: grid;
   grid-template-columns: repeat(${({ $columnCount }) => $columnCount}, 1fr);
-  gap: 1rem;
+  gap: 16px;
   width: 100%;
 `;
 
