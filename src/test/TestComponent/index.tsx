@@ -5,6 +5,7 @@ import { HeaderContent } from "@components/common/Header";
 import { RectangleCheckBox } from "@components/common/RectangleCheckBox";
 import { CircleCheckBox } from "@components/common/CircleCheckBox";
 import { CommonButton } from "@/components/common/CommonButton";
+import { SizeFilterModal } from "@/components/common/SizeFilterModal";
 
 const TestComponents = () => {
   const sampleData = {
@@ -54,6 +55,9 @@ const TestComponents = () => {
         <CommonButton onClick={sampleClose} text="확인" color="#fff" background="#111" border="#111" />
         <CommonButton onClick={sampleClose} text="취소" color="#111" background="#fff" border="#E5E5EC" />
       </div>
+
+      <SubTitle>SizeFilterModal</SubTitle>
+      <SizeFilterModal />
     </TestContainer>
   );
 };
