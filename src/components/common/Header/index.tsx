@@ -11,8 +11,12 @@ import MainLogo from '@assets/png/main-logo.png';
 /**
  * 앱 전반적으로 사용되는 HeaderComponent입니다.
  * 로그인 여부 및 userName 값에 따라서, 헤더의 상태창이 다르게 보입니다.
+ * 로그인 여부에 따라 로그인 버튼 또는 로그아웃 버튼이 표시됩니다.
+ * @param isLoggedIn 로그인 여부
+ * @param userName 사용자 이름
+ * @param handleLogout 로그아웃 함수
  * @author 홍규진
- * */
+ */
 interface HeaderProps {
   isLoggedIn?: boolean;
   userName?: string;
