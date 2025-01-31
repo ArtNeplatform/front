@@ -13,6 +13,13 @@ interface PaginationProps {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+/**
+ * 앱 전반적으로 사용되는 PagingButtons입니다.
+ * @param totalPage 전체 페이지
+ * @param page 현재 페이지
+ * @param setPage page를 변경하는 함수
+ * @author 이하늘
+ */
 export const PagingButtons = ({
   totalPage,
   page,
