@@ -1,15 +1,20 @@
-import { EagerLoadImage, LazyLoadImage } from '@components/common/CustomImageContainer';
+import {
+  EagerLoadImage,
+  LazyLoadImage,
+} from '@components/common/CustomImageContainer';
 import {
   Artist,
   ArtworkContainer,
   ArtworkInfo,
-  GlassmorphismOverlay, HeartButton, ImageContainer,
+  GlassmorphismOverlay,
+  HeartButton,
+  ImageContainer,
   Price,
   Size,
   Title,
 } from '@components/common/ArtWork/index.style.ts';
 import { useState } from 'react';
-import EmptyHeart from '@assets/svg/empty-heart.svg?react'
+import EmptyHeart from '@assets/svg/empty-heart.svg?react';
 import theme from '@styles/theme.ts';
 interface ArtworkProps {
   imageUrl: string;
@@ -29,47 +34,44 @@ interface ArtworkProps {
  * @author 홍규진
  * */
 export const Artwork = ({
-                          imageUrl,
-                          artist,
-                          title,
-                          artworkWidth,
-                          artworkHeight,
-                          price,
-                          variant = 'eager',
-                          hoverable = true // 기본값은 true로 설정
-                        }: ArtworkProps) => {
+  imageUrl,
+  artist,
+  title,
+  artworkWidth,
+  artworkHeight,
+  price,
+  variant = 'eager',
+  hoverable = true, // 기본값은 true로 설정
+}: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const formattedSize = `${artworkWidth}cm * ${artworkHeight}cm`;
   let formattedPrice = null;
-  if(price) {
+  if (price) {
     formattedPrice = `${price.toLocaleString()} 원`;
   }
-
 
   return (
     <ArtworkContainer>
       <ImageContainer>
-      {variant === 'eager' ? (
-        <EagerLoadImage
-          imageUrl={imageUrl}
-          alt={title}
-        />
-      ) : (
-        <LazyLoadImage
-          imageUrl={imageUrl}
-          alt={title}
-        />
-      )}
-      {hoverable && (
-        <GlassmorphismOverlay hoverable={hoverable}>
-          <HeartButton
-            onClick={() => setIsLiked(!isLiked)}
-            aria-label={isLiked ? '좋아요 취소' : '좋아요'}
-          >
-            {isLiked ? <EmptyHeart fill={theme.colors.white}/> : <EmptyHeart/>}
-          </HeartButton>
-        </GlassmorphismOverlay>
-      )}
+        {variant === 'eager' ? (
+          <EagerLoadImage imageUrl={imageUrl} alt={title} />
+        ) : (
+          <LazyLoadImage imageUrl={imageUrl} alt={title} />
+        )}
+        {hoverable && (
+          <GlassmorphismOverlay hoverable={hoverable}>
+            <HeartButton
+              onClick={() => setIsLiked(!isLiked)}
+              aria-label={isLiked ? '좋아요 취소' : '좋아요'}
+            >
+              {isLiked ? (
+                <EmptyHeart fill={theme.colors.white} />
+              ) : (
+                <EmptyHeart />
+              )}
+            </HeartButton>
+          </GlassmorphismOverlay>
+        )}
       </ImageContainer>
       <ArtworkInfo>
         <Artist>{artist}</Artist>

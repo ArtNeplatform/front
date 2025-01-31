@@ -1,6 +1,6 @@
-import { ModalWrapper, SortingOption } from "./index.style";
+import { ModalWrapper, SortingOption } from './index.style';
 
-const sortingOptions = ["이름순", "최신순", "인기순"];
+const sortingOptions = ['이름순', '최신순', '인기순'];
 
 interface SortingChooseModalProps {
   selectedSorting: string;

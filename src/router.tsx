@@ -14,7 +14,9 @@ type TRoutes = {
  * Login 로직이 구현되기 전에는 isCheckAuth 는 사용하지 않습니다.
  * @author 홍규진
  * */
-export const routes: TRoutes[] = [{ path: '/', element: <Home />, isTabBar: true }];
+export const routes: TRoutes[] = [
+  { path: '/', element: <Home />, isTabBar: true },
+];
 /**
  * AuthCheckRoute 로 한 번 감사서,
  * 로그인 여부에 따라서 다시 리다이랙팅을 해주는 여부를 확인합니다.
@@ -25,12 +27,18 @@ export default function Router() {
     <Routes>
       {routes.map(({ path, element, isCheckAuth: isCheckAuth }: TRoutes) =>
         isCheckAuth ? (
-          <Route key={path} path={path} element={<AuthCheckRoute redirectPath="/">{element}</AuthCheckRoute>} />
+          <Route
+            key={path}
+            path={path}
+            element={
+              <AuthCheckRoute redirectPath="/">{element}</AuthCheckRoute>
+            }
+          />
         ) : (
           <Route key={path} path={path} element={element} />
-        ),
+        )
       )}
-      <Route path="test" element={<Test/>}/>
+      <Route path="test" element={<Test />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

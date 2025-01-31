@@ -8,7 +8,10 @@ type TProtectedRouteProps = {
   redirectPath?: string;
 };
 
-export function AuthCheckRoute({ children, redirectPath = '/login' }: TProtectedRouteProps) {
+export function AuthCheckRoute({
+  children,
+  redirectPath = '/login',
+}: TProtectedRouteProps) {
   const { isLoggedIn, isLoading } = useAuth();
 
   if (isLoading) {

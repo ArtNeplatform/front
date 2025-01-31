@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@/styles/theme";
+import styled from '@emotion/styled';
+import theme from '@/styles/theme';
 
 export const ProfileContainer = styled.div`
   display: flex;
@@ -29,14 +29,14 @@ export const ProfileInfo = styled.div`
 
 export const Name = styled.span`
   display: flex;
-  ${(theme) => theme.theme.typography["24"]}
+  ${(theme) => theme.theme.typography['24']}
   font-weight: 600;
   color: ${theme.colors.black};
 `;
 
 export const Stats = styled.span`
   display: flex;
-  ${(theme) => theme.theme.typography["16"]}
+  ${(theme) => theme.theme.typography['16']}
   font-weight: 400;
   color: ${theme.colors.fontGray};
   gap: 8px;
