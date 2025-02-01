@@ -31,6 +31,14 @@ interface ArtworkProps {
  * 기존의 EagerLoadImage 와 LazyLoadImage 를 사용합니다. 사용자의 화면에 최초로 보이는 곳인지, 드래그 해야 보이는지 여부에 따라 variant를 정합니다.
  * title 및 size, price를 받습니다. price가 필요없는 경우가 있기에 price는 optional로 둡니다.
  * price 의 존재 여부에 따라서 컴포넌트가 달라집니다.
+ * @param {string} imageUrl - 이미지 url
+ * @param {string} artist - 작가 이름
+ * @param {string} title - 작품 이름
+ * @param {number} artworkWidth - 작품 너비
+ * @param {number} artworkHeight - 작품 높이
+ * @param {number} price - 작품 가격
+ * @param {string} variant - 이미지 로딩 방식
+ * @param {boolean} hoverable - 마우스 오버 여부
  * @author 홍규진
  * */
 export const Artwork = ({

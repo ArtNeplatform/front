@@ -18,7 +18,7 @@ interface State {
   error: Error | null;
 }
 /**
- * ErrorBoundary 컴포넌트
+ * ErrorBoundary 컴포넌트로 에러가 떴을 당시에, 표시할 컴포넌트를 정의합니다.
  * @param children 자식 컴포넌트
  * @param errorFallback 에러 발생 시 표시할 컴포넌트
  * @param onReset 에러 발생 시 호출될 함수
