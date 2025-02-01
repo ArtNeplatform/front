@@ -1,4 +1,3 @@
-import React from "react";
 import { ModalContainer, ButtonGroup } from "@components/common/SizeFilterModal/index.style.ts";
 
 import { RectangleCheckBox } from "@components/common/RectangleCheckBox";

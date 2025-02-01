@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CheckboxContainer, CheckBox, HiddenCheckbox, CheckIconSvg, Label } from "@components/common/RectangleCheckBox/index.style.ts";
 import CheckIcon from "@assets/svg/icon-check.svg";
 

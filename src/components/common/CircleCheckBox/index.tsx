@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CheckboxContainer, CheckBox, HiddenCheckbox, CircleIcon, Label } from "@components/common/CircleCheckBox/index.style.ts";
 
 /**

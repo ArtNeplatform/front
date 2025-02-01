@@ -1,4 +1,3 @@
-import React from "react";
 import { ButtonContainer } from "@components/common/CommonButton/index.style.ts";
 
 /**
