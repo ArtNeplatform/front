@@ -1,10 +1,10 @@
-import SortingIcon from "@assets/svg/Frame 1707482245.svg?react";
-import { useState } from "react";
-import { Button, Wrapper } from "./index.style";
-import SortingChooseModal from "../SortingChooseModal";
+import SortingIcon from '@assets/svg/Frame 1707482245.svg?react';
+import { useState } from 'react';
+import { Button, Wrapper } from './index.style';
+import SortingChooseModal from '../SortingChooseModal';
 
 export const SortingTextButton = () => {
-  const [selectedSorting, setSelectedSorting] = useState<string>("이름순");
+  const [selectedSorting, setSelectedSorting] = useState<string>('이름순');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleSortingClick = () => {
@@ -30,6 +30,5 @@ export const SortingTextButton = () => {
     </Wrapper>
   );
 };
-
 
 export default SortingTextButton;

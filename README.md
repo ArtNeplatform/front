@@ -286,6 +286,7 @@ const InfoText = () => {
     </>
   );
 };
+
 ```
 
 - children이 불필요할 땐 selfClosing사용하기 `<Component/>`

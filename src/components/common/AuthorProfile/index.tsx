@@ -4,7 +4,7 @@ import {
   ProfileImage,
   ProfileInfo,
   Stats,
-} from "./index.style";
+} from './index.style';
 
 interface AuthorProfileProps {
   AuthorName: string;

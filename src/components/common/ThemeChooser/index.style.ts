@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -18,11 +18,11 @@ export const ThemeButton = styled.button<{ $isActive: boolean }>`
     cursor: pointer;
   }
 
-  ${theme.typography["16"]}
+  ${theme.typography['16']}
   text-align: center;
   text-overflow: ellipsis;
   background-color: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.black : "transparent"};
+    $isActive ? theme.colors.black : 'transparent'};
   color: ${({ $isActive, theme }) =>
     $isActive ? theme.colors.white : theme.colors.font03gray};
   transition: background-color 0.2s ease, color 0.2s ease;

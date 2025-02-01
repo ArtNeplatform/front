@@ -1,4 +1,9 @@
-import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import axios, {
+  AxiosError,
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+  AxiosInstance,
+} from 'axios';
 /**
  * Axios를 통해 불필요한 재전송을 방지합니다.
  * InternalAxiosRequestConfig를 extneds 하는 방식을 택합니다.
@@ -41,7 +46,7 @@ instance.interceptors.request.use(
   },
   (error: AxiosError): Promise<AxiosError> => {
     return Promise.reject(error);
-  },
+  }
 );
 
 //response시 항상 확인
@@ -62,9 +67,10 @@ instance.interceptors.response.use(
 
     try {
       // 토큰 갱신 시도
-      const response: AxiosResponse<TAuthResponse, TAnotherToken> = await instance.post('/auth/reissue', {
-        accessToken: accessToken,
-      });
+      const response: AxiosResponse<TAuthResponse, TAnotherToken> =
+        await instance.post('/auth/reissue', {
+          accessToken: accessToken,
+        });
 
       // 실패 처리
       if (response.status !== 200) {
@@ -85,5 +91,5 @@ instance.interceptors.response.use(
       window.location.href = '/';
       return Promise.reject(refreshError);
     }
-  },
+  }
 );

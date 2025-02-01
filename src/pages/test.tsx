@@ -1,5 +1,5 @@
-import { PageLayout } from "@/components/common/PageLayout";
-import { Text } from "@/styles/text";
+import { PageLayout } from '@/components/common/PageLayout';
+import { Text } from '@/styles/text';
 import TestComponents from '@/test/TestComponent';
 
 export default function Test() {
@@ -8,7 +8,7 @@ export default function Test() {
       <Text size={56} color="black">
         테스트 페이지
       </Text>
-      <TestComponents/>
+      <TestComponents />
     </PageLayout>
   );
 }

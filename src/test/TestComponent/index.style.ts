@@ -1,7 +1,7 @@
 // index.style.ts
 
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const TestContainer = styled.div`
   padding: 2rem;

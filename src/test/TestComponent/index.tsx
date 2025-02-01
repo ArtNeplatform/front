@@ -1,4 +1,4 @@
-import { Artwork } from "@components/common/ArtWork";
+import { Artwork } from '@components/common/ArtWork';
 import {
   ComponentSection,
   Spacing,
@@ -6,30 +6,30 @@ import {
   TestCase,
   TestContainer,
   TestHeader,
-} from "@/test/TestComponent/index.style.ts";
-import { HeaderContent } from "@components/common/Header";
-import { ThemeChooser } from "@/components/common/ThemeChooser";
-import SortingTextButton from "@/components/common/SortingTextButton";
-import AuthorProfile from "@/components/common/AuthorProfile";
-import HoveringModal from "@/components/common/HoveringModal";
+} from '@/test/TestComponent/index.style.ts';
+import { HeaderContent } from '@components/common/Header';
+import { ThemeChooser } from '@/components/common/ThemeChooser';
+import SortingTextButton from '@/components/common/SortingTextButton';
+import AuthorProfile from '@/components/common/AuthorProfile';
+import HoveringModal from '@/components/common/HoveringModal';
 
 const TestComponents = () => {
   const sampleData = {
     imageUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s",
-    artist: "Sample Artist",
-    title: "Sample Title",
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
+    artist: 'Sample Artist',
+    title: 'Sample Title',
     artworkWidth: 100,
     artworkHeight: 100,
     price: 1000000,
   };
 
   const sampleProfileData = {
-    AuthorName: "홍길동",
+    AuthorName: '홍길동',
     artworkCount: 99,
     exhibitionCount: 99,
     profileImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s",
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
   };
 
   const samplePriceData = {

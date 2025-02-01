@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useCookies } from 'react-cookie';
 
 type TTokens = {
@@ -54,7 +61,7 @@ export function AuthProvider({ children }: TAuthProviderProps): JSX.Element {
       setIsLoggedIn(true);
       checkLoginStatus();
     },
-    [checkLoginStatus],
+    [checkLoginStatus]
   );
 
   const logout = useCallback((): void => {
@@ -79,7 +86,7 @@ export function AuthProvider({ children }: TAuthProviderProps): JSX.Element {
       logout,
       withdraw,
     }),
-    [isLoggedIn, isLoading, login, logout, withdraw],
+    [isLoggedIn, isLoading, login, logout, withdraw]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

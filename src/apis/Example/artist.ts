@@ -7,7 +7,7 @@ export const getArtistList = async ({
   keyword,
 }: TGetArtistListRequestParams): Promise<TGetArtistListResponse> => {
   const response = await instance.get<TGetResponse<TGetArtistListResponse>>(
-    `/api/v1/artist/list?page=${page}&keyword=${keyword}`,
+    `/api/v1/artist/list?page=${page}&keyword=${keyword}`
   );
   return response.data.response;
 };
