@@ -6,7 +6,7 @@ import { ButtonContainer } from '@components/common/CommonButton/index.style.ts'
  * @author 김서윤
  */
 interface ButtonProps {
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   text: string;
   color: string;
   background: string;

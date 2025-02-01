@@ -6,7 +6,7 @@ interface ButtonProps {
   $background: string;
 }
 
-export const ButtonContainer = styled.div<ButtonProps>`
+export const ButtonContainer = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;

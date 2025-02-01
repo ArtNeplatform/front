@@ -3,6 +3,7 @@ import {
   ComponentSection,
   Spacing,
   SubTitle,
+  AutoTestCase,
   TestCase,
   TestContainer,
   TestHeader,
@@ -16,7 +17,7 @@ import HoveringModal from '@/components/common/HoveringModal';
 import { RectangleCheckBox } from '@components/common/RectangleCheckBox';
 import { CircleCheckBox } from '@components/common/CircleCheckBox';
 import { CommonButton } from '@/components/common/CommonButton';
-import { SizeFilterModal } from '@/components/common/SizeFilterModal';
+import { FilterModal } from '@/components/common/FilterModal';
 
 const TestComponents = () => {
   const sampleData = {
@@ -109,24 +110,71 @@ const TestComponents = () => {
       <div style={{ display: 'flex', gap: '20px' }}>
         <CommonButton
           onClick={sampleClose}
-          text="확인"
-          color="#fff"
-          background="#111"
-          border="#111"
-        />
-        <CommonButton
-          onClick={sampleClose}
           text="취소"
           color="#111"
           background="#fff"
           border="#E5E5EC"
         />
+        <CommonButton
+          onClick={sampleClose}
+          text="확인"
+          color="#fff"
+          background="#111"
+          border="#111"
+        />
       </div>
       <Spacing />
 
       <Spacing />
-      <SubTitle>SizeFilterModal</SubTitle>
-      <SizeFilterModal />
+      <SubTitle>FilterModal</SubTitle>
+      <ComponentSection>
+        <AutoTestCase>
+          <SubTitle>Theme Case</SubTitle>
+          <FilterModal
+            checkboxes={[
+              { id: '200', label: '풍경' },
+              { id: '201', label: '인물' },
+              { id: '202', label: '정물' },
+              { id: '203', label: '동물' },
+              { id: '204', label: '추상' },
+              { id: '205', label: '입체 미디어' },
+            ]}
+            onCancel={sampleClose}
+            onConfirm={sampleClose}
+          />
+        </AutoTestCase>
+        <AutoTestCase>
+          <SubTitle>Size Case</SubTitle>
+          <FilterModal
+            checkboxes={[
+              { id: '10', label: '1~10호' },
+              { id: '30', label: '~30호' },
+              { id: '60', label: '~60호' },
+              { id: '80', label: '~80호' },
+              { id: '100', label: '~100호' },
+              { id: '120', label: '100호 +' },
+            ]}
+            onCancel={sampleClose}
+            onConfirm={sampleClose}
+          />
+        </AutoTestCase>
+        <AutoTestCase>
+          <SubTitle>Type Case</SubTitle>
+          <FilterModal
+            checkboxes={[
+              { id: '300', label: '정방향' },
+              { id: '301', label: '가로형' },
+              { id: '302', label: '세로형' },
+              { id: '303', label: '원형' },
+              { id: '304', label: '셋트' },
+              { id: '305', label: '입체/설치' },
+              { id: '306', label: '미디어' },
+            ]}
+            onCancel={sampleClose}
+            onConfirm={sampleClose}
+          />
+        </AutoTestCase>
+      </ComponentSection>
       <Spacing />
     </TestContainer>
   );
