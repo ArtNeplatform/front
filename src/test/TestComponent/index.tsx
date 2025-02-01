@@ -137,7 +137,8 @@ const TestComponents = () => {
               { id: '202', label: '정물' },
               { id: '203', label: '동물' },
               { id: '204', label: '추상' },
-              { id: '205', label: '입체 미디어' },
+              { id: '205', label: '팝아트' },
+              { id: '206', label: '오브제' },
             ]}
             onCancel={sampleClose}
             onConfirm={sampleClose}
