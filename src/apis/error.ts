@@ -4,11 +4,16 @@ export const handleApiError = (error: unknown): never => {
   if (isAxiosError(error)) {
     if (error.response) {
       // 서버가 2xx 범위를 벗어나는 상태 코드로 응답한 경우
-      const errorMessage = getErrorMessage(error.response.data) || `서버 오류: ${error.response.status}`;
+      const errorMessage =
+        getErrorMessage(error.response.data) ||
+        `서버 오류: ${error.response.status}`;
       throw new Error(errorMessage);
     } else if (error.request) {
       // CORS 오류 감지
-      if (error.message.toLowerCase().includes('cors') || error.message.toLowerCase().includes('network error')) {
+      if (
+        error.message.toLowerCase().includes('cors') ||
+        error.message.toLowerCase().includes('network error')
+      ) {
         throw new Error('CORS 오류: 서버에 접근할 수 없습니다.');
       } else {
         // 다른 네트워크 관련 오류

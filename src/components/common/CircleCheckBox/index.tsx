@@ -1,5 +1,11 @@
-import { useState } from "react";
-import { CheckboxContainer, CheckBox, HiddenCheckbox, CircleIcon, Label } from "@components/common/CircleCheckBox/index.style.ts";
+import { useState } from 'react';
+import {
+  CheckboxContainer,
+  CheckBox,
+  HiddenCheckbox,
+  CircleIcon,
+  Label,
+} from '@components/common/CircleCheckBox/index.style.ts';
 
 /**
  * 앱 전반적으로 사용되는 CircleCheckBox입니다.
@@ -22,7 +28,12 @@ export const CircleCheckBox = ({ id, label }: CheckboxProps) => {
   return (
     <CheckboxContainer>
       <CheckBox checked={isChecked} htmlFor={id}>
-        <HiddenCheckbox id={id} type="checkbox" onChange={handleChange} checked={isChecked} />
+        <HiddenCheckbox
+          id={id}
+          type="checkbox"
+          onChange={handleChange}
+          checked={isChecked}
+        />
         <CircleIcon />
       </CheckBox>
       {label && (

@@ -1,7 +1,10 @@
-import { ModalContainer, ButtonGroup } from "@components/common/SizeFilterModal/index.style.ts";
+import {
+  ModalContainer,
+  ButtonGroup,
+} from '@components/common/SizeFilterModal/index.style.ts';
 
-import { RectangleCheckBox } from "@components/common/RectangleCheckBox";
-import { CommonButton } from "@components/common/CommonButton";
+import { RectangleCheckBox } from '@components/common/RectangleCheckBox';
+import { CommonButton } from '@components/common/CommonButton';
 
 /**
  * 앱 전반적으로 사용되는 SizeFilterModal입니다.
@@ -10,7 +13,7 @@ import { CommonButton } from "@components/common/CommonButton";
 
 export const SizeFilterModal = () => {
   const sampleClose = () => {
-    alert("닫기 버튼이 클릭되었습니다.");
+    alert('닫기 버튼이 클릭되었습니다.');
   };
 
   return (
@@ -22,8 +25,20 @@ export const SizeFilterModal = () => {
       <RectangleCheckBox id="100" label="~100호" />
       <RectangleCheckBox id="120" label="100호 +" />
       <ButtonGroup>
-        <CommonButton onClick={sampleClose} text="취소" color="#111" background="#fff" border="#E5E5EC" />
-        <CommonButton onClick={sampleClose} text="확인" color="#fff" background="#111" border="#111" />
+        <CommonButton
+          onClick={sampleClose}
+          text="취소"
+          color="#111"
+          background="#fff"
+          border="#E5E5EC"
+        />
+        <CommonButton
+          onClick={sampleClose}
+          text="확인"
+          color="#fff"
+          background="#111"
+          border="#111"
+        />
       </ButtonGroup>
     </ModalContainer>
   );

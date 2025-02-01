@@ -6,7 +6,20 @@ type TypographySize = {
 };
 
 type Typography = {
-  [key in 56 | 48 | 44 | 38 | 32 | 28 | 24 | 20 | 18 | 16 | 15 | 14 | 13]: TypographySize;
+  [key in
+    | 56
+    | 48
+    | 44
+    | 38
+    | 32
+    | 28
+    | 24
+    | 20
+    | 18
+    | 16
+    | 15
+    | 14
+    | 13]: TypographySize;
 };
 
 // 테마 정의
@@ -27,13 +40,17 @@ const theme = {
     13: { fontSize: '13px', lineHeight: '18px', letterSpacing: '-2.5%' },
   },
   colors: {
-    black: '#000',
+    black: '#111',
     gray: '#787878',
     lightGray: '#E5E5EC',
     white: '#FFFFFF',
     dark: '#191a20',
     primary: '#3f4150',
     secondary: '#8c8d96',
+    lineLightColor: '#F1F1F5',
+    font03gray: '#505050',
+    fontGray: '#767676',
+    priceBox: '#F7F7FB',
   },
 } as const;
 
@@ -51,6 +68,10 @@ declare module '@emotion/react' {
       white: string;
       primary: string;
       secondary: string;
+      lineLightColor: string;
+      font03gray: string;
+      fontGray: string;
+      priceBox: string;
     };
   }
 }

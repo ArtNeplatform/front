@@ -1,4 +1,4 @@
-import { ButtonContainer } from "@components/common/CommonButton/index.style.ts";
+import { ButtonContainer } from '@components/common/CommonButton/index.style.ts';
 
 /**
  * 앱 전반적으로 사용되는 Button입니다.
@@ -13,9 +13,20 @@ interface ButtonProps {
   border: string;
 }
 
-export const CommonButton = ({ onClick, text, color, background, border }: ButtonProps) => {
+export const CommonButton = ({
+  onClick,
+  text,
+  color,
+  background,
+  border,
+}: ButtonProps) => {
   return (
-    <ButtonContainer onClick={onClick} $color={color} $background={background} $border={border}>
+    <ButtonContainer
+      onClick={onClick}
+      $color={color}
+      $background={background}
+      $border={border}
+    >
       {text}
     </ButtonContainer>
   );

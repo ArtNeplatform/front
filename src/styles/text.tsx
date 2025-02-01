@@ -7,6 +7,7 @@ interface TextProps {
 }
 
 export const Text = styled.span<TextProps>`
-  ${({ size, theme }) => theme.typography[size]}px;
-  color: ${({ color, theme }) => (color ? theme.colors[color] : theme.colors.black)};
+  ${({ size, theme }) => theme.typography[size]};
+  color: ${({ color, theme }) =>
+    color ? theme.colors[color] : theme.colors.black};
 `;

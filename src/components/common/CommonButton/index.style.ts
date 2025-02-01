@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
 
 interface ButtonProps {
   $color: string;
@@ -12,7 +11,7 @@ export const ButtonContainer = styled.div<ButtonProps>`
   justify-content: center;
   align-items: center;
   padding: 7px 30px;
-  ${(theme) => theme.theme.typography["13"]};
+  ${(theme) => theme.theme.typography['13']};
   color: ${(props) => props.$color};
   border: 1px solid ${(props) => props.$border};
   background-color: ${(props) => props.$background};

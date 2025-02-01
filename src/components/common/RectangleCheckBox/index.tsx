@@ -1,6 +1,12 @@
-import { useState } from "react";
-import { CheckboxContainer, CheckBox, HiddenCheckbox, CheckIconSvg, Label } from "@components/common/RectangleCheckBox/index.style.ts";
-import CheckIcon from "@assets/svg/icon-check.svg";
+import { useState } from 'react';
+import {
+  CheckboxContainer,
+  CheckBox,
+  HiddenCheckbox,
+  CheckIconSvg,
+  Label,
+} from '@components/common/RectangleCheckBox/index.style.ts';
+import CheckIcon from '@assets/svg/icon-check.svg';
 
 /**
  * 앱 전반적으로 사용되는 RectangleCheckBox입니다.
@@ -23,7 +29,12 @@ export const RectangleCheckBox = ({ id, label }: CheckboxProps) => {
   return (
     <CheckboxContainer>
       <CheckBox checked={isChecked} htmlFor={id}>
-        <HiddenCheckbox id={id} type="checkbox" onChange={handleChange} checked={isChecked} />
+        <HiddenCheckbox
+          id={id}
+          type="checkbox"
+          onChange={handleChange}
+          checked={isChecked}
+        />
         <CheckIconSvg src={CheckIcon} alt="체크박스" />
       </CheckBox>
       {label && (

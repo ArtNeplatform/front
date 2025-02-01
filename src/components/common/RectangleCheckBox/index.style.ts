@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const CheckboxContainer = styled.div`
   display: flex;
@@ -10,7 +10,8 @@ export const CheckboxContainer = styled.div`
 export const CheckBox = styled.label<{ checked: boolean }>`
   width: 19px;
   height: 19px;
-  border: ${({ checked }) => (checked ? `1px solid #111` : `1px solid ${theme.colors.lightGray}`)};
+  border: ${({ checked }) =>
+    checked ? `1px solid #111` : `1px solid ${theme.colors.lightGray}`};
   background: ${({ checked }) => (checked ? `#111` : `${theme.colors.white}`)};
   cursor: pointer;
 
@@ -46,6 +47,6 @@ export const Label = styled.label<{ checked: boolean }>`
   width: max-content;
   text-overflow: ellipsis;
   cursor: pointer;
-  ${(theme) => theme.theme.typography["14"]}
+  ${(theme) => theme.theme.typography['14']}
   color: ${({ checked }) => (checked ? `#111` : `#767676`)};
 `;

@@ -1,5 +1,5 @@
-import { PageLayout } from "@/components/common/PageLayout";
-import { Text } from "@/styles/text";
+import { PageLayout } from '@/components/common/PageLayout';
+import { Text } from '@/styles/text';
 
 export default function Home() {
   return (

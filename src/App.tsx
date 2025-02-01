@@ -15,7 +15,10 @@ const App = () => {
   };
 
   return (
-    <ErrorBoundary errorFallback={DefaultErrorFallbackUI} onReset={handleReload}>
+    <ErrorBoundary
+      errorFallback={DefaultErrorFallbackUI}
+      onReset={handleReload}
+    >
       <Suspense fallback={<FallbackUI />}>
         <CookiesProvider>
           <BrowserRouter>
