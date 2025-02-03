@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@/styles/theme";
+import styled from '@emotion/styled';
+import theme from '@/styles/theme';
 
 export const Wrapper = styled.div`
   display: inline-flex;
@@ -15,7 +15,7 @@ export const Button = styled.button`
   gap: 4px;
   align-items: center;
   color: ${theme.colors.black};
-  ${(theme) => theme.theme.typography["16"]}
+  ${(theme) => theme.theme.typography['16']}
   border: none;
   background: white;
   cursor: pointer;

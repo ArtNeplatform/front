@@ -1,6 +1,4 @@
 export type TArtist = {
-    artistId: number;
-    name: string;
-}
-
-
+  artistId: number;
+  name: string;
+};

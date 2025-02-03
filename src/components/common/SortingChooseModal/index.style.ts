@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@/styles/theme";
+import styled from '@emotion/styled';
+import theme from '@/styles/theme';
 
 export const ModalWrapper = styled.div`
   position: absolute;
@@ -18,8 +18,8 @@ export const SortingOption = styled.div<{ $isSelected: boolean }>`
   padding: 11px 16px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  ${(theme) => theme.theme.typography["16"]}
-  font-weight: ${({ $isSelected }) => ($isSelected ? "600" : "400")};
+  ${(theme) => theme.theme.typography['16']}
+  font-weight: ${({ $isSelected }) => ($isSelected ? '600' : '400')};
 
   &:hover {
     cursor: pointer;

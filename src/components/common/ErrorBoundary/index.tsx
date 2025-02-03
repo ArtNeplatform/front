@@ -17,7 +17,13 @@ interface State {
   hasError: boolean;
   error: Error | null;
 }
-
+/**
+ * ErrorBoundary 컴포넌트로 에러가 떴을 당시에, 표시할 컴포넌트를 정의합니다.
+ * @param children 자식 컴포넌트
+ * @param errorFallback 에러 발생 시 표시할 컴포넌트
+ * @param onReset 에러 발생 시 호출될 함수
+ * @author 홍규진
+ */
 export default class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
@@ -37,7 +43,12 @@ export default class ErrorBoundary extends Component<Props, State> {
     const { children, errorFallback: ErrorFallback } = this.props;
 
     if (hasError && error) {
-      return <ErrorFallback error={error} resetErrorBoundary={this.resetErrorBoundary} />;
+      return (
+        <ErrorFallback
+          error={error}
+          resetErrorBoundary={this.resetErrorBoundary}
+        />
+      );
     }
 
     return children;

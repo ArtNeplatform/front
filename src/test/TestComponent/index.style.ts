@@ -1,7 +1,7 @@
 // index.style.ts
 
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const TestContainer = styled.div`
   padding: 2rem;
@@ -42,4 +42,17 @@ export const SubTitle = styled.h3`
 
 export const Spacing = styled.section`
   margin: 3rem;
+`;
+
+export const FlexSpacing = styled.section`
+  display: flex;
+  gap: 5rem;
+`;
+
+export const AutoTestCase = styled.div`
+  display: grid;
+  padding: 20px 20px;
+  grid-template-columns: repeat(auto-fit);
+  border: 1px solid ${theme.colors.lightGray};
+  justify-content: center;
 `;

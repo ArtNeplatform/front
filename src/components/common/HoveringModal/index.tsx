@@ -4,7 +4,7 @@ import {
   PriceInfo,
   PriceBox,
   PriceRow,
-} from "./index.style";
+} from './index.style';
 
 interface HoveringModalProps {
   isOpen: boolean;

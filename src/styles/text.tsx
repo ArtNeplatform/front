@@ -1,9 +1,9 @@
-import styled from "@emotion/styled"; // macro 제거
-import { Theme } from "./theme";
+import styled from '@emotion/styled'; // macro 제거
+import { Theme } from './theme';
 
 interface TextProps {
-  size: keyof Theme["typography"];
-  color?: keyof Theme["colors"];
+  size: keyof Theme['typography'];
+  color?: keyof Theme['colors'];
 }
 
 export const Text = styled.span<TextProps>`

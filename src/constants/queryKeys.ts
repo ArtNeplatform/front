@@ -9,6 +9,7 @@ import { TGetArtistListRequestParams } from '@/apis/Example/type';
 export const getArtistListQuery = () => {
   return {
     queryKey: ['artistList'],
-    queryFn: ({ page, keyword }: TGetArtistListRequestParams) => getArtistList({ page, keyword }),
+    queryFn: ({ page, keyword }: TGetArtistListRequestParams) =>
+      getArtistList({ page, keyword }),
   };
 };
