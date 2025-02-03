@@ -8,7 +8,15 @@ import {
   TestContainer,
   TestHeader,
   FlexSpacing,
-} from '@/test/TestComponent/index.style.ts';
+} from "@/test/TestComponent/index.style.ts";
+
+import { Header } from "@components/common/Header/index.style.ts";
+import { HeaderContent } from "@components/common/Header";
+import { AuthorDetailCategory } from "@/components/common/AuthorDetailCategory";
+import { CommonInput } from "@/components/common/CommonInput";
+import { MyPageSideBar } from "@/components/common/MyPageSideBar";
+import { PagingButtons } from "@/components/common/PagingButtons";
+import { useState } from "react";
 import { HeaderContent } from '@components/common/Header';
 import { ThemeChooser } from '@/components/common/ThemeChooser';
 import SortingTextButton from '@/components/common/SortingTextButton';
@@ -43,6 +51,10 @@ const TestComponents = () => {
     currentPrice: 99999999,
   };
 
+  const sampleInputData = {
+    placeholder: "작품 제목을 입력해주세요",
+  };
+  const [page, setPage] = useState(1);
   const sampleClose = () => {
     alert('닫기 버튼이 클릭되었습니다.');
   };
@@ -70,6 +82,15 @@ const TestComponents = () => {
           <HeaderContent />
         </TestCase>
       </ComponentSection>
+
+      <SubTitle>AuthorDetailCategory</SubTitle>
+      <AuthorDetailCategory />
+      <SubTitle>CommonInput</SubTitle>
+      <CommonInput {...sampleInputData} />
+      <SubTitle>MyPageSideBar</SubTitle>
+      <MyPageSideBar />
+      <SubTitle>PagingButtons</SubTitle>
+      <PagingButtons totalPage={21} page={page} setPage={setPage} />
 
       <Spacing />
       <SubTitle>Sorting</SubTitle>
