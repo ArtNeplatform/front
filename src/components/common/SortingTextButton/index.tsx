@@ -3,6 +3,12 @@ import { useState } from 'react';
 import { Button, Wrapper } from './index.style';
 import SortingChooseModal from '../SortingChooseModal';
 
+/**
+ * 정렬 Button 컴포넌트입니다.
+ * 작품 정렬 순서를 결정하며 기본값은 '이름순' 입니다.
+ * @author 노찬영
+ */
+
 export const SortingTextButton = () => {
   const [selectedSorting, setSelectedSorting] = useState<string>('이름순');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

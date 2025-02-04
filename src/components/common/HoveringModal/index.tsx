@@ -12,6 +12,13 @@ interface HoveringModalProps {
   currentPrice: number;
 }
 
+/**
+ * 작품 가격에 hover 시 나타나는 Modal 컴포넌트입니다.
+ * 작품의 시작가와 현재가를 받습니다.
+ * isOpen 의 true/false 여부에 따라서 모달 상태가 달라집니다.
+ * @author 노찬영
+ */
+
 export const HoveringModal = ({
   isOpen,
   startPrice,
