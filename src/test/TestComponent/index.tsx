@@ -10,7 +10,7 @@ import {
   FlexSpacing,
 } from '@/test/TestComponent/index.style.ts';
 import { HeaderContent } from '@components/common/Header';
-import { ThemeChooser } from '@/components/common/ThemeChooser';
+import ThemeChooser from '@/components/common/ThemeChooser';
 import SortingTextButton from '@/components/common/SortingTextButton';
 import AuthorProfile from '@/components/common/AuthorProfile';
 import HoveringModal from '@/components/common/HoveringModal';
