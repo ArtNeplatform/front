@@ -20,9 +20,15 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.64.1
         version: 5.64.1(@tanstack/react-query@5.64.1(react@18.3.1))(react@18.3.1)
+      '@types/kakao-js-sdk':
+        specifier: ^1.39.5
+        version: 1.39.5
       axios:
         specifier: ^1.7.9
         version: 1.7.9
+      kakao-js-sdk:
+        specifier: ^1.2.3
+        version: 1.2.3
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -738,6 +744,9 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
+  '@types/kakao-js-sdk@1.39.5':
+    resolution: {integrity: sha512-+u+sfAq2ZcBM4yF3zE/FDxaNq85DeLkKh8K6jP9GQwGdbIJ/IGwoAQEfkbG5tL5XHOP30b3KeHmxDFG2n1E96Q==}
+
   '@types/node@22.10.6':
     resolution: {integrity: sha512-qNiuwC4ZDAUNcY47xgaSuS92cjf8JbSUoaKS77bmLG1rU7MlATVSiw/IlrjtIyyskXBZ8KkNfjK/P5na7rgXbQ==}
 
@@ -1181,6 +1190,9 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  kakao-js-sdk@1.2.3:
+    resolution: {integrity: sha512-VdKKF205YxKATFOwjifCwZ2JKAGSabn1IM6b15sxz+qkUYKoYYJitdUPqn3JtvO8IhzYQbDOBVlwti+S+9BVNg==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -2130,6 +2142,8 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/kakao-js-sdk@1.39.5': {}
+
   '@types/node@22.10.6':
     dependencies:
       undici-types: 6.20.0
@@ -2600,6 +2614,8 @@ snapshots:
   json-stable-stringify-without-jsonify@1.0.1: {}
 
   json5@2.2.3: {}
+
+  kakao-js-sdk@1.2.3: {}
 
   keyv@4.5.4:
     dependencies:
