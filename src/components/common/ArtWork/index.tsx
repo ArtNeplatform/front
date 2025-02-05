@@ -20,11 +20,12 @@ interface ArtworkProps {
   imageUrl: string;
   artist: string;
   title: string;
-  artworkWidth: number;
-  artworkHeight: number;
+  artworkWidth?: number;
+  artworkHeight?: number;
   price?: number;
   variant?: 'eager' | 'lazy';
   hoverable?: boolean;
+  border?: string;
 }
 /**
  * 이는 가장 많이 사용되는 컴포넌트입니다.
@@ -39,6 +40,7 @@ interface ArtworkProps {
  * @param {number} price - 작품 가격
  * @param {string} variant - 이미지 로딩 방식
  * @param {boolean} hoverable - 마우스 오버 여부
+ * @param {string} border - 테두리 색상
  * @author 홍규진
  * */
 export const Artwork = ({
@@ -50,16 +52,20 @@ export const Artwork = ({
   price,
   variant = 'eager',
   hoverable = true, // 기본값은 true로 설정
+  border,
 }: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(false);
-  const formattedSize = `${artworkWidth}cm * ${artworkHeight}cm`;
+  const formattedSize =
+    artworkWidth && artworkHeight
+      ? `${artworkWidth}cm * ${artworkHeight}cm`
+      : null;
   let formattedPrice = null;
   if (price) {
     formattedPrice = `${price.toLocaleString()} 원`;
   }
 
   return (
-    <ArtworkContainer>
+    <ArtworkContainer $border={border ?? 'none'}>
       <ImageContainer>
         {variant === 'eager' ? (
           <EagerLoadImage imageUrl={imageUrl} alt={title} />
@@ -84,8 +90,9 @@ export const Artwork = ({
       <ArtworkInfo>
         <Artist>{artist}</Artist>
         <Title>{title}</Title>
-        <Size>{formattedSize}</Size>
-        <Price>{formattedPrice}</Price>
+        {formattedSize && <Size>{formattedSize}</Size>}
+        {formattedPrice && <Price>{formattedPrice}</Price>}
+        {/* 가격이 있을 때만 표시 */}
       </ArtworkInfo>
     </ArtworkContainer>
   );

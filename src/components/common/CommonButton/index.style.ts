@@ -2,8 +2,9 @@ import styled from '@emotion/styled';
 
 interface ButtonProps {
   $color: string;
-  $border: string;
+  $borderColor: string;
   $background: string;
+  $borderRadius: string;
 }
 
 export const ButtonContainer = styled.button<ButtonProps>`
@@ -13,9 +14,9 @@ export const ButtonContainer = styled.button<ButtonProps>`
   padding: 7px 30px;
   ${(theme) => theme.theme.typography['13']};
   color: ${(props) => props.$color};
-  border: 1px solid ${(props) => props.$border};
+  border: 1px solid ${(props) => props.$borderColor};
   background-color: ${(props) => props.$background};
-  border-radius: 100px;
+  border-radius: ${(props) => props.$borderRadius};
   width: fit-content;
   cursor: pointer;
 `;
