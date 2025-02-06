@@ -20,7 +20,7 @@ export const PriceInfo = styled.div`
   align-items: flex-start;
 
   h1 {
-    ${(theme) => theme.theme.typography['14']}
+    ${theme.typography['14']}
     font-weight: 600;
     color: ${theme.colors.black};
   }
@@ -33,7 +33,7 @@ export const PriceBox = styled.div`
   padding: 16px;
   margin-bottom: 10px;
   background-color: ${theme.colors.priceBox};
-  ${(theme) => theme.theme.typography['14']}
+  ${theme.typography['14']}
   font-weight: 400;
   color: ${theme.colors.black};
 `;
@@ -49,13 +49,13 @@ export const Notice = styled.div`
   width: 100%;
 
   h2 {
-    ${(theme) => theme.theme.typography['14']}
+    ${theme.typography['14']}
     font-weight: 600;
     color: ${theme.colors.black};
   }
 
   span {
-    ${(theme) => theme.theme.typography['14']}
+    ${theme.typography['14']}
     font-weight: 400;
     color: ${theme.colors.fontGray};
   }
