@@ -3,7 +3,9 @@ import NotFound from '@pages/notFound.tsx';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
 import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
-
+import { Login } from '@/pages/login';
+import { ArtworkRegister } from '@/pages/artwork-register';
+import { AuctionRegister } from './pages/auction-register';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -16,7 +18,20 @@ type TRoutes = {
  * */
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
+  { path: '/test', element: <Test />, isTabBar: true },
+  { path: '/login', element: <Login />, isTabBar: true },
+  {
+    path: '/artwork-register',
+    element: <ArtworkRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/auction-register',
+    element: <AuctionRegister />,
+    isTabBar: true,
+  },
 ];
+
 /**
  * AuthCheckRoute 로 한 번 감사서,
  * 로그인 여부에 따라서 다시 리다이랙팅을 해주는 여부를 확인합니다.
@@ -38,7 +53,6 @@ export default function Router() {
           <Route key={path} path={path} element={element} />
         )
       )}
-      <Route path="test" element={<Test />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

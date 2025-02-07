@@ -3,15 +3,14 @@ import theme from '@styles/theme.ts';
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 996px;
+  width: 100%;
   align-items: center;
-
   background-color: ${theme.colors.white};
   border: 1px solid ${theme.colors.lineLightColor};
 `;
 
 export const ThemeButton = styled.button<{ $isActive: boolean }>`
-  width: 100%;
+  flex: 1;
   padding: 14px 16px;
   border: none;
   &:hover {

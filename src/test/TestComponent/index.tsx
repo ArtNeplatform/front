@@ -18,7 +18,7 @@ import { MyPageSideBar } from "@/components/common/MyPageSideBar";
 import { PagingButtons } from "@/components/common/PagingButtons";
 import { useState } from "react";
 import { HeaderContent } from '@components/common/Header';
-import { ThemeChooser } from '@/components/common/ThemeChooser';
+import ThemeChooser from '@/components/common/ThemeChooser';
 import SortingTextButton from '@/components/common/SortingTextButton';
 import AuthorProfile from '@/components/common/AuthorProfile';
 import HoveringModal from '@/components/common/HoveringModal';
