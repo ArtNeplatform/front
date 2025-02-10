@@ -51,8 +51,7 @@ export const AuctionRegister = () => {
             >
               <Artwork
                 imageUrl={artwork.thumbnail_image_url}
-                artist="작가 이름"
-                title="작품 제목"
+                title={artwork.title}
                 hoverable={false}
                 variant="eager"
               />
