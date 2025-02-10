@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Github Action 설정
         uses: actions/checkout@v3
+        
+      - name: pnpm 설치  
+        run: npm install -g pnpm
+
       - name: pnpm 이용 cache 설정
         id: pnpm-cache-dir
         run: |
