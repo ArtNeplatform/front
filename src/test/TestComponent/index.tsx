@@ -8,16 +8,14 @@ import {
   TestContainer,
   TestHeader,
   FlexSpacing,
-} from "@/test/TestComponent/index.style.ts";
+} from '@/test/TestComponent/index.style.ts';
 
-import { Header } from "@components/common/Header/index.style.ts";
-import { HeaderContent } from "@components/common/Header";
-import { AuthorDetailCategory } from "@/components/common/AuthorDetailCategory";
-import { CommonInput } from "@/components/common/CommonInput";
-import { MyPageSideBar } from "@/components/common/MyPageSideBar";
-import { PagingButtons } from "@/components/common/PagingButtons";
-import { useState } from "react";
 import { HeaderContent } from '@components/common/Header';
+import { AuthorDetailCategory } from '@/components/common/AuthorDetailCategory';
+import { CommonInput } from '@/components/common/CommonInput';
+import { MyPageSideBar } from '@/components/common/MyPageSideBar';
+import { PagingButtons } from '@/components/common/PagingButtons';
+import { useState } from 'react';
 import ThemeChooser from '@/components/common/ThemeChooser';
 import SortingTextButton from '@/components/common/SortingTextButton';
 import AuthorProfile from '@/components/common/AuthorProfile';
@@ -52,7 +50,7 @@ const TestComponents = () => {
   };
 
   const sampleInputData = {
-    placeholder: "작품 제목을 입력해주세요",
+    placeholder: '작품 제목을 입력해주세요',
   };
   const [page, setPage] = useState(1);
   const sampleClose = () => {
@@ -79,7 +77,12 @@ const TestComponents = () => {
         </TestCase>
         <TestCase>
           <SubTitle>Header(non-loggedIn)</SubTitle>
-          <HeaderContent />
+          <HeaderContent
+            isLoggedIn={false}
+            handleLogout={() => {}}
+            handleLogin={() => {}}
+            handleLinkMypage={() => {}}
+          />
         </TestCase>
       </ComponentSection>
 
@@ -116,12 +119,12 @@ const TestComponents = () => {
       <FlexSpacing>
         <div>
           <SubTitle>RectangleCheckBox</SubTitle>
-          <RectangleCheckBox id="1" />
+          <RectangleCheckBox id="1" onChange={() => {}} checked={false} />
         </div>
 
         <div>
           <SubTitle>CircleCheckBox</SubTitle>
-          <CircleCheckBox id="2" />
+          <CircleCheckBox id="2" onChange={() => {}} checked={false} />
         </div>
       </FlexSpacing>
       <Spacing />
@@ -134,14 +137,14 @@ const TestComponents = () => {
           text="취소"
           color="#111"
           background="#fff"
-          border="#E5E5EC"
+          borderColor="#E5E5EC"
         />
         <CommonButton
           onClick={sampleClose}
           text="확인"
           color="#fff"
           background="#111"
-          border="#111"
+          borderColor="#111"
         />
       </div>
       <Spacing />
