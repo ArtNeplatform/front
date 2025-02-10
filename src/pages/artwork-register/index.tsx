@@ -30,10 +30,21 @@ export const ArtworkRegister = () => {
           카테고리
         </Text>
         <ArtworkDetailBelowLabel label="테마 선택">
-          <ThemeChooser />
+          <ThemeChooser
+            selectedTheme={formData.theme}
+            onThemeChange={(theme) => {
+              setFormData((prev) => ({ ...prev, theme }));
+            }}
+          />
         </ArtworkDetailBelowLabel>
         <ArtworkDetailBelowLabel label="테마">
-          <ThemeChooser themes={sizeThemes} />
+          <ThemeChooser
+            themes={sizeThemes}
+            selectedTheme={formData.form}
+            onThemeChange={(form) => {
+              setFormData((prev) => ({ ...prev, form }));
+            }}
+          />
         </ArtworkDetailBelowLabel>
         <Divider />
 
@@ -150,11 +161,11 @@ export const ArtworkRegister = () => {
               type="number"
               style={{ width: '40%' }}
               placeholder="액자 입력하세요"
-              value={formData.frameNumber}
+              value={formData.frame}
               onChange={(e) => {
                 setFormData((prev) => ({
                   ...prev,
-                  frameNumber: e.target.value,
+                  frame: e.target.value,
                 }));
               }}
             />

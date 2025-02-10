@@ -1,7 +1,10 @@
+import { postArtworkRegisterQuery } from '@/constants/queryKeys';
 import { useState } from 'react';
 
 type TArtworkRegisterFormData = {
   images: File[];
+  theme: string;
+  form: string;
   title: string;
   year: string;
   genre: string;
@@ -10,11 +13,13 @@ type TArtworkRegisterFormData = {
   height: string;
   width: string;
   number: string;
-  frameNumber: string;
+  frame: string;
 };
 const useArtworkForm = () => {
   const [formData, setFormData] = useState<TArtworkRegisterFormData>({
     images: [],
+    theme: '',
+    form: '',
     title: '',
     year: '',
     genre: '',
@@ -23,7 +28,7 @@ const useArtworkForm = () => {
     height: '',
     width: '',
     number: '',
-    frameNumber: '',
+    frame: '',
   });
 
   /**
@@ -43,7 +48,7 @@ const useArtworkForm = () => {
       height,
       width,
       number,
-      frameNumber,
+      frame,
     } = formData;
 
     if (
@@ -56,7 +61,7 @@ const useArtworkForm = () => {
       !height ||
       !width ||
       !number ||
-      !frameNumber
+      !frame
     ) {
       console.log('유효성 검사 실패');
 
@@ -76,8 +81,8 @@ const useArtworkForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm(formData)) {
-      console.log(formData);
-      console.log('유효성 검사 성공');
+      console.log('유효성 검사 성공 API 요청');
+      postArtworkRegisterQuery().queryFn(formData);
     } else {
       console.log('유효성 검사 실패');
       alert('모든 항목을 입력해주세요.');
