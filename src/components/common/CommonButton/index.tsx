@@ -13,6 +13,7 @@ interface ButtonProps {
   background: string;
   borderColor: string;
   borderRadius?: string;
+  disabled?: boolean;
 }
 
 export const CommonButton = ({
@@ -22,6 +23,7 @@ export const CommonButton = ({
   background,
   borderColor,
   borderRadius,
+  disabled,
 }: ButtonProps) => {
   return (
     <ButtonContainer
@@ -30,6 +32,7 @@ export const CommonButton = ({
       $background={background}
       $borderColor={borderColor}
       $borderRadius={borderRadius ?? '100px'}
+      $disabled={disabled ?? false}
     >
       {text}
     </ButtonContainer>

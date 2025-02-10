@@ -27,7 +27,13 @@ export const FilterModal = ({
   return (
     <ModalContainer>
       {checkboxes.map(({ id, label }) => (
-        <RectangleCheckBox key={id} id={id} label={label} />
+        <RectangleCheckBox
+          key={id}
+          id={id}
+          label={label}
+          onChange={() => {}}
+          checked={false}
+        />
       ))}
       <ButtonGroup>
         <CommonButton
@@ -35,14 +41,14 @@ export const FilterModal = ({
           text="취소"
           color="#111"
           background="#fff"
-          border="#E5E5EC"
+          borderColor="#E5E5EC"
         />
         <CommonButton
           onClick={onConfirm}
           text="확인"
           color="#fff"
           background="#111"
-          border="#111"
+          borderColor="#111"
         />
       </ButtonGroup>
     </ModalContainer>
