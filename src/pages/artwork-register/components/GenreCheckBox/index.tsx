@@ -29,7 +29,7 @@ const GenreCheckBox = ({ onChange }: GenreCheckBoxProps) => {
           />
         </GenreItem>
       ))}
-      {selectedGenre === 'other' && (
+      {selectedGenre === '기타' && (
         <Input
           placeholder="기타 장르를 입력하세요"
           value={otherGenre}
