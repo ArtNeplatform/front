@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BasicInfo } from './basicInfo';
-import { TabBox } from './tabBox';
 import { Withdraw } from './withdraw';
 import { AccountSettingWrapper, TabBoxWrapper } from './index.style';
+import { MyPageSideBar } from '@/components/common/MyPageSideBar';
 
 export const AccountSettings = () => {
   const [selectedTab, setSelectedTab] = useState<'기본정보 관리' | '회원 탈퇴'>(
@@ -25,10 +25,10 @@ export const AccountSettings = () => {
     <AccountSettingWrapper>
       {/* 메뉴 선택 컴포넌트 */}
       <TabBoxWrapper>
-        <TabBox
-          tabs={['기본정보 관리', '회원 탈퇴']}
-          selectedTab={selectedTab}
-          onSelectTab={setSelectedTab}
+        <MyPageSideBar
+          menuItems={['기본정보 관리', '회원 탈퇴']}
+          activeTab={selectedTab}
+          setActiveTab={setSelectedTab}
         />
       </TabBoxWrapper>
 
