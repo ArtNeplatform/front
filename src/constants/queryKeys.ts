@@ -1,3 +1,4 @@
+import { postArtworkRegister } from '@/apis/artworkRegister/postArtworkRegister';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
@@ -35,5 +36,16 @@ export const postAuthRegisterQuery = () => {
   return {
     queryKey: ['postAuthRegister'],
     queryFn: postAuthRegister,
+  };
+};
+
+/**
+ * 작품 등록 쿼리
+ * @author 홍규진
+ * */
+export const postArtworkRegisterQuery = () => {
+  return {
+    queryKey: ['postArtworkRegister'],
+    queryFn: postArtworkRegister,
   };
 };
