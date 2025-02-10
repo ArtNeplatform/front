@@ -1,5 +1,7 @@
+import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
+import { postAuthRegister } from '@/apis/register/postAuthRegister';
 
 /**
  * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
@@ -11,5 +13,27 @@ export const getArtistListQuery = () => {
     queryKey: ['artistList'],
     queryFn: ({ page, keyword }: TGetArtistListRequestParams) =>
       getArtistList({ page, keyword }),
+  };
+};
+
+/**
+ * 경매 가능 작품 조회 쿼리
+ * @author 홍규진
+ * */
+export const getAvailableArtworksQuery = () => {
+  return {
+    queryKey: ['availableArtworks'],
+    queryFn: getAvailableArtworks,
+  };
+};
+
+/**
+ * 인증 회원가입 쿼리
+ * @author 홍규진
+ * */
+export const postAuthRegisterQuery = () => {
+  return {
+    queryKey: ['postAuthRegister'],
+    queryFn: postAuthRegister,
   };
 };
