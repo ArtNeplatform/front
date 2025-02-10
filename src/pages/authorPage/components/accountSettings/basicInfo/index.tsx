@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   AccountInfo,
   AddressButton,
@@ -13,9 +15,32 @@ import {
   UserDetails,
 } from './index.style';
 
+import IconCamera from '@assets/svg/Icon_Camera.svg';
 import EditButton from '@assets/svg/Icon_Edit.svg?react';
+import {
+  PhotoFieldContainer,
+  PhotoUploadBox,
+  Placeholder,
+} from '../../managingProfiles/introduce/index.style';
 
 export const BasicInfo = () => {
+  const [authorPhoto, setAuthorPhoto] = useState<string | null>(null);
+  const [introPhoto, setIntroPhoto] = useState<string | null>(null);
+
+  const handleImageUpload = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setImage: React.Dispatch<React.SetStateAction<string | null>>
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <FormContainer>
       <h1>계정 설정</h1>
@@ -37,7 +62,7 @@ export const BasicInfo = () => {
           </div>
           <div>
             <span>타입</span>
-            <span>작품 구매자</span>
+            <span>작가</span>
           </div>
         </UserDetails>
       </AccountInfo>
@@ -53,9 +78,50 @@ export const BasicInfo = () => {
           <span>010-1234-1234</span>
         </BasicField>
         <InputField>
-          <label>닉네임</label>
+          <label>활동명</label>
           <input type="text" value="홍길동" />
         </InputField>
+
+        {/* 작가 사진 */}
+        <PhotoFieldContainer>
+          <label>작가 사진</label>
+          <PhotoUploadBox>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e, setAuthorPhoto)}
+            />
+            {authorPhoto ? (
+              <img src={authorPhoto} className='preview' alt="작가 사진 미리보기" />
+            ) : (
+              <img src={IconCamera} className='icon' alt="카메라 아이콘" />
+            )}
+          </PhotoUploadBox>
+          <Placeholder>
+            <span>작가 사진 최적 사이즈는 000*000입니다</span>
+          </Placeholder>
+        </PhotoFieldContainer>
+
+        {/* 소개 사진 */}
+        <PhotoFieldContainer>
+          <label>소개 사진</label>
+          <PhotoUploadBox>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e, setIntroPhoto)}
+            />
+            {introPhoto ? (
+              <img src={introPhoto} alt="소개 사진 미리보기" />
+            ) : (
+              <img src={IconCamera} alt="카메라 아이콘" />
+            )}
+          </PhotoUploadBox>
+          <Placeholder>
+            <span>소개 사진 최적 사이즈는 000*000입니다</span>
+          </Placeholder>
+        </PhotoFieldContainer>
+
         <InputField>
           <label>생년월일</label>
           <input type="text" placeholder="ex) 1999.01.01" />

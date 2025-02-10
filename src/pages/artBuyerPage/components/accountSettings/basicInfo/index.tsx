@@ -24,7 +24,7 @@ export const BasicInfo = () => {
         <SectionTitle>계정 정보</SectionTitle>
         <ProfileImageContainer>
           <ProfileImage />
-          <EditButton />
+          <EditButton style={{ stroke: '#E1E1E1', strokeWidth: '0.833333' }} />
         </ProfileImageContainer>
         <UserDetails>
           <div>

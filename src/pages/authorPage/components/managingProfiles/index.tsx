@@ -1,26 +1,25 @@
 import { useState } from 'react';
-import { BasicInfo } from './basicInfo';
-import { Account } from './account';
-import { Withdraw } from './withdraw';
-
-import { MyPageSideBar } from '@/components/common/MyPageSideBar';
+import { AllInfo } from './allInfo';
+import { Introduce } from './introduce';
+import { MyInformation } from './myInformation';
 
 import { AccountSettingWrapper, TabBoxWrapper } from './index.style';
+import { MyPageSideBar } from '@/components/common/MyPageSideBar';
 
-export const AccountSettings = () => {
+export const ManagingProfiles = () => {
   const [selectedTab, setSelectedTab] = useState<
-    '기본정보 관리' | '계좌 관리' | '회원 탈퇴'
-  >('기본정보 관리');
+    '전체보기' | '자기 소개' | '자기 정보'
+  >('전체보기');
 
   // 선택된 메뉴에 따른 컴포넌트 렌더링 함수
   const renderSelectedTab = () => {
     switch (selectedTab) {
-      case '기본정보 관리':
-        return <BasicInfo />;
-      case '계좌 관리':
-        return <Account />;
-      case '회원 탈퇴':
-        return <Withdraw />;
+      case '전체보기':
+        return <AllInfo />;
+      case '자기 소개':
+        return <Introduce />;
+      case '자기 정보':
+        return <MyInformation />;
       default:
         return null;
     }
@@ -31,7 +30,7 @@ export const AccountSettings = () => {
       {/* 메뉴 선택 컴포넌트 */}
       <TabBoxWrapper>
         <MyPageSideBar
-          menuItems={['기본정보 관리', '계좌 관리', '회원 탈퇴']}
+          menuItems={['전체보기', '자기 소개', '자기 정보']}
           activeTab={selectedTab}
           setActiveTab={setSelectedTab}
         />
@@ -43,4 +42,4 @@ export const AccountSettings = () => {
   );
 };
 
-export default AccountSettings;
+export default ManagingProfiles;

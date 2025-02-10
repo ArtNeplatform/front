@@ -3,6 +3,7 @@ import { MenuChooser } from './components/menuChooser';
 import { PageLayout } from '@/components/common/PageLayout';
 
 import MenuMyPage from './components/menuMyPage';
+import ManagingProfiles from './components/managingProfiles';
 import AccountSettings from './components/accountSettings';
 import PurchasedWorks from './components/purchasedWorks';
 
@@ -19,9 +20,9 @@ export default function AuthorPage() {
       case '마이페이지':
         return <MenuMyPage />;
       case '프로필 관리':
-        return <AccountSettings />;
+        return <ManagingProfiles />;
       case '계정설정':
-        return <PurchasedWorks />;
+        return <AccountSettings />;
       case '작품/전시 관리':
         return <PurchasedWorks />;
       default:

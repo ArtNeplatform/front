@@ -29,6 +29,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StyledButton = styled.button<{ variant: 'black' | 'white' }>`
+  width: 106px;
   padding: 10px 20px;
   font-size: 14px;
   font-weight: bold;

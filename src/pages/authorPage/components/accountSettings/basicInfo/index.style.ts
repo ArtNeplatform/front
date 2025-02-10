@@ -76,7 +76,7 @@ export const UserDetails = styled.div`
 export const InputContainer = styled.section`
   display: flex;
   width: 800px;
-  height: 432px;
+  height: auto;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
@@ -104,6 +104,20 @@ export const BasicField = styled.div`
   }
 
   span {
+    width: 120px;
+    ${theme.typography['14']}
+    font-weight: 400;
+  }
+`;
+
+export const PhotoField = styled.div`
+  display: inline-flex;
+  width: 497px;
+  height: 120px;
+  align-items: flex-start;
+  gap: 17px;
+
+  label {
     width: 120px;
     ${theme.typography['14']}
     font-weight: 400;
@@ -166,6 +180,7 @@ export const AddressButton = styled.button`
 `;
 
 export const StyledButton = styled.button<{ variant: 'black' | 'white' }>`
+  width: 106px;
   padding: 12px 16px;
   font-size: 14px;
   font-weight: bold;

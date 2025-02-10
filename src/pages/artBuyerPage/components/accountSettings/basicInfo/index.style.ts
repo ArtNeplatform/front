@@ -166,6 +166,7 @@ export const AddressButton = styled.button`
 `;
 
 export const StyledButton = styled.button<{ variant: 'black' | 'white' }>`
+  width: 106px;
   padding: 12px 16px;
   font-size: 14px;
   font-weight: bold;
