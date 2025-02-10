@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: Github Action 설정
         uses: actions/checkout@v3
-        
-      - name: pnpm 설치  
+
+      - name: pnpm 설치
         run: npm install -g pnpm
 
       - name: pnpm 이용 cache 설정
@@ -57,7 +57,7 @@ jobs:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
         run: |
           aws s3 sync \
-            ./build s3://$BUCKET_NAME
+            ./dist s3://$BUCKET_NAME
 
       - name: CloudFront 무효화 설정
         run: |
