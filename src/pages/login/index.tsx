@@ -9,9 +9,10 @@ import {
 import GoogleIcon from '@assets/svg/google.svg?react';
 import KakaoIcon from '@assets/svg/kakao_talk.svg?react';
 import { useKakaoLogin } from './hooks/useKakaotalkLogin';
+import { useGoogleLogin } from './hooks/useGoogleLogin';
 export const Login = () => {
   const { handleKakaoLogin } = useKakaoLogin();
-
+  const { handleGoogleLogin } = useGoogleLogin();
   return (
     <PageLayout>
       <Container>
@@ -25,7 +26,11 @@ export const Login = () => {
         </Header>
 
         <SocialLoginContainer>
-          <SocialLoginButton type="button" socialType="google">
+          <SocialLoginButton
+            type="button"
+            socialType="google"
+            onClick={handleGoogleLogin}
+          >
             <GoogleIcon />
             <Text size={16} color="primary">
               구글로 시작하기

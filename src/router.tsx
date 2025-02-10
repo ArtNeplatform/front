@@ -5,7 +5,9 @@ import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
 import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
-import { AuctionRegister } from './pages/auction-register';
+import { AuctionRegister } from '@/pages/auction-register';
+import { Register } from '@/pages/register';
+import { ExhibitRegister } from '@/pages/exhibit-register';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -20,6 +22,7 @@ export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
+  { path: '/register', element: <Register />, isTabBar: true },
   {
     path: '/artwork-register',
     element: <ArtworkRegister />,
@@ -28,6 +31,11 @@ export const routes: TRoutes[] = [
   {
     path: '/auction-register',
     element: <AuctionRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibit-register',
+    element: <ExhibitRegister />,
     isTabBar: true,
   },
 ];

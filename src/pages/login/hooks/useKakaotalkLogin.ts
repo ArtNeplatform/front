@@ -16,11 +16,9 @@ export const useKakaoLogin = () => {
       }
 
       const settings = {
-        redirectUri: 'http://localhost:5173/',
-        state: 'optional_state_parameter',
+        redirectUri: 'http://localhost:5173/login',
         scope: 'account_email, profile_nickname, profile_image',
         prompts: 'login',
-        nonce: 'unique_nonce_value',
         throughTalk: true,
       };
 

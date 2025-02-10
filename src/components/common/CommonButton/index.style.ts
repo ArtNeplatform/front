@@ -5,6 +5,7 @@ interface ButtonProps {
   $borderColor: string;
   $background: string;
   $borderRadius: string;
+  $disabled: boolean;
 }
 
 export const ButtonContainer = styled.button<ButtonProps>`
@@ -19,4 +20,6 @@ export const ButtonContainer = styled.button<ButtonProps>`
   border-radius: ${(props) => props.$borderRadius};
   width: fit-content;
   cursor: pointer;
+  opacity: ${(props) => (props.$disabled ? 0.5 : 1)};
+  pointer-events: ${(props) => (props.$disabled ? 'none' : 'auto')};
 `;

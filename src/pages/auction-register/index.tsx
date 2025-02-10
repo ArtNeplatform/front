@@ -7,23 +7,17 @@ import CheckIcon from '@assets/svg/check-icon.svg?react';
 import { Container, ButtonContainer, ContentHeader } from './index.style.ts';
 import Divider from '@/components/common/Divider/index.tsx';
 import theme from '@/styles/theme.ts';
+import { useGetAvailableArtwork } from './hooks/useGetAvailableArtwork';
 
 export const AuctionRegister = () => {
-  const DUMMY_IMAGE_DATA = [
-    'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623632079-BBAERA9UGQ0EODC6680U/pixabaytest6-7.jpg?format=1000w',
-    'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623632079-BBAERA9UGQ0EODC6680U/pixabaytest6-7.jpg?format=1000w',
-    'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623632079-BBAERA9UGQ0EODC6680U/pixabaytest6-7.jpg?format=1000w',
-    'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623632079-BBAERA9UGQ0EODC6680U/pixabaytest6-7.jpg?format=1000w',
-    'https://images.squarespace-cdn.com/content/v1/56acc1138a65e2a286012c54/1476623632079-BBAERA9UGQ0EODC6680U/pixabaytest6-7.jpg?format=1000w',
-  ];
-
+  const { availableArtworks } = useGetAvailableArtwork();
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
 
-  const toggleImageSelection = (imageUrl: string) => {
+  const toggleImageSelection = (artworkId: string) => {
     setSelectedImages((prev) =>
-      prev.includes(imageUrl)
-        ? prev.filter((url) => url !== imageUrl)
-        : [...prev, imageUrl]
+      prev.includes(artworkId)
+        ? prev.filter((id) => id !== artworkId)
+        : [...prev, artworkId]
     );
   };
 
@@ -42,23 +36,27 @@ export const AuctionRegister = () => {
       </ContentHeader>
       <Container>
         <SquareGridContainer columnCount={5}>
-          {DUMMY_IMAGE_DATA.map((imageUrl, index) => (
+          {availableArtworks?.map((artwork, index) => (
             <div
-              key={imageUrl + index}
-              onClick={() => toggleImageSelection(imageUrl + index)}
+              key={artwork.artwork_id + index}
+              onClick={() =>
+                toggleImageSelection(artwork.artwork_id.toString())
+              }
               style={{
                 position: 'relative',
-                opacity: selectedImages.includes(imageUrl + index) ? 0.7 : 1,
+                opacity: selectedImages.includes(artwork.artwork_id.toString())
+                  ? 0.7
+                  : 1,
               }}
             >
               <Artwork
-                imageUrl={imageUrl}
+                imageUrl={artwork.thumbnail_image_url}
                 artist="작가 이름"
                 title="작품 제목"
                 hoverable={false}
                 variant="eager"
               />
-              {selectedImages.includes(imageUrl + index) && (
+              {selectedImages.includes(artwork.artwork_id.toString()) && (
                 <CheckIcon
                   style={{
                     position: 'absolute',
