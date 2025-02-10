@@ -11,12 +11,11 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 export const ArtworkInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: -8px;
 `;
 export const GlassmorphismOverlay = styled.div<{ hoverable: boolean }>`
   position: absolute;
@@ -70,16 +69,27 @@ export const Artist = styled.p`
 `;
 
 export const Title = styled.p`
+  display: flex;
+  align-items: center;
   width: 176px;
+  height: 40px;
+  padding-bottom: 8px;
   color: ${theme.colors.black};
   ${theme.typography['14']}
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
 `;
 
 export const Size = styled.p`
   color: ${theme.colors.fontGray};
   ${theme.typography['14']}
+  font-weight: 400;
+  margin: 0;
+`;
+
+export const Period = styled.p`
+  color: ${theme.colors.fontGray};
+  ${theme.typography['13']}
   font-weight: 400;
   margin: 0;
 `;

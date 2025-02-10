@@ -1,3 +1,4 @@
+import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
 import {
   MyCollectionContainer,
   SectionTitle,
@@ -9,8 +10,9 @@ import {
   ExhibitionContainer,
 } from './index.style';
 
-import { myCollection } from '@/pages/artBuyerPage/constants/myCollection';
 import { Artwork } from '@/components/common/ArtWork';
+
+const { artworks, exhibitions } = artBuyerData.result.myCollection;
 
 const MyCollection = () => {
   return (
@@ -20,12 +22,12 @@ const MyCollection = () => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {myCollection.artworks.map((artwork) => (
+          {artworks.map((artwork) => (
             <Artwork
               key={artwork.id}
               imageUrl={artwork.image_url}
               title={artwork.title}
-              artist={artwork.artist.name}
+              artist={artwork.author.name}
               artworkWidth={artwork.width}
               artworkHeight={artwork.height}
             />
@@ -36,7 +38,7 @@ const MyCollection = () => {
       <ExhibitionContainer>
         <SectionTitle>전시</SectionTitle>
         <ExhibitionGrid>
-          {myCollection.exhibitions.map((exhibition) => (
+          {exhibitions.map((exhibition) => (
             <ExhibitionItem key={exhibition.exhi_id}>
               <ExhibitionImage
                 src={exhibition.image_url}

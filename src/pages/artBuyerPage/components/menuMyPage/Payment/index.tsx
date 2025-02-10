@@ -7,6 +7,7 @@ import {
   TableCell,
 } from './index.style';
 import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
+import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
 
 /**
  * @description 작품 구매자의 결제 내역을 표시하는 컴포넌트
@@ -14,50 +15,11 @@ import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallba
  * @author 노찬영
  */
 
-
-
-interface PaymentItem {
-  artwork_id: number;
-  title: string;
-  author: {
-    name: string;
-  };
-  price: number;
-  created_at: string;
-  status: string;
-}
-
-// 결제 내역 목데이터
-const mockPayments: PaymentItem[] = [
-  {
-    artwork_id: 1,
-    title: '숲의 빛 (Light of the Forest)',
-    author: { name: '김예린' },
-    price: 1200000,
-    created_at: '2023-12-25T12:00:00Z',
-    status: '결제 대기중',
-  },
-  {
-    artwork_id: 2,
-    title: '숲속의 정오 (Noon in the Forest)',
-    author: { name: '윤지혜' },
-    price: 850000,
-    created_at: '2023-12-25T10:30:00Z',
-    status: '결제 완료',
-  },
-  {
-    artwork_id: 3,
-    title: '푸른 시간 (The Blue Hour)',
-    author: { name: '정민우' },
-    price: 2500000,
-    created_at: '2023-12-25T09:45:00Z',
-    status: '낙찰',
-  },
-];
+const { payments } = artBuyerData.result;
 
 export const Payment = () => {
-  const isLoading = false; 
-  const error = null; 
+  const isLoading = false;
+  const error = null;
 
   if (isLoading) return <FallbackUI />;
   if (error)
@@ -81,7 +43,7 @@ export const Payment = () => {
           </TableRow>
         </thead>
         <tbody>
-          {mockPayments.map((payment) => (
+          {payments.map((payment) => (
             <TableRow key={payment.artwork_id}>
               <TableCell>{`${payment.title} - ${payment.author.name}`}</TableCell>
               <TableCell>{`₩${payment.price.toLocaleString()}`}</TableCell>

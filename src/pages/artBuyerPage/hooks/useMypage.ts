@@ -1,5 +1,5 @@
 import { instance } from '@/apis/axios';
-import { PaymentItem } from '@/types/myPage';
+import { PaymentItem } from '@/types/artBuyer';
 import { useQuery } from '@tanstack/react-query';
 
 interface MypageResponse {

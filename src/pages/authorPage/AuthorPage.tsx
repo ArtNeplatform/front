@@ -5,7 +5,7 @@ import { PageLayout } from '@/components/common/PageLayout';
 import MenuMyPage from './components/menuMyPage';
 import ManagingProfiles from './components/managingProfiles';
 import AccountSettings from './components/accountSettings';
-import PurchasedWorks from './components/purchasedWorks';
+import ManagementWorks from './components/managementWorks';
 
 import { MenuWrapper, MyPageWrapper } from './AuthorPage.style';
 
@@ -24,7 +24,7 @@ export default function AuthorPage() {
       case '계정설정':
         return <AccountSettings />;
       case '작품/전시 관리':
-        return <PurchasedWorks />;
+        return <ManagementWorks />;
       default:
         return null;
     }

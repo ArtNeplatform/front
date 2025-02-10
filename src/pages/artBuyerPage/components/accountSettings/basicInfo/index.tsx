@@ -15,6 +15,7 @@ import {
 
 import EditButton from '@assets/svg/Icon_Edit.svg?react';
 
+
 export const BasicInfo = () => {
   return (
     <FormContainer>

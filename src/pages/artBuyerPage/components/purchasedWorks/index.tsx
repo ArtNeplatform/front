@@ -5,8 +5,10 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { myCollection } from '@/pages/artBuyerPage/constants/myCollection';
+import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
 import { Artwork } from '@/components/common/ArtWork';
+
+const { artworks } = artBuyerData.result.myCollection;
 
 const PurchasedWorks = () => {
   return (
@@ -16,12 +18,12 @@ const PurchasedWorks = () => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {myCollection.artworks.map((artwork) => (
+          {artworks.map((artwork) => (
             <Artwork
               key={artwork.id}
               imageUrl={artwork.image_url}
               title={artwork.title}
-              artist={artwork.artist.name}
+              artist={artwork.author.name}
               artworkWidth={artwork.width}
               artworkHeight={artwork.height}
             />

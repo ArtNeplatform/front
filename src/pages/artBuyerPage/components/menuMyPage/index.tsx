@@ -8,6 +8,10 @@ import {
   ProfileContainer,
 } from './index.style';
 
+import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+
+const { paymentCounts } = artBuyerData.result;
+
 export const MenuMyPage = () => {
   return (
     <MyPageWrapper>
@@ -15,9 +19,9 @@ export const MenuMyPage = () => {
         <Profile
           myName={'홍길동'}
           profileImage={''}
-          pendingPayments={3}
-          completedPayments={3}
-          receivedPayments={3}
+          pendingPayments={paymentCounts.pending}
+          completedPayments={paymentCounts.completed}
+          receivedPayments={paymentCounts.received}
         />
       </ProfileContainer>
       <MyPageContainer>

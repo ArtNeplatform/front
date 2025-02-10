@@ -56,6 +56,7 @@ export const IntroduceContainer = styled.section`
   display: inline-flex;
   flex-direction: column;
 
+  width: 1014px;
   padding: 28px 32px;
   align-items: flex-start;
   gap: 24px;
