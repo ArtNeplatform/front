@@ -3,6 +3,7 @@ import NotFound from '@pages/notFound.tsx';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
 import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
+import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
 
 type TRoutes = {
   path: string;
@@ -16,6 +17,7 @@ type TRoutes = {
  * */
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
+  { path: '/artBuyerPage', element: <ArtBuyerPage />, isTabBar: true },
 ];
 /**
  * AuthCheckRoute 로 한 번 감사서,

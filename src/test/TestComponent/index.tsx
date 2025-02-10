@@ -10,8 +10,6 @@ import {
   FlexSpacing,
 } from "@/test/TestComponent/index.style.ts";
 
-import { Header } from "@components/common/Header/index.style.ts";
-import { HeaderContent } from "@components/common/Header";
 import { AuthorDetailCategory } from "@/components/common/AuthorDetailCategory";
 import { CommonInput } from "@/components/common/CommonInput";
 import { MyPageSideBar } from "@/components/common/MyPageSideBar";
