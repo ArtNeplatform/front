@@ -4,6 +4,7 @@ import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
 import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
 import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
+import AuthorPage from './pages/authorPage/AuthorPage';
 
 type TRoutes = {
   path: string;
@@ -15,9 +16,17 @@ type TRoutes = {
  * Login 로직이 구현되기 전에는 isCheckAuth 는 사용하지 않습니다.
  * @author 홍규진
  * */
+
+/**
+ * 작품구매자_마이페이지는 /artBuyerPage 이고,
+ * 작가_마이페이지는 /authorPage 로 구분했습니다.
+ * @author 노찬영
+ * */
+
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
   { path: '/artBuyerPage', element: <ArtBuyerPage />, isTabBar: true },
+  { path: '/authorPage', element: <AuthorPage />, isTabBar: true },
 ];
 /**
  * AuthCheckRoute 로 한 번 감사서,
