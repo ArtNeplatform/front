@@ -1,3 +1,4 @@
+import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -53,7 +54,7 @@ export const SelectedGalleryDisplay = styled.div`
   max-width: 837px;
   max-height: 540px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: ${theme.colors.gray};
 `;
 
 export const DisplayImage = styled.img`
