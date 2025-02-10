@@ -16,6 +16,7 @@ export const ArtworkInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: -8px;
 `;
 export const GlassmorphismOverlay = styled.div<{ hoverable: boolean }>`
   position: absolute;
