@@ -51,6 +51,9 @@ const theme = {
     font03gray: '#505050',
     fontGray: '#767676',
     priceBox: '#F7F7FB',
+    profileBox: '#E7E7E7',
+    profileButton: '#F9F9F9',
+    borderBottom: '#D9D9D9',
   },
 } as const;
 
