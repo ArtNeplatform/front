@@ -18,7 +18,7 @@ import EmptyHeart from '@assets/svg/empty-heart.svg?react';
 import theme from '@styles/theme.ts';
 interface ArtworkProps {
   imageUrl: string;
-  artist: string;
+  artist?: string;
   title: string;
   artworkWidth?: number;
   artworkHeight?: number;
@@ -88,7 +88,7 @@ export const Artwork = ({
         )}
       </ImageContainer>
       <ArtworkInfo>
-        <Artist>{artist}</Artist>
+        {artist && <Artist>{artist}</Artist>}
         <Title>{title}</Title>
         {formattedSize && <Size>{formattedSize}</Size>}
         {formattedPrice && <Price>{formattedPrice}</Price>}
