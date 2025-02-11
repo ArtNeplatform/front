@@ -18,7 +18,7 @@ export default function AuthorPage() {
   const renderSelectedMenu = () => {
     switch (selectedMenu) {
       case '마이페이지':
-        return <MenuMyPage />;
+        return <MenuMyPage setSelectedMenu={setSelectedMenu} />;
       case '프로필 관리':
         return <ManagingProfiles />;
       case '계정설정':
@@ -36,7 +36,7 @@ export default function AuthorPage() {
       <MenuWrapper>
         <MenuChooser
           menus={['마이페이지', '프로필 관리', '계정설정', '작품/전시 관리']}
-          defaultSelectedMenu={selectedMenu}
+          selectedMenu={selectedMenu}
           onSelectMenu={setSelectedMenu}
         />
       </MenuWrapper>

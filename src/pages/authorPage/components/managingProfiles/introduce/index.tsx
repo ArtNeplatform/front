@@ -20,6 +20,7 @@ const { description, work_style } = authorData.result;
 export const Introduce = () => {
   return (
     <FormContainer>
+      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
       <h1>자기 소개</h1>
 
       <IntroduceContainer>

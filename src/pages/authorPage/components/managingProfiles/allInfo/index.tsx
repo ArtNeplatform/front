@@ -33,7 +33,7 @@ export const AllInfo = () => {
   return (
     <FormContainer>
       <h1>전체보기</h1>
-
+      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
       <AccountInfo>
         <ProfileImageContainer>
           <ProfileImage src={author_image_url} alt={author_name} />
@@ -48,12 +48,10 @@ export const AllInfo = () => {
           </div>
         </UserDetails>
       </AccountInfo>
-
       <IntroduceContainer>
         <SectionTitle>자기 소개</SectionTitle>
         <Content>{description}</Content>
       </IntroduceContainer>
-
       <IntroduceContainer>
         <SectionTitle>학력 정보</SectionTitle>
         <Table>
@@ -87,7 +85,6 @@ export const AllInfo = () => {
           </tbody>
         </Table>
       </IntroduceContainer>
-
       <IntroduceContainer>
         <SectionTitle>수상 경력</SectionTitle>
         <Table>
@@ -115,7 +112,6 @@ export const AllInfo = () => {
           </tbody>
         </Table>
       </IntroduceContainer>
-
       <IntroduceContainer>
         <SectionTitle>전시 및 프로젝트 경험</SectionTitle>
         <Table>

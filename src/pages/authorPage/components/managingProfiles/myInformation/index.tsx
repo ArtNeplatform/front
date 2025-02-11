@@ -25,6 +25,7 @@ export const MyInformation = () => {
     <FormContainer>
       <h1>자기 정보</h1>
 
+      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
       <IntroduceContainer>
         <SectionTitleBox>
           <SectionTitle>작가 설명</SectionTitle>

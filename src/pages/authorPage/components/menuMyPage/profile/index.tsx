@@ -13,6 +13,7 @@ interface ProfileProps {
   myName: string;
   profileImage?: string;
   affiliation: string;
+  onEditProfile: () => void;
 }
 
 /**
@@ -21,6 +22,7 @@ interface ProfileProps {
  * @param {string} myName - 사용자 이름
  * @param {string} profileImage - 프로필 이미지 url (없으면 기본 이미지)
  * @param {string} affiliation - 작가 소속
+ * @param {() => void} onEditProfile - 작가 계정 정보 수정
  * @author 노찬영
  **/
 
@@ -28,6 +30,7 @@ export const Profile = ({
   myName,
   profileImage,
   affiliation,
+  onEditProfile,
 }: ProfileProps) => {
   return (
     <ProfileContainer>
@@ -38,7 +41,7 @@ export const Profile = ({
       <ProfileInfo>
         <Name>{myName}</Name>
         <Affiliation>{affiliation}</Affiliation>
-        <EditButton>
+        <EditButton onClick={onEditProfile}>
           기본정보 수정 <RightArrow />
         </EditButton>
       </ProfileInfo>
