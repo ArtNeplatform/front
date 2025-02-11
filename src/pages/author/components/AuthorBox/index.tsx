@@ -8,22 +8,24 @@ import {
 
 interface AuthorBoxProps {
   imageUrl: string;
-  artist: string;
+  author: string;
   artworkCount: number;
   exhibitionCount: number;
+  onClick: () => void;
 }
 
 export const AuthorBox = ({
   imageUrl,
-  artist,
+  author,
   artworkCount,
   exhibitionCount,
+  onClick,
 }: AuthorBoxProps) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Wrapper>
-        <ProfileImage src={imageUrl} alt={artist} />
-        <ArtistName>{artist}</ArtistName>
+        <ProfileImage src={imageUrl} alt={author} />
+        <ArtistName>{author}</ArtistName>
         <InfoText>
           작품 {artworkCount}개 | 전시 {exhibitionCount}개
         </InfoText>

@@ -38,7 +38,7 @@ export const routes: TRoutes[] = [
     isTabBar: true,
   },
   {
-    path: '/author-detail',
+    path: '/author/:id',
     element: <AuthorDetail />,
     isTabBar: true,
   },
