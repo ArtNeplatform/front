@@ -8,8 +8,14 @@ import {
   ButtonContainer,
   StyledButton,
 } from './index.style';
-import { artworksExhibitionsData } from '@/pages/authorPage/constants/artworksExhibitions';
 
+import { ArtworksExhibitionsDataProps } from '@/types/author';
+
+import { artworksExhibitionsData as rawArtworksExhibitionData } from '@/pages/authorPage/constants/artworksExhibitions';
+
+// 명시적으로 ArtBuyerDataProps 타입 지정
+const artworksExhibitionsData: ArtworksExhibitionsDataProps =
+  rawArtworksExhibitionData;
 const { artworks } = artworksExhibitionsData.result;
 
 const ArtWorks = () => {

@@ -1,9 +1,7 @@
 import exampleArtwork from '@/assets/png/example_artwork.png';
 import exampleExhibition from '@/assets/png/example_exhibition.png';
 
-import { ArtBuyerDataProps } from '@/types/artBuyer';
-
-export const artBuyerData: ArtBuyerDataProps = {
+export const artBuyerData = {
   success: true,
   code: 200,
   message: '요청에 성공하였습니다.',

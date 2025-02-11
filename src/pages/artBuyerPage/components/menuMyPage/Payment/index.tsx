@@ -7,13 +7,19 @@ import {
   TableCell,
 } from './index.style';
 import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
-import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+
+import { ArtBuyerDataProps } from '@/types/artBuyer';
+
+import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
 
 /**
  * @description 작품 구매자의 결제 내역을 표시하는 컴포넌트
  * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
+
+// 명시적으로 ArtBuyerDataProps 타입 지정
+const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
 
 const { payments } = artBuyerData.result;
 

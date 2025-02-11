@@ -1,9 +1,7 @@
 import exampleArtwork from '@/assets/png/example_artwork.png';
 import exampleExhibition from '@/assets/png/example_exhibition.png';
 
-import { ArtworksExhibitionsDataProps } from '@/types/author';
-
-export const artworksExhibitionsData: ArtworksExhibitionsDataProps = {
+export const artworksExhibitionsData = {
   isSuccess: true,
   code: '2000',
   message: 'success!',

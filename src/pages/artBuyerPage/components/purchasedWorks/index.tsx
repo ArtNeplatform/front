@@ -5,9 +5,14 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+import { ArtBuyerDataProps } from '@/types/artBuyer';
+
+import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+
 import { Artwork } from '@/components/common/ArtWork';
 
+// 명시적으로 ArtBuyerDataProps 타입 지정
+const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
 const { artworks } = artBuyerData.result.myCollection;
 
 const PurchasedWorks = () => {

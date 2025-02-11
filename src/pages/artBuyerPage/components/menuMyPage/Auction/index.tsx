@@ -7,12 +7,18 @@ import {
   TableHeader,
   TableRow,
 } from './index.style';
-import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+
+import { ArtBuyerDataProps } from '@/types/artBuyer';
+
+import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
 
 /**
  * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
  * @author 노찬영
  */
+
+// 명시적으로 ArtBuyerDataProps 타입 지정
+const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
 
 const { auctions } = artBuyerData.result;
 

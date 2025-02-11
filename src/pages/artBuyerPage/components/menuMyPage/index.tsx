@@ -8,9 +8,14 @@ import {
   ProfileContainer,
 } from './index.style';
 
-import { artBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+import { ArtBuyerDataProps } from '@/types/artBuyer';
 
-const { paymentCounts } = artBuyerData.result;
+import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+
+// 명시적으로 ArtBuyerDataProps 타입 지정
+const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
+
+const { paymentCounts } = artBuyerData.result ?? {};
 
 export const MenuMyPage = () => {
   return (
@@ -19,9 +24,9 @@ export const MenuMyPage = () => {
         <Profile
           myName={'홍길동'}
           profileImage={''}
-          pendingPayments={paymentCounts.pending}
-          completedPayments={paymentCounts.completed}
-          receivedPayments={paymentCounts.received}
+          pendingPayments={paymentCounts?.pending ?? 0}
+          completedPayments={paymentCounts?.completed ?? 0}
+          receivedPayments={paymentCounts?.received ?? 0}
         />
       </ProfileContainer>
       <MyPageContainer>

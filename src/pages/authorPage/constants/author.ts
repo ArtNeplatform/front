@@ -1,6 +1,4 @@
-import { AuthorDataProps } from '@/types/author';
-
-const authorData: AuthorDataProps = {
+export const authorData = {
   isSuccess: true,
   code: 2000,
   message: 'success!',
