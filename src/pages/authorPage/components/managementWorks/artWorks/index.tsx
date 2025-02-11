@@ -1,5 +1,4 @@
 import IconPlus from '@assets/svg/Icon_Plus.svg?react';
-
 import { Artwork } from '@/components/common/ArtWork';
 import {
   ArtworkContainer,
@@ -9,31 +8,44 @@ import {
   StyledButton,
 } from './index.style';
 
-import { ArtworksExhibitionsDataProps } from '@/types/author';
-
-import { artworksExhibitionsData as rawArtworksExhibitionData } from '@/constants/mocks';
-
-// 명시적으로 ArtworksExhibitionsDataProps 타입 지정
-const artworksExhibitionsData: ArtworksExhibitionsDataProps =
-  rawArtworksExhibitionData;
-const { artworks } = artworksExhibitionsData.result;
+import { useGetAuthorArtworksExhibitions } from '@/pages/authorPage/hooks/useGetAuthorArtworksExhibitions';
+import FallbackUI from '@/components/common/FallbackUI';
+import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
 const ArtWorks = () => {
+  const { data, isLoading, error } = useGetAuthorArtworksExhibitions();
+
+  if (isLoading) return <FallbackUI />;
+  if (error)
+    return (
+      <DefaultErrorFallbackUI
+        resetErrorBoundary={() => console.log('에러 초기화')}
+        error={error}
+      />
+    );
+
+  const artworks = data?.result?.artworks || [];
+
   return (
     <ArtWorksContainer>
       <h1>작품</h1>
 
       <ArtworkContainer>
-        <ArtworkGrid>
-          {artworks.map((artwork) => (
-            <Artwork
-              key={artwork.id}
-              imageUrl={artwork.thumbnail_image_url}
-              title={artwork.title}
-            />
-          ))}
-        </ArtworkGrid>
+        {artworks.length > 0 ? (
+          <ArtworkGrid>
+            {artworks.map((artwork) => (
+              <Artwork
+                key={artwork.id}
+                imageUrl={artwork.thumbnail_image_url}
+                title={artwork.title}
+              />
+            ))}
+          </ArtworkGrid>
+        ) : (
+          <p>등록된 작품이 없습니다.</p>
+        )}
       </ArtworkContainer>
+
       <ButtonContainer>
         <StyledButton>
           <IconPlus />

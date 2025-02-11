@@ -9,16 +9,24 @@ import {
   StyledButton,
 } from './index.style';
 
-import { ArtworksExhibitionsDataProps } from '@/types/author';
-
-import { artworksExhibitionsData as rawArtworksExhibitionData } from '@/constants/mocks';
-
-// 명시적으로 ArtworksExhibitionsDataProps 타입 지정
-const artworksExhibitionsData: ArtworksExhibitionsDataProps =
-  rawArtworksExhibitionData;
-const { exhibitions } = artworksExhibitionsData.result;
+import { useGetAuthorArtworksExhibitions } from '@/pages/authorPage/hooks/useGetAuthorArtworksExhibitions';
+import FallbackUI from '@/components/common/FallbackUI';
+import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
 const Exhibitions = () => {
+  const { data, isLoading, error } = useGetAuthorArtworksExhibitions();
+
+  if (isLoading) return <FallbackUI />;
+  if (error)
+    return (
+      <DefaultErrorFallbackUI
+        resetErrorBoundary={() => console.log('에러 초기화')}
+        error={error}
+      />
+    );
+
+  const exhibitions = data?.result?.exhibitions || [];
+
   return (
     <ArtWorksContainer>
       <h1>진행 중인 전시</h1>
