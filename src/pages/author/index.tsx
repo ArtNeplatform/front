@@ -47,7 +47,7 @@ export const Author = () => {
           ))}
         </GridContainer>
         <PagingButtons
-          totalPage={dummyAuthors.length / itemsPerPage}
+          totalPage={Math.ceil(dummyAuthors.length / itemsPerPage)}
           page={page}
           setPage={setPage}
         />
