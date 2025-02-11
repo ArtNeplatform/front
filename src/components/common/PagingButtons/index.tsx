@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
-import { Container, StyledButton, PageButton, IconButton } from "./index.style";
+import { useEffect, useState } from 'react';
+import {
+  Container,
+  StyledButton,
+  PageButton,
+  IconButton,
+  Wrapper,
+} from './index.style';
 import {
   HiChevronDoubleLeft,
   HiChevronLeft,
   HiChevronDoubleRight,
   HiChevronRight,
-} from "react-icons/hi2";
+} from 'react-icons/hi2';
 
 interface PaginationProps {
   totalPage: number;
@@ -85,51 +91,53 @@ export const PagingButtons = ({
 
   return (
     <Container>
-      <StyledButton
-        active={false}
-        onClick={handleDoubleLeft}
-        disabled={page <= limit}
-      >
-        <IconButton>
-          <HiChevronDoubleLeft />
-        </IconButton>
-      </StyledButton>
-
-      <StyledButton active={false} onClick={handleLeft} disabled={page <= 1}>
-        <IconButton>
-          <HiChevronLeft />
-        </IconButton>
-      </StyledButton>
-
-      {currentPageArray?.map((pageNum) => (
-        <PageButton
-          key={pageNum}
-          active={pageNum === page}
-          onClick={() => handlePageChange(pageNum)}
+      <Wrapper>
+        <StyledButton
+          active={false}
+          onClick={handleDoubleLeft}
+          disabled={page <= limit}
         >
-          {pageNum}
-        </PageButton>
-      ))}
+          <IconButton>
+            <HiChevronDoubleLeft />
+          </IconButton>
+        </StyledButton>
 
-      <StyledButton
-        active={false}
-        onClick={handleRight}
-        disabled={page >= totalPage}
-      >
-        <IconButton>
-          <HiChevronRight />
-        </IconButton>
-      </StyledButton>
+        <StyledButton active={false} onClick={handleLeft} disabled={page <= 1}>
+          <IconButton>
+            <HiChevronLeft />
+          </IconButton>
+        </StyledButton>
 
-      <StyledButton
-        active={false}
-        onClick={handleDoubleRight}
-        disabled={page + limit > totalPage}
-      >
-        <IconButton>
-          <HiChevronDoubleRight />
-        </IconButton>
-      </StyledButton>
+        {currentPageArray?.map((pageNum) => (
+          <PageButton
+            key={pageNum}
+            active={pageNum === page}
+            onClick={() => handlePageChange(pageNum)}
+          >
+            {pageNum}
+          </PageButton>
+        ))}
+
+        <StyledButton
+          active={false}
+          onClick={handleRight}
+          disabled={page >= totalPage}
+        >
+          <IconButton>
+            <HiChevronRight />
+          </IconButton>
+        </StyledButton>
+
+        <StyledButton
+          active={false}
+          onClick={handleDoubleRight}
+          disabled={page + limit > totalPage}
+        >
+          <IconButton>
+            <HiChevronDoubleRight />
+          </IconButton>
+        </StyledButton>
+      </Wrapper>
     </Container>
   );
 };
