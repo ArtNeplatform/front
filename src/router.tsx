@@ -8,6 +8,7 @@ import { ArtworkRegister } from '@/pages/artwork-register';
 import { AuctionRegister } from '@/pages/auction-register';
 import { Register } from '@/pages/register';
 import { ExhibitRegister } from '@/pages/exhibit-register';
+import { Main } from '@/pages/main';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -38,6 +39,7 @@ export const routes: TRoutes[] = [
     element: <ExhibitRegister />,
     isTabBar: true,
   },
+  { path: '/main', element: <Main />, isTabBar: true },
 ];
 
 /**
