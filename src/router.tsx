@@ -6,6 +6,7 @@ import Test from '@pages/test.tsx';
 import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
 import { AuctionRegister } from './pages/auction-register';
+import { Author } from './pages/author';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -28,6 +29,11 @@ export const routes: TRoutes[] = [
   {
     path: '/auction-register',
     element: <AuctionRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/author',
+    element: <Author />,
     isTabBar: true,
   },
 ];
