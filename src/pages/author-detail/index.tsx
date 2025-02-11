@@ -3,9 +3,9 @@ import { AuthorContainer, Banner, Content } from './index.style';
 import AuthorProfile from '@/components/common/AuthorProfile';
 import { AuthorDetailCategory } from '@/components/common/AuthorDetailCategory';
 import { useState } from 'react';
-import { AuthorExhibition } from './components/Exhibition';
+import { AuthorExhibition } from './components/AuthorExhibition';
 import { AuthorInfo } from './components/AuthorInfo';
-import { AuthorArtwork } from './components/ArtworkList';
+import { AuthorArtwork } from './components/AuthorArtwork';
 
 export const AuthorDetail = () => {
   const [activeTab, setActiveTab] = useState<string>('작가소개');
