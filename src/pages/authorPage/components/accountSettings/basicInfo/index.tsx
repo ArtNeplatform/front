@@ -92,9 +92,13 @@ export const BasicInfo = () => {
               onChange={(e) => handleImageUpload(e, setAuthorPhoto)}
             />
             {authorPhoto ? (
-              <img src={authorPhoto} className='preview' alt="작가 사진 미리보기" />
+              <img
+                src={authorPhoto}
+                className="preview"
+                alt="작가 사진 미리보기"
+              />
             ) : (
-              <img src={IconCamera} className='icon' alt="카메라 아이콘" />
+              <img src={IconCamera} className="icon" alt="카메라 아이콘" />
             )}
           </PhotoUploadBox>
           <Placeholder>
@@ -131,7 +135,7 @@ export const BasicInfo = () => {
           <div className="address-container">
             <div className="primary-address">
               <input type="text" placeholder="" />
-              {/* TODO: 주소찾기 버튼 클릭시 검색 페이지로 이동 */}
+              {/* TODO[찬영] - 주소찾기 버튼 클릭시 검색 페이지로 이동 */}
               <AddressButton>주소찾기</AddressButton>
             </div>
             <input type="text" placeholder="상세 주소 입력" />
