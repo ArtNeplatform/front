@@ -24,8 +24,7 @@ export interface Artwork {
   id: number;
   title: string;
   image_url: string;
-  width: number;
-  height: number;
+  size: string;
   author: Author;
 }
 
@@ -57,3 +56,4 @@ export interface ArtBuyerDataProps {
     myCollection: MyCollection;
   };
 }
+

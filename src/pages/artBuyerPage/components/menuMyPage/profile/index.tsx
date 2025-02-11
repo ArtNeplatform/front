@@ -18,6 +18,7 @@ interface ProfileProps {
   pendingPayments: number;
   completedPayments: number;
   receivedPayments: number;
+  onEditProfile: () => void;
 }
 
 /**
@@ -28,6 +29,7 @@ interface ProfileProps {
  * @param {number} pendingPayments - 작품 결제 대기중
  * @param {number} completedPayments - 작품 결제 완료
  * @param {number} receivedPayments - 작품 수령 완료
+ * @param {() => void} onEditProfile - 작품 구매자 계정 정보 수정
  * @author 노찬영
  **/
 
@@ -37,6 +39,7 @@ export const Profile = ({
   pendingPayments,
   completedPayments,
   receivedPayments,
+  onEditProfile,
 }: ProfileProps) => {
   return (
     <ProfileContainer>
@@ -46,7 +49,7 @@ export const Profile = ({
       />
       <ProfileInfo>
         <Name>{myName}</Name>
-        <EditButton>
+        <EditButton onClick={onEditProfile}>
           기본정보 수정 <RightArrow />
         </EditButton>
       </ProfileInfo>

@@ -17,7 +17,7 @@ export default function ArtBuyerPage() {
   const renderSelectedMenu = () => {
     switch (selectedMenu) {
       case '마이페이지':
-        return <MenuMyPage />;
+        return <MenuMyPage setSelectedMenu={setSelectedMenu}/>;
       case '계정설정':
         return <AccountSettings />;
       case '구매 작품':
@@ -33,7 +33,7 @@ export default function ArtBuyerPage() {
       <MenuWrapper>
         <MenuChooser
           menus={['마이페이지', '계정설정', '구매 작품']}
-          defaultSelectedMenu={selectedMenu}
+          selectedMenu={selectedMenu}
           onSelectMenu={setSelectedMenu}
         />
       </MenuWrapper>

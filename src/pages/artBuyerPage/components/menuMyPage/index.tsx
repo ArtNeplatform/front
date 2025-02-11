@@ -8,6 +8,7 @@ import {
   ProfileContainer,
 } from './index.style';
 
+// TODO[찬영] - 작품 구매자 조회 API 연결
 import { ArtBuyerDataProps } from '@/types/artBuyer';
 
 import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
@@ -17,7 +18,11 @@ const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
 
 const { paymentCounts } = artBuyerData.result ?? {};
 
-export const MenuMyPage = () => {
+export const MenuMyPage = ({
+  setSelectedMenu,
+}: {
+  setSelectedMenu: (menu: '마이페이지' | '계정설정' | '구매 작품') => void;
+}) => {
   return (
     <MyPageWrapper>
       <ProfileContainer>
@@ -27,6 +32,7 @@ export const MenuMyPage = () => {
           pendingPayments={paymentCounts?.pending ?? 0}
           completedPayments={paymentCounts?.completed ?? 0}
           receivedPayments={paymentCounts?.received ?? 0}
+          onEditProfile={() => setSelectedMenu('계정설정')}
         />
       </ProfileContainer>
       <MyPageContainer>
