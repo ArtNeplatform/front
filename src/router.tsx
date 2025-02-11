@@ -9,6 +9,7 @@ import { AuctionRegister } from './pages/auction-register';
 import { Author } from './pages/author';
 import { AuthorDetail } from './pages/author-detail';
 import { Exhibition } from './pages/exhibition';
+import { ExhibitionDetail } from './pages/exhibition-detail';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -46,6 +47,11 @@ export const routes: TRoutes[] = [
   {
     path: '/exhibition',
     element: <Exhibition />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibition/:id',
+    element: <ExhibitionDetail />,
     isTabBar: true,
   },
 ];
