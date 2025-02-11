@@ -8,6 +8,7 @@ import { ArtworkRegister } from '@/pages/artwork-register';
 import { AuctionRegister } from './pages/auction-register';
 import { Author } from './pages/author';
 import { AuthorDetail } from './pages/author-detail';
+import { Exhibition } from './pages/exhibition';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -40,6 +41,11 @@ export const routes: TRoutes[] = [
   {
     path: '/author/:id',
     element: <AuthorDetail />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibition',
+    element: <Exhibition />,
     isTabBar: true,
   },
 ];
