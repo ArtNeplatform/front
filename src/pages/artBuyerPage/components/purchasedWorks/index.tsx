@@ -7,7 +7,7 @@ import {
 
 import { ArtBuyerDataProps } from '@/types/artBuyer';
 
-import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
 
 import { Artwork } from '@/components/common/ArtWork';
 

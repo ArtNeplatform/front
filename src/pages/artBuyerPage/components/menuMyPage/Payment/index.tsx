@@ -10,7 +10,7 @@ import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallba
 
 import { ArtBuyerDataProps } from '@/types/artBuyer';
 
-import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
 
 /**
  * @description 작품 구매자의 결제 내역을 표시하는 컴포넌트

@@ -10,7 +10,7 @@ import {
 
 import { ArtBuyerDataProps } from '@/types/artBuyer';
 
-import { artBuyerData as rawArtBuyerData } from '@/pages/artBuyerPage/constants/artBuyer';
+import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
 
 // 명시적으로 ArtBuyerDataProps 타입 지정
 const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;

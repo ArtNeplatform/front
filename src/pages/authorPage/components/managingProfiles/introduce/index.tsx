@@ -11,9 +11,9 @@ import EditIcon from '@assets/svg/Icon_Edit.svg?react';
 
 import { AuthorDataProps } from '@/types/author';
 
-import { authorData as rawAuthorData } from '@/pages/authorPage/constants/author';
+import { authorData as rawAuthorData } from '@/constants/mocks';
 
-// 명시적으로 ArtBuyerDataProps 타입 지정
+// 명시적으로 AuthorDataProps 타입 지정
 const authorData: AuthorDataProps = rawAuthorData;
 const { description, work_style } = authorData.result;
 
