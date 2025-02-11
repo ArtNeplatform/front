@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   GridContainer,
@@ -13,12 +14,18 @@ const dummyArtworks = Array.from({ length: 10 }, (_, index) => ({
   )}?random=${Math.random()}`, // 랜덤 크기 이미지
 }));
 
-export const ArtworkList = () => {
+export const AuthorArtwork = () => {
+  const naviagate = useNavigate();
   return (
     <Container>
       <GridContainer>
         {dummyArtworks.map((artwork) => (
-          <ArtworkItem key={artwork.id}>
+          <ArtworkItem
+            key={artwork.id}
+            onClick={() => {
+              naviagate(`/artwork/${artwork.id}`);
+            }}
+          >
             <ArtworkImage src={artwork.imageUrl} alt={artwork.title} />
           </ArtworkItem>
         ))}

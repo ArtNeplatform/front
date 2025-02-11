@@ -3,9 +3,9 @@ import { AuthorContainer, Banner, Content } from './index.style';
 import AuthorProfile from '@/components/common/AuthorProfile';
 import { AuthorDetailCategory } from '@/components/common/AuthorDetailCategory';
 import { useState } from 'react';
-import { Exhibition } from './components/Exhibition';
+import { AuthorExhibition } from './components/Exhibition';
 import { AuthorInfo } from './components/AuthorInfo';
-import { ArtworkList } from './components/ArtworkList';
+import { AuthorArtwork } from './components/ArtworkList';
 
 export const AuthorDetail = () => {
   const [activeTab, setActiveTab] = useState<string>('작가소개');
@@ -83,8 +83,8 @@ export const AuthorDetail = () => {
           />
           <Content>
             {activeTab === '작가소개' && <AuthorInfo result={dummyData} />}
-            {activeTab === '작품' && <ArtworkList />}
-            {activeTab === '전시' && <Exhibition />}
+            {activeTab === '작품' && <AuthorArtwork />}
+            {activeTab === '전시' && <AuthorExhibition />}
           </Content>
         </AuthorContainer>
       </PageLayout>
