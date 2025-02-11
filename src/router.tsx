@@ -7,6 +7,7 @@ import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
 import { AuctionRegister } from './pages/auction-register';
 import { Author } from './pages/author';
+import { AuthorDetail } from './pages/author-detail';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -34,6 +35,11 @@ export const routes: TRoutes[] = [
   {
     path: '/author',
     element: <Author />,
+    isTabBar: true,
+  },
+  {
+    path: '/author-detail',
+    element: <AuthorDetail />,
     isTabBar: true,
   },
 ];
