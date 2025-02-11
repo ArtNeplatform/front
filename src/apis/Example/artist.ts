@@ -9,5 +9,5 @@ export const getArtistList = async ({
   const response = await instance.get<TGetResponse<TGetArtistListResponse>>(
     `/api/v1/artist/list?page=${page}&keyword=${keyword}`
   );
-  return response.data.response;
+  return response.data.result;
 };

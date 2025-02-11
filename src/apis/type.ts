@@ -1,5 +1,7 @@
 //공통 responseDTO
 export type TGetResponse<T> = {
-  success: boolean;
-  response: T;
+  isSuccess: boolean;
+  code: number;
+  message: string;
+  result: T;
 };

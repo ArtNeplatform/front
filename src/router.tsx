@@ -10,6 +10,8 @@ import { Author } from './pages/author';
 import { AuthorDetail } from './pages/author-detail';
 import { Exhibition } from './pages/exhibition';
 import { ExhibitionDetail } from './pages/exhibition-detail';
+import { Register } from '@/pages/register';
+import { ExhibitRegister } from '@/pages/exhibit-register';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -24,6 +26,7 @@ export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
+  { path: '/register', element: <Register />, isTabBar: true },
   {
     path: '/artwork-register',
     element: <ArtworkRegister />,
@@ -52,6 +55,11 @@ export const routes: TRoutes[] = [
   {
     path: '/exhibition/:id',
     element: <ExhibitionDetail />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibit-register',
+    element: <ExhibitRegister />,
     isTabBar: true,
   },
 ];

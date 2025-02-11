@@ -7,7 +7,8 @@
 logs
 **/*.backup.*
 **/*.back.*
-
+dist
+tsconfig.tsbuildinfo
 node_modules
 bower_components
 .idea
