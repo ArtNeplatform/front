@@ -2,5 +2,5 @@
 export type TGetResponse<T> = {
   isSuccess: boolean;
   response: T;
-  result: T;
+  result?: T;
 };

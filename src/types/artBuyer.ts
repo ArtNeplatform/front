@@ -56,4 +56,3 @@ export interface ArtBuyerDataProps {
     myCollection: MyCollection;
   };
 }
-

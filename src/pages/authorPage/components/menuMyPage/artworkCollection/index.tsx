@@ -33,8 +33,7 @@ const ArtworkCollection = () => {
               imageUrl={artwork.image_url}
               title={artwork.title}
               artist={artwork.author.name}
-              artworkWidth={artwork.width}
-              artworkHeight={artwork.height}
+              artworkSize={artwork.size}
             />
           ))}
         </ArtworkGrid>

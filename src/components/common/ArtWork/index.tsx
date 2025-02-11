@@ -21,8 +21,7 @@ interface ArtworkProps {
   imageUrl: string;
   artist?: string;
   title: string;
-  artworkWidth?: number;
-  artworkHeight?: number;
+  artworkSize?: string;
   auctionPeriod?: string;
   price?: number;
   variant?: 'eager' | 'lazy';
@@ -36,8 +35,7 @@ interface ArtworkProps {
  * @param {string} imageUrl - 이미지 url
  * @param {string} artist - 작가 이름
  * @param {string} title - 작품 이름
- * @param {number} artworkWidth - 작품 너비
- * @param {number} artworkHeight - 작품 높이
+ * @param {string} artworkSize - 작품 크기
  * @param {number} auctionPeriod - 경매 진행 기간
  * @param {number} price - 작품 가격
  * @param {string} variant - 이미지 로딩 방식
@@ -48,18 +46,14 @@ export const Artwork = ({
   imageUrl,
   artist,
   title,
-  artworkWidth,
-  artworkHeight,
+  artworkSize,
   auctionPeriod,
   price,
   variant = 'eager',
   hoverable = true, // 기본값은 true로 설정
 }: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(false);
-  const formattedSize =
-    artworkWidth && artworkHeight
-      ? `${artworkWidth}cm * ${artworkHeight}cm`
-      : null;
+  const formattedSize = artworkSize && `${artworkSize}`;
   let formattedPrice = null;
   if (price) {
     formattedPrice = `${price.toLocaleString()} 원`;
