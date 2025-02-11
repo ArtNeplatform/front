@@ -5,8 +5,10 @@ import {
   ProfileInfo,
   Stats,
 } from './index.style';
+import { useHandleLink } from '@/hooks/common/useHandleLink.ts';
 
 interface AuthorProfileProps {
+  authorId: number;
   AuthorName: string;
   artworkCount: number;
   exhibitionCount: number;
@@ -14,13 +16,16 @@ interface AuthorProfileProps {
 }
 
 export const AuthorProfile = ({
+  authorId,
   AuthorName,
   artworkCount,
   exhibitionCount,
   profileImage,
 }: AuthorProfileProps) => {
+  const handleLink = useHandleLink(`/author/${authorId}`);
+
   return (
-    <ProfileContainer>
+    <ProfileContainer onClick={handleLink}>
       <ProfileImage src={profileImage} alt={`${AuthorName}의 프로필 이미지`} />
       <ProfileInfo>
         <Text size={18} color="black" weight="semibold">

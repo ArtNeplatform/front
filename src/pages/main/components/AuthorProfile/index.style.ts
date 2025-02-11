@@ -5,6 +5,7 @@ export const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  cursor: pointer;
 `;
 
 export const ProfileImage = styled.img`

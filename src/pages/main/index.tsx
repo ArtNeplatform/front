@@ -118,6 +118,7 @@ export const Main = () => {
               </InformTopContainer>
               {selectedAuthor && (
                 <AuthorProfile
+                  authorId={selectedAuthor.author_id}
                   AuthorName={selectedAuthor.author_name}
                   artworkCount={selectedAuthor.artwork_count}
                   exhibitionCount={selectedAuthor.exhibition_count}
