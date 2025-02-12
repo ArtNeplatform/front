@@ -1,3 +1,4 @@
+import { getAuctionLists } from '@/apis/auction/getAuctionList';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
@@ -24,5 +25,16 @@ export const getAvailableArtworksQuery = () => {
   return {
     queryKey: ['availableArtworks'],
     queryFn: getAvailableArtworks,
+  };
+};
+
+/**
+ * 경매 리스트트 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuctionListQuery = (sort: string) => {
+  return {
+    queryKey: ['auctionList', sort],
+    queryFn: () => getAuctionLists({ sort }),
   };
 };
