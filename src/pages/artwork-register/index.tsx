@@ -5,7 +5,6 @@ import {
   Form,
   Input,
   TextArea,
-  Button,
   ImageRegisterSection,
   ArtworkSizeDetailContainer,
   ButtonContainer,
@@ -18,6 +17,7 @@ import useArtworkForm from './hooks/useArtworkRegisterForm.ts';
 import Divider from '@/components/common/Divider';
 import { sizeThemes } from '@/pages/artwork-register/constants/themes';
 import ImageUploader from './components/ImageUploader/index.tsx';
+import { CommonButton } from '@/components/common/CommonButton/index.tsx';
 
 export const ArtworkRegister = () => {
   const { formData, setFormData, handleSubmit } = useArtworkForm();
@@ -184,18 +184,20 @@ export const ArtworkRegister = () => {
             />
           </ArtworkDetailBelowLabel>
           <ButtonContainer>
-            <Button
-              style={{
-                backgroundColor: 'white',
-                color: 'black',
-                border: '1px solid black',
-                borderRadius: '4px',
-              }}
-              type="submit"
-            >
-              취소하기
-            </Button>
-            <Button>등록하기</Button>
+            <CommonButton
+              text="취소하기"
+              color="black"
+              background="white"
+              borderColor="black"
+              borderRadius="0px"
+            />
+            <CommonButton
+              text="등록하기"
+              color="white"
+              background="black"
+              borderColor="black"
+              borderRadius="0px"
+            />
           </ButtonContainer>
         </Form>
       </Container>
