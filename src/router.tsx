@@ -6,6 +6,11 @@ import Test from '@pages/test.tsx';
 import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
 import AuthorPage from './pages/authorPage/AuthorPage';
 
+import { Login } from '@/pages/login';
+import { ArtworkRegister } from '@/pages/artwork-register';
+import { AuctionRegister } from '@/pages/auction-register';
+import { Register } from '@/pages/register';
+import { ExhibitRegister } from '@/pages/exhibit-register';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -27,7 +32,26 @@ export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
   { path: '/artBuyerPage', element: <ArtBuyerPage />, isTabBar: true },
   { path: '/authorPage', element: <AuthorPage />, isTabBar: true },
+  { path: '/test', element: <Test />, isTabBar: true },
+  { path: '/login', element: <Login />, isTabBar: true },
+  { path: '/register', element: <Register />, isTabBar: true },
+  {
+    path: '/artwork-register',
+    element: <ArtworkRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/auction-register',
+    element: <AuctionRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibit-register',
+    element: <ExhibitRegister />,
+    isTabBar: true,
+  },
 ];
+
 /**
  * AuthCheckRoute 로 한 번 감사서,
  * 로그인 여부에 따라서 다시 리다이랙팅을 해주는 여부를 확인합니다.
@@ -49,7 +73,6 @@ export default function Router() {
           <Route key={path} path={path} element={element} />
         )
       )}
-      <Route path="test" element={<Test />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

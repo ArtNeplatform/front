@@ -4,6 +4,7 @@ import {
   getAuthorProfile,
 } from '@/apis/authorPage/author';
 import { AuthorProfileType } from '@/apis/authorPage/type';
+import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getUserMypage } from '@/apis/myPage/myPage';
@@ -13,6 +14,7 @@ import { getUserMypage } from '@/apis/myPage/myPage';
  * 단, pagenation 이 필요한 경우엔 다음과 같이 page 와 keyword 를 이용해 작성합니다. 이 때, queryKey 지정 여부에 따라서 데이터를 다시 못 받아오는 경우도 있으니, 검색이 필요한 경우엔 keyword 와 연관되게 키를 지정 후 데이터를 가져옵니다.
  * @author 홍규진
  * */
+
 export const getArtistListQuery = () => {
   return {
     queryKey: ['artistList'],
@@ -100,7 +102,9 @@ export const getUpdateAuthorInfoQueryKey = () => ['updateAuthorInfo'];
  * @example - queryClient.invalidateQueries(getUpdateupdateAuthorProfileQueryKey());
  * @author 노찬영
  */
-export const getUpdateupdateAuthorProfileQueryKey = () => ['updateAuthorProfile'];
+export const getUpdateupdateAuthorProfileQueryKey = () => [
+  'updateAuthorProfile',
+];
 
 /**
  * 작가 프로필 조회 API를 위한 React Query 설정 함수
@@ -114,5 +118,16 @@ export const getAuthorProfileQuery = (type: AuthorProfileType) => {
   return {
     queryKey: ['authorProfile'],
     queryFn: () => getAuthorProfile(type),
+  };
+};
+
+/**
+ * 경매 가능 작품 조회 쿼리
+ * @author 홍규진
+ * */
+export const getAvailableArtworksQuery = () => {
+  return {
+    queryKey: ['availableArtworks'],
+    queryFn: getAvailableArtworks,
   };
 };

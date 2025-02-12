@@ -8,6 +8,7 @@ import {
   UserInfo,
 } from '@components/common/Header/index.style.ts';
 import MainLogo from '@assets/png/main-logo.png';
+
 /**
  * 앱 전반적으로 사용되는 HeaderComponent입니다.
  * 로그인 여부 및 userName 값에 따라서, 헤더의 상태창이 다르게 보입니다.
@@ -15,27 +16,25 @@ import MainLogo from '@assets/png/main-logo.png';
  * @param isLoggedIn 로그인 여부
  * @param userName 사용자 이름
  * @param handleLogout 로그아웃 함수
+ * @param handleLogin 로그인 함수
+ * @param handleLinkMypage 마이페이지 이동 함수
  * @author 홍규진
  */
-interface HeaderProps {
+
+interface HeaderContentProps {
   isLoggedIn?: boolean;
   userName?: string;
-  handleLogout?: () => void;
-  handleLogin?: () => void;
+  handleLogout: () => void;
+  handleLogin: () => void;
+  handleLinkMypage: () => void;
 }
 
-function handleLinkMypage() {
-  console.log('마이페이지 라우팅 함수');
-}
 export const HeaderContent = ({
   isLoggedIn = false,
-  handleLogin = () => {
-    console.log('로그인');
-  },
-  handleLogout = () => {
-    console.log('로그아웃');
-  },
-}: HeaderProps) => {
+  handleLogin,
+  handleLogout,
+  handleLinkMypage,
+}: HeaderContentProps) => {
   return (
     <Header>
       <Logo src={MainLogo} />
@@ -44,12 +43,12 @@ export const HeaderContent = ({
           <LoggedInContainer>
             <UserInfo>
               <Button onClick={handleLinkMypage}>마이페이지</Button>
-              <Button onClick={handleLogin}>로그아웃</Button>
+              <Button onClick={handleLogout}>로그아웃</Button>
             </UserInfo>
           </LoggedInContainer>
         ) : (
           <NonLoggedInContainer>
-            <Button onClick={handleLogout}>로그인</Button>
+            <Button onClick={handleLogin}>로그인</Button>
           </NonLoggedInContainer>
         )}
       </NavMenu>

@@ -2,10 +2,11 @@ import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
 // 스타일 컴포넌트들 정의
-export const ArtworkContainer = styled.div`
+export const ArtworkContainer = styled.div<{ $border: string }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  border: ${(props) => props.$border};
 `;
 export const ImageContainer = styled.div`
   position: relative;

@@ -26,6 +26,7 @@ interface ArtworkProps {
   price?: number;
   variant?: 'eager' | 'lazy';
   hoverable?: boolean;
+  border?: string;
 }
 /**
  * 이는 가장 많이 사용되는 작품 정보 컴포넌트입니다.
@@ -51,6 +52,7 @@ export const Artwork = ({
   price,
   variant = 'eager',
   hoverable = true, // 기본값은 true로 설정
+  border,
 }: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const formattedSize = artworkSize && `${artworkSize}`;
@@ -60,7 +62,7 @@ export const Artwork = ({
   }
 
   return (
-    <ArtworkContainer>
+    <ArtworkContainer $border={border ?? 'none'}>
       <ImageContainer>
         {variant === 'eager' ? (
           <EagerLoadImage imageUrl={imageUrl} alt={title} />

@@ -4,6 +4,7 @@ import { GridContainer } from './index.style.ts';
 interface SquareGridContainerProps {
   children: ReactNode;
   columnCount?: number;
+  style?: React.CSSProperties;
 }
 
 /**
@@ -16,6 +17,11 @@ interface SquareGridContainerProps {
 export const SquareGridContainer = ({
   children,
   columnCount = 4,
+  style,
 }: SquareGridContainerProps) => {
-  return <GridContainer $columnCount={columnCount}>{children}</GridContainer>;
+  return (
+    <GridContainer $columnCount={columnCount} style={style}>
+      {children}
+    </GridContainer>
+  );
 };

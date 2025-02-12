@@ -7,7 +7,8 @@
 logs
 **/*.backup.*
 **/*.back.*
-
+dist
+tsconfig.tsbuildinfo
 node_modules
 bower_components
 .idea
@@ -17,5 +18,4 @@ psd
 thumb
 sketch
 .env
-
 # End of https://www.toptal.com/developers/gitignore/api/react

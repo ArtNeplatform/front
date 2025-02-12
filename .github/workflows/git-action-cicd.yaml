@@ -1,0 +1,64 @@
+name: ArtNe-CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  build:
+    name: ArtNe-CI/CD
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
+    steps:
+      - name: Github Action 설정
+        uses: actions/checkout@v3
+
+      - name: pnpm 설치
+        run: npm install -g pnpm
+
+      - name: pnpm 이용 cache 설정
+        id: pnpm-cache-dir
+        run: |
+          echo "dir=$(pnpm config get store-dir)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: ${{ steps.pnpm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+      - name: 라이브러리 설치 및 업데이트
+        run: pnpm install
+
+      - name: 환경 변수 설정
+        run: |
+          echo "VITE_KAKAO_API_KEY=${{ secrets.VITE_KAKAO_API_KEY }}" >> .env
+          echo "VITE_APP_SERVER_URL=${{ secrets.VITE_APP_SERVER_URL }}" >> .env
+          echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env
+          echo "VITE_GOOGLE_CLIENT_SECRET=${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> .env
+          echo "VITE_KAKAO_CLIENT_ID=${{ secrets.VITE_KAKAO_CLIENT_ID }}" >> .env
+
+      - name: react 빌드
+        run: pnpm run build
+      - name: AWS 인증
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
+          aws-region: ap-northeast-2
+      - name: S3 자동 배포
+        env:
+          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
+        run: |
+          aws s3 sync \
+            ./dist s3://$BUCKET_NAME
+
+      - name: CloudFront 무효화 설정
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
