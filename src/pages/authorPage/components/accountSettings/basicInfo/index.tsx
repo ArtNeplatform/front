@@ -44,7 +44,7 @@ export const BasicInfo = () => {
   return (
     <FormContainer>
       <h1>계정 설정</h1>
-
+      {/* TODO[찬영] - 로그인 API Response 데이터 연결 */}
       <AccountInfo>
         <SectionTitle>계정 정보</SectionTitle>
         <ProfileImageContainer>
@@ -66,7 +66,6 @@ export const BasicInfo = () => {
           </div>
         </UserDetails>
       </AccountInfo>
-
       <InputContainer>
         <SectionTitle>기본 정보</SectionTitle>
         <BasicField>
@@ -142,7 +141,6 @@ export const BasicInfo = () => {
           </div>
         </InputField>
       </InputContainer>
-
       <ButtonContainer>
         <StyledButton variant="white">취소</StyledButton>
         <StyledButton variant="black">저장하기</StyledButton>
