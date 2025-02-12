@@ -9,17 +9,18 @@ import {
   ExhibitionContainer,
 } from './index.style';
 
-import { ArtBuyerDataProps } from '@/types/artBuyer';
-
-import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
-
 import { Artwork } from '@/components/common/ArtWork';
+import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-// 명시적으로 ArtBuyerDataProps 타입 지정
-const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
-const { artworks, exhibitions } = artBuyerData.result.myCollection;
+const ArtworkCollection = ({ userId }: { userId: number }) => {
+  const { userMypageData } = useGetUserMypage(userId);
+  const { result } = userMypageData;
 
-const ArtworkCollection = () => {
+  // 구매자일 경우 작품 & 전시 데이터 가져오기
+  const artworks = 'myCollection' in result ? result.myCollection.artworks : [];
+  const exhibitions =
+    'myCollection' in result ? result.myCollection.exhibitions : [];
+
   return (
     <MyCollectionContainer>
       <h1>작품 보관함</h1>
@@ -32,7 +33,7 @@ const ArtworkCollection = () => {
               key={artwork.id}
               imageUrl={artwork.image_url}
               title={artwork.title}
-              artist={artwork.author.name}
+              artist={artwork.author?.name}
               artworkSize={artwork.size}
             />
           ))}

@@ -14,19 +14,20 @@ export const MenuMyPage = ({
     menu: '마이페이지' | '프로필 관리' | '계정설정' | '작품/전시 관리'
   ) => void;
 }) => {
+  // TODO[찬영] - 실제 로그인된 사용자 ID로 변경
+  const userId = 1;
+
   return (
     <MyPageWrapper>
       <ProfileContainer>
         <Profile
-          myName={'홍길동'}
-          profileImage={''}
-          affiliation={'국립현대 미술관 소속'}
           onEditProfile={() => setSelectedMenu('계정설정')}
+          userId={userId}
         />
       </ProfileContainer>
       <MyPageContainer>
-        <ArtworkCollection />
-        <Auction />
+        <ArtworkCollection userId={userId} />
+        <Auction userId={userId} />
       </MyPageContainer>
     </MyPageWrapper>
   );

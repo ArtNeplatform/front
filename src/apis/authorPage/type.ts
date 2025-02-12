@@ -75,3 +75,15 @@ export type TUpdateAuthorInfo = {
   author_image_url?: string;
   introduction_image_url?: string;
 };
+
+export type AuthorProfileAttribute =
+  | 'description'
+  | 'work_style'
+  | 'education'
+  | 'award'
+  | 'experience';
+
+export type TUpdateAuthorProfile = {
+  attribute: AuthorProfileAttribute;
+  value: string;
+};

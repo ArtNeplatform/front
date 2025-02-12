@@ -95,6 +95,14 @@ export const getUpdateUserInfoQueryKey = () => ['updateUserInfo'];
 export const getUpdateAuthorInfoQueryKey = () => ['updateAuthorInfo'];
 
 /**
+ * 작가 프로필  정보 개별 수정 쿼리 키 함수
+ * @returns ['updateAuthorProfile'] 형태의 배열 반환
+ * @example - queryClient.invalidateQueries(getUpdateupdateAuthorProfileQueryKey());
+ * @author 노찬영
+ */
+export const getUpdateupdateAuthorProfileQueryKey = () => ['updateAuthorProfile'];
+
+/**
  * 작가 프로필 조회 API를 위한 React Query 설정 함수
  * @param type - 조회할 프로필 타입 ('default', 'intro', 'info')
  * @returns queryKey와 queryFn을 포함한 객체 반환
