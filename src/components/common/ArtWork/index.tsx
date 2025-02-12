@@ -12,6 +12,8 @@ import {
   Price,
   Size,
   Title,
+  StartPrice,
+  PriceContainer,
 } from '@components/common/ArtWork/index.style.ts';
 import { useState } from 'react';
 import EmptyHeart from '@assets/svg/empty-heart.svg?react';
@@ -23,9 +25,11 @@ interface ArtworkProps {
   artworkWidth?: number;
   artworkHeight?: number;
   price?: number;
+  startPrice?: number;
   variant?: 'eager' | 'lazy';
   hoverable?: boolean;
   border?: string;
+  onClick: () => void;
 }
 /**
  * 이는 가장 많이 사용되는 컴포넌트입니다.
@@ -38,6 +42,7 @@ interface ArtworkProps {
  * @param {number} artworkWidth - 작품 너비
  * @param {number} artworkHeight - 작품 높이
  * @param {number} price - 작품 가격
+ * @param {number} startPrice - (경매 시) 작품 시작 가격
  * @param {string} variant - 이미지 로딩 방식
  * @param {boolean} hoverable - 마우스 오버 여부
  * @param {string} border - 테두리 색상
@@ -50,9 +55,11 @@ export const Artwork = ({
   artworkWidth,
   artworkHeight,
   price,
+  startPrice,
   variant = 'eager',
   hoverable = true, // 기본값은 true로 설정
   border,
+  onClick,
 }: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const formattedSize =
@@ -61,11 +68,11 @@ export const Artwork = ({
       : null;
   let formattedPrice = null;
   if (price) {
-    formattedPrice = `${price.toLocaleString()} 원`;
+    formattedPrice = `${price.toLocaleString()}원`;
   }
 
   return (
-    <ArtworkContainer $border={border ?? 'none'}>
+    <ArtworkContainer $border={border ?? 'none'} onClick={onClick}>
       <ImageContainer>
         {variant === 'eager' ? (
           <EagerLoadImage imageUrl={imageUrl} alt={title} />
@@ -91,8 +98,11 @@ export const Artwork = ({
         <Artist>{artist}</Artist>
         <Title>{title}</Title>
         {formattedSize && <Size>{formattedSize}</Size>}
-        {formattedPrice && <Price>{formattedPrice}</Price>}
-        {/* 가격이 있을 때만 표시 */}
+        <PriceContainer>
+          {formattedPrice && <Price>{formattedPrice}</Price>}
+          {/* 가격이 있을 때만 표시 */}
+          {startPrice && <StartPrice>{startPrice.toLocaleString()}</StartPrice>}
+        </PriceContainer>
       </ArtworkInfo>
     </ArtworkContainer>
   );

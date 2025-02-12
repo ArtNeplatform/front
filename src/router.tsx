@@ -12,6 +12,7 @@ import { Exhibition } from './pages/exhibition';
 import { ExhibitionDetail } from './pages/exhibition-detail';
 import { Register } from '@/pages/register';
 import { ExhibitRegister } from '@/pages/exhibit-register';
+import { Auction } from './pages/auction';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -60,6 +61,11 @@ export const routes: TRoutes[] = [
   {
     path: '/exhibit-register',
     element: <ExhibitRegister />,
+    isTabBar: true,
+  },
+  {
+    path: '/auction',
+    element: <Auction />,
     isTabBar: true,
   },
 ];

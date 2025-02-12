@@ -84,8 +84,21 @@ export const Size = styled.p`
   margin: 0;
 `;
 
-export const Price = styled.p`
+export const Price = styled.span`
   color: ${(theme) => theme.theme.colors.black};
   ${(theme) => theme.theme.typography['18']}
   margin: 0;
+`;
+
+export const StartPrice = styled.span`
+  color: ${(theme) => theme.theme.colors.fontGray};
+  ${(theme) => theme.theme.typography['16']}
+  margin: 0;
+  text-decoration: line-through;
+`;
+
+export const PriceContainer = styled.div`
+  display: 'flex';
+  gap: '8px';
+  align-items: 'center';
 `;
