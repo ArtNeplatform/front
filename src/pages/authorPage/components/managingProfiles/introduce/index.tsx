@@ -6,7 +6,6 @@ import {
   SectionTitleBox,
   EditButton,
 } from './index.style';
-import FallbackUI from '@/components/common/FallbackUI';
 
 import EditIcon from '@assets/svg/Icon_Edit.svg?react';
 
@@ -14,11 +13,7 @@ import { useGetAuthorProfile } from '@/pages/authorPage/hooks/useGetAuthorProfil
 
 export const Introduce = () => {
   // useGetAuthorProfile 훅을 사용하여 'intro' 프로필 데이터 가져오기
-  const { data: authorData, isLoading } = useGetAuthorProfile('intro');
-
-  if (isLoading) {
-    return <FallbackUI />;
-  }
+  const { data: authorData } = useGetAuthorProfile('intro');
 
   if (!authorData) {
     return <p>데이터를 불러올 수 없습니다.</p>;

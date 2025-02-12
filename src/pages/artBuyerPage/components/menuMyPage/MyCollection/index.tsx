@@ -12,24 +12,17 @@ import {
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 import { Artwork } from '@/components/common/ArtWork';
-import FallbackUI from '@/components/common/FallbackUI';
-import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
-interface UserProps {
+interface MyCollectionProps {
   userId: number;
 }
 
-const MyCollection = ({ userId }: UserProps) => {
-  const { userMypageData, isLoading, error } = useGetUserMypage(userId);
-
-  if (isLoading) return <FallbackUI />;
-  if (error)
-    return (
-      <DefaultErrorFallbackUI
-        resetErrorBoundary={() => console.log('에러 초기화')}
-        error={error}
-      />
-    );
+/**
+ * @description 작품 구매자의 작품과 전시를 표시하는 컴포넌트
+ * @author 노찬영
+ */
+const MyCollection = ({ userId }: MyCollectionProps) => {
+  const { userMypageData } = useGetUserMypage(userId);
 
   const { result } = userMypageData;
 

@@ -13,7 +13,7 @@ export const Account = () => {
   const [bankName, setBankName] = useState('');
   const [accountHolder, setAccountHolder] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
-  const { saveBankInfo, isPending } = useSaveAuthorBankInfo();
+  const { mutate: saveBankInfo, isPending } = useSaveAuthorBankInfo();
 
   const handleSave = () => {
     if (!bankName || !accountHolder || !accountNumber) {

@@ -1,5 +1,3 @@
-import FallbackUI from '@/components/common/FallbackUI';
-import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 import {
   AuctionContainer,
   Table,
@@ -9,7 +7,7 @@ import {
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-interface AuctionProps {
+interface AuthorAuctionProps {
   userId: number;
 }
 
@@ -19,21 +17,12 @@ interface AuctionProps {
  * @author 노찬영
  */
 
-export const Auction = ({ userId }: AuctionProps) => {
-  const { userMypageData, isLoading, error } = useGetUserMypage(userId);
+export const AuthorAuction = ({ userId }: AuthorAuctionProps) => {
+  const { userMypageData } = useGetUserMypage(userId);
   const { result } = userMypageData;
 
   // 구매자 또는 작가의 경매 내역 가져오기
   const auctions = 'auctions' in result ? result.auctions : [];
-
-  if (isLoading) return <FallbackUI />;
-  if (error)
-    return (
-      <DefaultErrorFallbackUI
-        resetErrorBoundary={() => console.log('에러 초기화')}
-        error={error}
-      />
-    );
 
   return (
     <AuctionContainer>
@@ -64,4 +53,4 @@ export const Auction = ({ userId }: AuctionProps) => {
   );
 };
 
-export default Auction;
+export default AuthorAuction;

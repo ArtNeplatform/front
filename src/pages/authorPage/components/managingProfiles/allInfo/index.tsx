@@ -12,17 +12,12 @@ import {
   Tr,
   Td,
 } from './index.style';
-import FallbackUI from '@/components/common/FallbackUI';
 
 import { useGetAuthorProfile } from '@/pages/authorPage/hooks/useGetAuthorProfile';
 
 export const AllInfo = () => {
   // useGetAuthorProfile 훅을 사용하여 'default' 프로필 데이터 가져오기
-  const { data: authorData, isLoading } = useGetAuthorProfile('default');
-
-  if (isLoading) {
-    return <FallbackUI />;
-  }
+  const { data: authorData } = useGetAuthorProfile('default');
 
   if (!authorData) {
     return <p>데이터를 불러올 수 없습니다.</p>;

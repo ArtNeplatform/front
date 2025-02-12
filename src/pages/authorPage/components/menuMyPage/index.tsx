@@ -1,6 +1,6 @@
-import Auction from './Auction';
+import AuthorAuction from './Auction';
 import ArtworkCollection from './artworkCollection';
-import Profile from './profile';
+import AuthorProfile from './profile';
 import {
   MyPageContainer,
   MyPageWrapper,
@@ -20,14 +20,14 @@ export const MenuMyPage = ({
   return (
     <MyPageWrapper>
       <ProfileContainer>
-        <Profile
+        <AuthorProfile
           onEditProfile={() => setSelectedMenu('계정설정')}
           userId={userId}
         />
       </ProfileContainer>
       <MyPageContainer>
         <ArtworkCollection userId={userId} />
-        <Auction userId={userId} />
+        <AuthorAuction userId={userId} />
       </MyPageContainer>
     </MyPageWrapper>
   );

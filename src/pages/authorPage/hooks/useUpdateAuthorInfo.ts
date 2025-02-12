@@ -4,10 +4,7 @@ import { AxiosError } from 'axios';
 import { updateAuthorInfo } from '@/apis/authorPage/author';
 import { getUpdateAuthorInfoQueryKey } from '@/constants/queryKeys';
 import { getQueryClient } from '@/contexts/query/getQueryClient';
-import { TGetResponse } from '@/apis/type';
 import { TUpdateAuthorInfo } from '@/apis/authorPage/type';
-
-const queryClient = getQueryClient();
 
 /**
  * 작가 계정 정보 수정을 위한 React Query 훅
@@ -15,12 +12,14 @@ const queryClient = getQueryClient();
  * @author 노찬영
  **/
 export const useUpdateAuthorInfo = () => {
+  const queryClient = getQueryClient();
+
   const {
     mutate: updateAuthor,
     isPending,
     error,
   } = useMutation<
-    TGetResponse<null>,
+    void,
     AxiosError<{ message: string }>,
     { authorId: number; authorInfo: TUpdateAuthorInfo }
   >({

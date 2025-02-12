@@ -11,13 +11,6 @@ export interface TPurchasedArtwork {
   isLiked: boolean; // 좋아요 여부
 }
 
-export interface TPurchasedArtworkResponse {
-  isSuccess: boolean;
-  code: string;
-  message: string;
-  result: TPurchasedArtwork[]; // 구매한 작품 리스트
-}
-
 export interface TUpdateUserInfo {
   nickname?: string;
   address?: string;

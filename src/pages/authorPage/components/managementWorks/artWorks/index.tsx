@@ -10,21 +10,10 @@ import {
 } from './index.style';
 
 import { useGetAuthorArtworksExhibitions } from '@/pages/authorPage/hooks/useGetAuthorArtworksExhibitions';
-import FallbackUI from '@/components/common/FallbackUI';
-import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
 const ArtWorks = () => {
   const navigate = useNavigate();
-  const { data, isLoading, error } = useGetAuthorArtworksExhibitions();
-
-  if (isLoading) return <FallbackUI />;
-  if (error)
-    return (
-      <DefaultErrorFallbackUI
-        resetErrorBoundary={() => console.log('에러 초기화')}
-        error={error}
-      />
-    );
+  const { data } = useGetAuthorArtworksExhibitions();
 
   const artworks = data?.result?.artworks || [];
 

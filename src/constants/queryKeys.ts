@@ -102,7 +102,7 @@ export const getUpdateAuthorInfoQueryKey = () => ['updateAuthorInfo'];
  * @example - queryClient.invalidateQueries(getUpdateupdateAuthorProfileQueryKey());
  * @author 노찬영
  */
-export const getUpdateupdateAuthorProfileQueryKey = () => [
+export const getUpdateAuthorProfileQueryKey = () => [
   'updateAuthorProfile',
 ];
 

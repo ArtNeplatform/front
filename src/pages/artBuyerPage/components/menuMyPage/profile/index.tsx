@@ -12,7 +12,7 @@ import {
 import RightArrow from '@assets/svg/right-arrow.svg?react';
 import NoneProfile from '@assets/svg/Icon_Profile.svg';
 
-interface ProfileProps {
+interface ArtBuyerProfileProps {
   myName: string;
   profileImage?: string;
   pendingPayments: number;
@@ -22,7 +22,7 @@ interface ProfileProps {
 }
 
 /**
- * 마이페이지 프로필 컴포넌트입니다.
+ * 작품 구매자 프로필 컴포넌트입니다.
  * 프로필 사진, 본인 이름, 기본정보 수정 버튼, 결제 대기/완료/수령 상태를 표시합니다.
  * @param {string} myName - 사용자 이름
  * @param {string} profileImage - 프로필 이미지 url (없으면 기본 이미지)
@@ -33,14 +33,14 @@ interface ProfileProps {
  * @author 노찬영
  **/
 
-export const Profile = ({
+export const ArtBuyerProfile = ({
   myName,
   profileImage,
   pendingPayments,
   completedPayments,
   receivedPayments,
   onEditProfile,
-}: ProfileProps) => {
+}: ArtBuyerProfileProps) => {
   return (
     <ProfileContainer>
       <ProfileImage
@@ -71,4 +71,4 @@ export const Profile = ({
   );
 };
 
-export default Profile;
+export default ArtBuyerProfile;

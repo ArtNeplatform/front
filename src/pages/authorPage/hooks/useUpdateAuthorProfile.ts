@@ -2,9 +2,9 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 import { updateAuthorProfile } from '@/apis/authorPage/profile';
-import { TGetResponse } from '@/apis/type';
 import { TUpdateAuthorProfile } from '@/apis/authorPage/type';
-import { getUpdateupdateAuthorProfileQueryKey } from '@/constants/queryKeys';
+import { getUpdateAuthorProfileQueryKey } from '@/constants/queryKeys';
+import { getQueryClient } from '@/contexts/query/getQueryClient';
 
 /**
  * 작가 프로필 개별 정보를 수정하는 React Query 훅
@@ -12,21 +12,20 @@ import { getUpdateupdateAuthorProfileQueryKey } from '@/constants/queryKeys';
  * @author 노찬영
  **/
 export const useUpdateAuthorProfile = () => {
+  const queryClient = getQueryClient();
+
   const {
     mutate: updateProfile,
     isPending,
     error,
-  } = useMutation<
-    TGetResponse<{ attribute: string; value: string }>,
-    AxiosError<{ message: string }>,
-    TUpdateAuthorProfile
-  >({
-    mutationKey: getUpdateupdateAuthorProfileQueryKey(),
+  } = useMutation<void, AxiosError<{ message: string }>, TUpdateAuthorProfile>({
+    mutationKey: getUpdateAuthorProfileQueryKey(),
     mutationFn: updateAuthorProfile,
-    onSuccess: (data) => {
-      toast.success(
-        `"${data.result?.attribute}" 정보가 성공적으로 업데이트되었습니다.`
-      );
+    onSuccess: () => {
+      toast.success('작가 프로필 정보가 성공적으로 업데이트되었습니다.');
+      queryClient.invalidateQueries({
+        queryKey: getUpdateAuthorProfileQueryKey(),
+      });
     },
     onError: (error) => {
       const errorMessage =

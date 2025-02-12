@@ -1,4 +1,3 @@
-import FallbackUI from '@/components/common/FallbackUI';
 import {
   PaymentContainer,
   Table,
@@ -6,10 +5,9 @@ import {
   TableRow,
   TableCell,
 } from './index.style';
-import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-interface UserProps {
+interface PaymentProps {
   userId: number;
 }
 
@@ -18,17 +16,8 @@ interface UserProps {
  * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
-export const Payment = ({ userId }: UserProps) => {
-  const { userMypageData, isLoading, error } = useGetUserMypage(userId);
-
-  if (isLoading) return <FallbackUI />;
-  if (error)
-    return (
-      <DefaultErrorFallbackUI
-        resetErrorBoundary={() => console.log('에러 초기화')}
-        error={error}
-      />
-    );
+export const Payment = ({ userId }: PaymentProps) => {
+  const { userMypageData } = useGetUserMypage(userId);
 
   const { result } = userMypageData;
 
