@@ -28,6 +28,7 @@ import { MoreButton } from '@/pages/artwork-detail/components/MoreButton/index.t
 import { useParams } from 'react-router-dom';
 import { useGetArtworkDetail } from '@/pages/artwork-detail/hooks/useGetArtworkDetail';
 import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtworkLike';
+import { useScrollToSection } from '@/pages/artwork-detail/hooks/useScrollToSection.ts';
 import ArrowLeft from '@/assets/svg/arrow-left-black.svg';
 import ArrowRight from '@/assets/svg/arrow-right-black.svg';
 
@@ -35,6 +36,7 @@ export const ArtworkDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { artworkData, isLoading } = useGetArtworkDetail(Number(id));
   const { toggleLike, isPending: isLiking } = useToggleArtworkLike();
+  const { sectionRefs, scrollToSection } = useScrollToSection();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
@@ -120,10 +122,9 @@ export const ArtworkDetail = () => {
           </TextContainer>
         </TopContainer>
         <BottomContainer>
-          {/* TODO[서윤] - 카테고리 선택시 스크롤 구현 */}
-          <ArtworkDetailCategory />
+          <ArtworkDetailCategory scrollToSection={scrollToSection} />
           {/* TODO[서윤] - 내 공간 구현 */}
-          <CategoryContainer>
+          <CategoryContainer ref={sectionRefs['작품소개']}>
             <Text size={20} color="black" weight="semibold">
               작품 소개
             </Text>
@@ -131,7 +132,7 @@ export const ArtworkDetail = () => {
               {tab_data.description}
             </Text>
           </CategoryContainer>
-          <CategoryContainer>
+          <CategoryContainer ref={sectionRefs['작가소개']}>
             <Text size={20} color="black" weight="semibold">
               작가 소개
             </Text>
@@ -154,7 +155,7 @@ export const ArtworkDetail = () => {
               </Text>
             </AuthorContainer>
           </CategoryContainer>
-          <CategoryContainer>
+          <CategoryContainer ref={sectionRefs['다른작품']}>
             <TitleContainer>
               <Text size={20} color="black" weight="semibold">
                 다른 작품
