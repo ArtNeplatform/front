@@ -88,6 +88,8 @@ export const Main = () => {
                 variant="lazy"
                 isLiked={auction.is_like}
                 isAuction={true}
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                onClick={useHandleLink(`/auction/${auction.auction_id}`)}
               />
             ))}
           </ArtWorkContainer>
