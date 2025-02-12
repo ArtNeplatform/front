@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  padding: 100px 0;
+  padding: 100px 0 64px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
