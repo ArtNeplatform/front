@@ -27,12 +27,14 @@ import { AuthorProfile } from '@/pages/artwork-detail/components/AuthorProfile/i
 import { MoreButton } from '@/pages/artwork-detail/components/MoreButton/index.tsx';
 import { useParams } from 'react-router-dom';
 import { useGetArtworkDetail } from '@/pages/artwork-detail/hooks/useGetArtworkDetail';
+import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtworkLike';
 import ArrowLeft from '@/assets/svg/arrow-left-black.svg';
 import ArrowRight from '@/assets/svg/arrow-right-black.svg';
 
 export const ArtworkDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { artworkData, isLoading } = useGetArtworkDetail(Number(id));
+  const { toggleLike, isPending: isLiking } = useToggleArtworkLike();
 
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 5;
@@ -65,8 +67,6 @@ export const ArtworkDetail = () => {
     );
   };
 
-  const handleLink = useHandleLink;
-
   return (
     <PageLayout>
       <Container>
@@ -97,8 +97,12 @@ export const ArtworkDetail = () => {
               category={fixed_info.category}
               genre={fixed_info.genre}
             />
-            {/* TODO[서윤] - 마이컬렉션 API 구현 */}
-            <LikeButton>
+            <LikeButton
+              onClick={() =>
+                toggleLike({ artworkId: Number(id), isAuction: false })
+              }
+              disabled={isLiking}
+            >
               <Text size={16} color="white" weight="medium">
                 마이 컬렉션
               </Text>
@@ -172,8 +176,10 @@ export const ArtworkDetail = () => {
             </TitleContainer>
             <ArtworkContainer>
               {visibleArtworks.map((artwork) => {
-                const handleArtworkClick = () =>
-                  handleLink(`/artwork/${artwork.id}`);
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                const handleArtworkClick = useHandleLink(
+                  `/artwork/${artwork.id}`
+                );
                 return (
                   <ArtworkImage
                     key={artwork.id}

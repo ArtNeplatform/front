@@ -55,12 +55,14 @@ export const TextContainer = styled.div`
   gap: 40px;
 `;
 
-export const LikeButton = styled.div`
+export const LikeButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 70px;
   width: fit-content;
+  outline: none;
+  border: none;
   cursor: pointer;
   background-color: ${theme.colors.black};
 `;

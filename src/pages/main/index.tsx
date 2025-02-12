@@ -23,6 +23,7 @@ import { CategoryList } from '@pages/main/constants/category.ts';
 import { Artwork } from '@components/common/ArtWork';
 import CarouselImageEx from '@/assets/png/main-carousel-1.png';
 import { useGetMainData } from '@/pages/main/hooks/useGetMainData';
+import { useHandleLink } from '@/hooks/common/useHandleLink.ts';
 
 export const Main = () => {
   const { mainData, isLoading } = useGetMainData();
@@ -53,6 +54,7 @@ export const Main = () => {
           <ArtWorkContainer>
             {artworks.map((artwork) => (
               <Artwork
+                artworkId={artwork.artwork_id}
                 key={artwork.artwork_id}
                 imageUrl={artwork.thumbnail_image_url}
                 artist={artwork.author_name}
@@ -60,6 +62,10 @@ export const Main = () => {
                 artworkWidth={artwork.width}
                 artworkHeight={artwork.height}
                 variant="lazy"
+                isLiked={artwork.is_like}
+                isAuction={false}
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                onClick={useHandleLink(`/artwork/${artwork.artwork_id}`)}
               />
             ))}
           </ArtWorkContainer>
@@ -71,6 +77,7 @@ export const Main = () => {
           <ArtWorkContainer>
             {ongoingAuctions.map((auction) => (
               <Artwork
+                artworkId={auction.auction_id}
                 key={auction.auction_id}
                 imageUrl={auction.thumbnail_image_url}
                 artist={auction.author_name}
@@ -79,6 +86,8 @@ export const Main = () => {
                 artworkHeight={auction.height}
                 price={auction.current_price}
                 variant="lazy"
+                isLiked={auction.is_like}
+                isAuction={true}
               />
             ))}
           </ArtWorkContainer>
