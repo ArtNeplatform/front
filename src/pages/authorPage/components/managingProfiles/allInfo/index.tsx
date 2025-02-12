@@ -12,28 +12,36 @@ import {
   Tr,
   Td,
 } from './index.style';
+import FallbackUI from '@/components/common/FallbackUI';
 
-import { AuthorDataProps } from '@/types/author';
-
-import { authorData as rawAuthorData } from '@/constants/mocks';
-
-// 명시적으로 AuthorDataProps 타입 지정
-const authorData: AuthorDataProps = rawAuthorData;
-const {
-  author_name,
-  author_image_url,
-  email,
-  description,
-  education,
-  award,
-  experience,
-} = authorData.result;
+import { useGetAuthorProfile } from '@/pages/authorPage/hooks/useGetAuthorProfile';
 
 export const AllInfo = () => {
+  // useGetAuthorProfile 훅을 사용하여 'default' 프로필 데이터 가져오기
+  const { data: authorData, isLoading } = useGetAuthorProfile('default');
+
+  if (isLoading) {
+    return <FallbackUI />;
+  }
+
+  if (!authorData) {
+    return <p>데이터를 불러올 수 없습니다.</p>;
+  }
+
+  const {
+    author_name,
+    author_image_url,
+    email,
+    description,
+    education,
+    award,
+    experience,
+  } = authorData;
+
   return (
     <FormContainer>
       <h1>전체보기</h1>
-      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
+      {/* 작가 프로필 조회(전체보기) API 연결 */}
       <AccountInfo>
         <ProfileImageContainer>
           <ProfileImage src={author_image_url} alt={author_name} />

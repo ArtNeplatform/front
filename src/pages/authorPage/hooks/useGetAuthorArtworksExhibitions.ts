@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 import { getAuthorArtworksExhibitionsQuery } from '@/constants/queryKeys';
 import { getAuthorArtworksExhibitions } from '@/apis/authorPage/author';
-import { TAuthorArtworksExhibitionsResponseTypes } from '@/apis/authorPage/type';
+import { TAuthorArtworksExhibitions } from '@/apis/authorPage/type';
 
 /**
  * 작가의 작품, 경매 작품, 전시 정보를 가져오는 커스텀 훅
@@ -16,7 +16,7 @@ import { TAuthorArtworksExhibitionsResponseTypes } from '@/apis/authorPage/type'
  **/
 export const useGetAuthorArtworksExhibitions = () => {
   const { data, isLoading, error } =
-    useSuspenseQuery<TAuthorArtworksExhibitionsResponseTypes>({
+    useSuspenseQuery<TAuthorArtworksExhibitions>({
       queryKey: getAuthorArtworksExhibitionsQuery().queryKey,
       queryFn: getAuthorArtworksExhibitions,
       staleTime: 1000 * 60 * 60, // 1시간
@@ -25,7 +25,7 @@ export const useGetAuthorArtworksExhibitions = () => {
 
   if (error) {
     const axiosError =
-      error as AxiosError<TAuthorArtworksExhibitionsResponseTypes>;
+      error as AxiosError<TAuthorArtworksExhibitions>;
     const errorMessage =
       axiosError.response?.data?.message ||
       '작가 작품/전시 정보를 불러오는데 실패했습니다.';

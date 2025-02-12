@@ -9,23 +9,31 @@ import {
   Th,
   Tr,
 } from './index.style';
+import FallbackUI from '@/components/common/FallbackUI';
 
 import EditIcon from '@assets/svg/Icon_Edit.svg?react';
 
-import { AuthorDataProps } from '@/types/author';
-
-import { authorData as rawAuthorData } from '@/constants/mocks';
-
-// 명시적으로 AuthorDataProps 타입 지정
-const authorData: AuthorDataProps = rawAuthorData;
-const { education, award, experience } = authorData.result;
+import { useGetAuthorProfile } from '@/pages/authorPage/hooks/useGetAuthorProfile';
 
 export const MyInformation = () => {
+  // useGetAuthorProfile 훅을 사용하여 'info' 프로필 데이터 가져오기
+  const { data: authorData, isLoading } = useGetAuthorProfile('info');
+
+  if (isLoading) {
+    return <FallbackUI />;
+  }
+
+  if (!authorData) {
+    return <p>데이터를 불러올 수 없습니다.</p>;
+  }
+
+  const { education, award, experience } = authorData;
+
   return (
     <FormContainer>
       <h1>자기 정보</h1>
 
-      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
+      {/* 작가 프로필 조회(자기정보) API 연결 */}
       <IntroduceContainer>
         <SectionTitleBox>
           <SectionTitle>작가 설명</SectionTitle>

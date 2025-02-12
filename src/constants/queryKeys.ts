@@ -1,5 +1,9 @@
 import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
-import { getAuthorArtworksExhibitions } from '@/apis/authorPage/author';
+import {
+  getAuthorArtworksExhibitions,
+  getAuthorProfile,
+} from '@/apis/authorPage/author';
+import { AuthorProfileType } from '@/apis/authorPage/type';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getUserMypage } from '@/apis/myPage/myPage';
@@ -81,3 +85,26 @@ export const getAuthorArtworksExhibitionsQuery = () => {
  * @author 노찬영
  */
 export const getUpdateUserInfoQueryKey = () => ['updateUserInfo'];
+
+/**
+ * 작가 계정 정보 수정 쿼리 키 함수
+ * @returns ['updateAuthorInfo'] 형태의 배열 반환
+ * @example - queryClient.invalidateQueries(getUpdateAuthorInfoQueryKey());
+ * @author 노찬영
+ */
+export const getUpdateAuthorInfoQueryKey = () => ['updateAuthorInfo'];
+
+/**
+ * 작가 프로필 조회 API를 위한 React Query 설정 함수
+ * @param type - 조회할 프로필 타입 ('default', 'intro', 'info')
+ * @returns queryKey와 queryFn을 포함한 객체 반환
+ * @example - const { data } = useQuery(getAuthorProfileQuery('intro'));
+ * @author 노찬영
+ */
+
+export const getAuthorProfileQuery = (type: AuthorProfileType) => {
+  return {
+    queryKey: ['authorProfile'],
+    queryFn: () => getAuthorProfile(type),
+  };
+};

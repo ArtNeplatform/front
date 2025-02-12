@@ -6,21 +6,29 @@ import {
   SectionTitleBox,
   EditButton,
 } from './index.style';
+import FallbackUI from '@/components/common/FallbackUI';
 
 import EditIcon from '@assets/svg/Icon_Edit.svg?react';
 
-import { AuthorDataProps } from '@/types/author';
-
-import { authorData as rawAuthorData } from '@/constants/mocks';
-
-// 명시적으로 AuthorDataProps 타입 지정
-const authorData: AuthorDataProps = rawAuthorData;
-const { description, work_style } = authorData.result;
+import { useGetAuthorProfile } from '@/pages/authorPage/hooks/useGetAuthorProfile';
 
 export const Introduce = () => {
+  // useGetAuthorProfile 훅을 사용하여 'intro' 프로필 데이터 가져오기
+  const { data: authorData, isLoading } = useGetAuthorProfile('intro');
+
+  if (isLoading) {
+    return <FallbackUI />;
+  }
+
+  if (!authorData) {
+    return <p>데이터를 불러올 수 없습니다.</p>;
+  }
+
+  const { description, work_style } = authorData;
+
   return (
     <FormContainer>
-      {/* TODO[찬영] - 작가 상세 조회 API 연결 */}
+      {/* 작가 프로필 조회(자기소개) API 연결 */}
       <h1>자기 소개</h1>
 
       <IntroduceContainer>
