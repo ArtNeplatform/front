@@ -1,6 +1,7 @@
 import { TGetAvailableArtworksResponse } from '@/apis/auctionRegister/type';
 import { getAvailableArtworksQuery } from '@/constants/queryKeys';
 import { useQuery } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 /**
  * 경매 가능 작품 조회 훅
@@ -9,7 +10,6 @@ import { useQuery } from '@tanstack/react-query';
 export const useGetAvailableArtwork = () => {
   const {
     data: availableArtworks,
-    isLoading,
     refetch,
     error,
   } = useQuery<TGetAvailableArtworksResponse[]>({
@@ -19,12 +19,10 @@ export const useGetAvailableArtwork = () => {
     gcTime: 1000 * 60 * 60 * 1.5, // 1.5시간
   });
   if (error) {
-    console.error(error);
+    toast.error(error.message);
   }
   return {
     availableArtworks,
-    isLoading,
     refetch,
-    error,
   };
 };
