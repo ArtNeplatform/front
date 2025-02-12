@@ -76,6 +76,7 @@ export const Auction = () => {
             (auction: TGetAuctionListResponse, index: number) => (
               <ArtworkContainer key={index}>
                 <Artwork
+                  artworkId={auction.auction_id}
                   imageUrl={auction.thumbnail_image_url} // thumbnail_image_url을 imageUrl로 매핑
                   artist={auction.author_name}
                   title={auction.title}

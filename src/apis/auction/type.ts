@@ -16,3 +16,24 @@ export type TGetAuctionListResponse = {
 export type TGetAuctionListRequestParams = {
   sort?: string;
 };
+
+export type TGetAuctionDetailResponse = {
+  auction_id: number;
+  start_price: string | null;
+  current_price: string | null;
+  final_price: string | null;
+  remaining_time: string;
+  artwork: {
+    author_name: string;
+    title: string;
+    year: string;
+    material: string;
+    height: number;
+    width: number;
+    size: string;
+    number: string;
+    description: string;
+    thumbnail_image_url: string;
+    images: string[];
+  };
+};

@@ -51,6 +51,7 @@ const theme = {
     font03gray: '#505050',
     fontGray: '#767676',
     priceBox: '#F7F7FB',
+    red: '#EE3574',
   },
 } as const;
 
@@ -72,6 +73,7 @@ declare module '@emotion/react' {
       font03gray: string;
       fontGray: string;
       priceBox: string;
+      red: string;
     };
   }
 }
