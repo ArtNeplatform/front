@@ -29,7 +29,7 @@ const MaterialCheckBox = ({ onChange }: MaterialCheckBoxProps) => {
           />
         </MaterialItem>
       ))}
-      {selectedMaterial === 'other' && (
+      {selectedMaterial === '기타' && (
         <Input
           placeholder="기타 재료를 입력하세요"
           value={otherMaterial}

@@ -26,10 +26,13 @@ type TAuthResponse = {
   accessToken: string;
 };
 
+const DUMMY_ACCESS_TOKEN =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ5dXNlb25naG83QGRndS5hYy5rciIsImlhdCI6MTczOTIwNDY5NiwiZXhwIjoxNzQxNzk2Njk2fQ.iWwnAhIzse5UwvHpR5uWa2o0HRM5G14ikeAtYf_BDec';
 export const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
   headers: {
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    // Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    Authorization: `Bearer ${DUMMY_ACCESS_TOKEN}`,
   },
   withCredentials: true,
 });
