@@ -13,11 +13,14 @@ export default function ArtBuyerPage() {
     '마이페이지' | '계정설정' | '구매 작품'
   >('마이페이지');
 
+  // TODO[찬영] - 실제 로그인된 사용자 ID로 변경
+  const userId = 1;
+
   // 선택된 메뉴에 따른 컴포넌트 렌더링 함수
   const renderSelectedMenu = () => {
     switch (selectedMenu) {
       case '마이페이지':
-        return <MenuMyPage setSelectedMenu={setSelectedMenu}/>;
+        return <MenuMyPage userId={userId} setSelectedMenu={setSelectedMenu} />;
       case '계정설정':
         return <AccountSettings />;
       case '구매 작품':

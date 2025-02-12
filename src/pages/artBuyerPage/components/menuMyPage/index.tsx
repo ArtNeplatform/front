@@ -8,25 +8,25 @@ import {
   ProfileContainer,
 } from './index.style';
 
-// TODO[찬영] - 작품 구매자 조회 API 연결
-import { ArtBuyerDataProps } from '@/types/artBuyer';
+import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
-
-// 명시적으로 ArtBuyerDataProps 타입 지정
-const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
-
-const { paymentCounts } = artBuyerData.result ?? {};
-
-export const MenuMyPage = ({
-  setSelectedMenu,
-}: {
+interface UserProps {
+  // TODO[찬영] - userId 실제 로그인된 사용자 ID로 변경
+  userId: number;
   setSelectedMenu: (menu: '마이페이지' | '계정설정' | '구매 작품') => void;
-}) => {
+}
+
+export const MenuMyPage = ({ userId, setSelectedMenu }: UserProps) => {
+  const { userMypageData } = useGetUserMypage(userId);
+
+  const { result } = userMypageData || {};
+  const paymentCounts = 'paymentCounts' in result ? result.paymentCounts : null;
+
   return (
     <MyPageWrapper>
       <ProfileContainer>
         <Profile
+          // TODO[찬영] - 이름, 사진 데이터 연결
           myName={'홍길동'}
           profileImage={''}
           pendingPayments={paymentCounts?.pending ?? 0}
@@ -36,9 +36,9 @@ export const MenuMyPage = ({
         />
       </ProfileContainer>
       <MyPageContainer>
-        <Payment />
-        <MyCollection />
-        <Auction />
+        <Payment userId={userId} />
+        <MyCollection userId={userId} />
+        <Auction userId={userId} />
       </MyPageContainer>
     </MyPageWrapper>
   );

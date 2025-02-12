@@ -18,7 +18,7 @@ import EditButton from '@assets/svg/Icon_Edit.svg?react';
 import { useUpdateUserInfo } from '@/pages/artBuyerPage/hooks/useUpdateUserInfo';
 
 export const BasicInfo = () => {
-  // TODO[찬영] - 작품 구매자 정보 조회 API 연결
+  // TODO[찬영] - 로그인 API Response 데이터 연결
   const [nickname, setNickname] = useState('홍길동');
   const [birth, setBirth] = useState('');
   const [address, setAddress] = useState('');
