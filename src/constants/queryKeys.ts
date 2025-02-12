@@ -1,6 +1,8 @@
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
+import { getExhibitAvailableArtwork } from '@/apis/exhibitRegister/getExhibitAvailableArtwork';
+import { getExhibitBackgroundImages } from '@/apis/exhibitRegister/getExhibitBackgroundImages';
 
 /**
  * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
@@ -24,5 +26,27 @@ export const getAvailableArtworksQuery = () => {
   return {
     queryKey: ['availableArtworks'],
     queryFn: getAvailableArtworks,
+  };
+};
+
+/**
+ * 전시 등록시 배경 이미지 조회 쿼리
+ * @author 홍규진
+ * */
+export const getExhibitBackgroundImagesQuery = () => {
+  return {
+    queryKey: ['exhibitBackgroundImages'],
+    queryFn: getExhibitBackgroundImages,
+  };
+};
+
+/**
+ * 전시 등록시 전시 가능 작품 조회 쿼리
+ * @author 홍규진
+ * */
+export const getExhibitAvailableArtworkQuery = () => {
+  return {
+    queryKey: ['exhibitAvailableArtwork'],
+    queryFn: getExhibitAvailableArtwork,
   };
 };
