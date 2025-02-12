@@ -36,6 +36,7 @@ export const ArtworkDetail = () => {
   const { artworkData, isLoading } = useGetArtworkDetail(Number(id));
   const { toggleLike, isPending: isLiking } = useToggleArtworkLike();
 
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 5;
 
@@ -67,22 +68,31 @@ export const ArtworkDetail = () => {
     );
   };
 
+  const smallImageList = fixed_info.artwork_image.filter(
+    (_, index) => index !== selectedImageIndex
+  );
+
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
   return (
     <PageLayout>
       <Container>
         <TopContainer>
           <ImageContainer>
             <ImageList>
-              {fixed_info.artwork_image.map((image, index) => (
+              {smallImageList.map((image, index) => (
                 <SmallImage
                   key={index}
                   src={image}
                   alt={`작품 이미지 ${index + 1}`}
+                  onClick={() => handleImageClick(index)}
                 />
               ))}
             </ImageList>
             <BigImage
-              src={fixed_info.artwork_image[0]}
+              src={fixed_info.artwork_image[selectedImageIndex]}
               alt="작품 메인 이미지"
             />
           </ImageContainer>
