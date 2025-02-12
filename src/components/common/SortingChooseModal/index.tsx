@@ -1,10 +1,14 @@
 import { ModalWrapper, SortingOption } from './index.style';
 
-const sortingOptions = ['이름순', '최신순', '인기순'];
+const sortingOptions: ('이름순' | '최신순' | '인기순')[] = [
+  '이름순',
+  '최신순',
+  '인기순',
+];
 
 interface SortingChooseModalProps {
-  selectedSorting: string;
-  onSortingSelect: (sorting: string) => void;
+  selectedSorting: '이름순' | '최신순' | '인기순';
+  onSortingSelect: (sorting: '이름순' | '최신순' | '인기순') => void;
 }
 
 const SortingChooseModal = ({

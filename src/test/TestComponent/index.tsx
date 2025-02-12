@@ -27,6 +27,7 @@ import { FilterModal } from '@/components/common/FilterModal';
 
 const TestComponents = () => {
   const sampleData = {
+    artworkId: 1,
     imageUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
     artist: 'Sample Artist',
