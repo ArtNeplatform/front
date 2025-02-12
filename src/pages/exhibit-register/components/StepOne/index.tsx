@@ -8,41 +8,43 @@ import {
   DisplayImage,
   Container,
 } from './index.style';
-
+import { TGetBackgroundImagesResponse } from '@/apis/exhibitRegister/types';
 interface StepOneProps {
   handleBackgroundSelect: (url: string) => void;
   selectedBackground: string | null;
+  backgroundImages: TGetBackgroundImagesResponse[];
 }
 
 export const StepOne = ({
   handleBackgroundSelect,
   selectedBackground,
+  backgroundImages,
 }: StepOneProps) => {
-  // API에서 갤러리 데이터 패칭 가정
-  const galleries = [
-    { id: '1', name: '갤러리 1', imageUrl: '/api/galleries/1' },
-    { id: '2', name: '갤러리 2', imageUrl: '/api/galleries/2' },
-  ];
-
   return (
     <Container>
       <StepContainer>
         <GalleryList>
-          {galleries.map((gallery) => (
-            <SelectedGallery
-              key={gallery.id}
-              onClick={() => handleBackgroundSelect(gallery.imageUrl)}
-            >
-              <GalleryImage
-                src={gallery.imageUrl}
-                alt={gallery.name}
-                selected={selectedBackground === gallery.imageUrl}
-              />
-              <Text size={16} color="black">
-                {gallery.name}
-              </Text>
-            </SelectedGallery>
-          ))}
+          {backgroundImages.length > 0 ? (
+            backgroundImages.map((gallery) => (
+              <SelectedGallery
+                key={gallery.id}
+                onClick={() => handleBackgroundSelect(gallery.background_url)}
+              >
+                <GalleryImage
+                  src={gallery.background_url}
+                  alt={gallery.name}
+                  selected={selectedBackground === gallery.background_url}
+                />
+                <Text size={16} color="black">
+                  {gallery.name}
+                </Text>
+              </SelectedGallery>
+            ))
+          ) : (
+            <Text size={18} color="gray">
+              배경 이미지를 추가해주세요
+            </Text>
+          )}
         </GalleryList>
         <SelectedGalleryDisplay>
           {selectedBackground ? (

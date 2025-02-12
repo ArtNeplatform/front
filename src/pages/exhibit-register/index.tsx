@@ -1,10 +1,12 @@
 import { PageLayout } from '@/components/common/PageLayout';
 import { ButtonContainer, Container } from './index.style.ts';
-import { StepOne } from './components/StepOne';
-import { StepTwo } from './components/StepTwo';
-import { useExhibitRegister } from './hooks/useExhibitRegister';
-import { StepThree } from './components/StepThree';
+import { StepOne } from '@/pages/exhibit-register/components/StepOne';
+import { StepTwo } from '@/pages/exhibit-register/components/StepTwo';
+import { useExhibitRegister } from '@/pages/exhibit-register/hooks/useExhibitRegister';
+import { StepThree } from '@/pages/exhibit-register/components/StepThree';
 import { CommonButton } from '@/components/common/CommonButton/index.tsx';
+import { useGetExhibitBackgroundImages } from '@/pages/exhibit-register/hooks/useGetExhibitBackgroundImages';
+import { useGetExhibitAvailableArtwork } from '@/pages/exhibit-register/hooks/useGetExhibitAvailableArtwork';
 
 // 최상위 컴포넌트 통합
 export const ExhibitRegister = () => {
@@ -21,6 +23,9 @@ export const ExhibitRegister = () => {
     handleNameChange,
   } = useExhibitRegister();
 
+  const { data: backgroundImages } = useGetExhibitBackgroundImages();
+  const { data: availableArtworks } = useGetExhibitAvailableArtwork();
+
   const handleSubmit = () => {
     // API 호출 로직
     console.log({
@@ -30,13 +35,13 @@ export const ExhibitRegister = () => {
       name: exhibitName,
     });
   };
-
   return (
     <PageLayout>
       <Container>
         {step === 0 && (
           <StepOne
             handleBackgroundSelect={handleBackgroundSelect}
+            backgroundImages={backgroundImages || []}
             selectedBackground={selectedBackground}
           />
         )}
@@ -44,6 +49,7 @@ export const ExhibitRegister = () => {
           <StepTwo
             handleOverlaySelect={handleOverlaySelect}
             selectedOverlay={selectedOverlay}
+            availableArtworks={availableArtworks}
           />
         )}
         {step === 2 && (
