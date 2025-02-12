@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import IconPlus from '@assets/svg/Icon_Plus.svg?react';
 import { Artwork } from '@/components/common/ArtWork';
 
@@ -14,6 +15,8 @@ import FallbackUI from '@/components/common/FallbackUI';
 import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
 const Exhibitions = () => {
+  const navigate = useNavigate();
+
   const { data, isLoading, error } = useGetAuthorArtworksExhibitions();
 
   if (isLoading) return <FallbackUI />;
@@ -44,7 +47,7 @@ const Exhibitions = () => {
       </ArtworkContainer>
 
       <ButtonContainer>
-        <StyledButton>
+        <StyledButton onClick={() => navigate('/exhibit-register')}>
           <IconPlus />
           전시 등록
         </StyledButton>

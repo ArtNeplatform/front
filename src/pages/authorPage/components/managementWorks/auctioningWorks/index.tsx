@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import IconPlus from '@assets/svg/Icon_Plus.svg?react';
 import { Artwork } from '@/components/common/ArtWork';
 import {
@@ -13,6 +14,8 @@ import FallbackUI from '@/components/common/FallbackUI';
 import DefaultErrorFallbackUI from '@/components/common/Error/DefaultErrorFallbackUI';
 
 const AuctioningWorks = () => {
+  const navigate = useNavigate();
+
   const { data, isLoading, error } = useGetAuthorArtworksExhibitions();
 
   if (isLoading) return <FallbackUI />;
@@ -44,7 +47,7 @@ const AuctioningWorks = () => {
       </ArtworkContainer>
 
       <ButtonContainer>
-        <StyledButton>
+        <StyledButton onClick={() => navigate('/auction-register')}>
           <IconPlus />
           경매 등록
         </StyledButton>
