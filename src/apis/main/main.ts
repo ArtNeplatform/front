@@ -7,7 +7,7 @@ import { TMainResponse } from './type';
  * @author 김서윤
  **/
 export const getMainData = async (): Promise<TMainResponse> => {
-  const baseURL = import.meta.env.VITE_API_KEY;
+  const baseURL = import.meta.env.VITE_APP_SERVER_URL;
   const token = localStorage.getItem('token');
   const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
