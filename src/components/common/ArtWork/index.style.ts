@@ -6,6 +6,7 @@ export const ArtworkContainer = styled.div<{ $border: string }>`
   flex-direction: column;
   gap: 16px;
   border: ${(props) => props.$border};
+  cursor: pointer;
 `;
 export const ImageContainer = styled.div`
   position: relative;
