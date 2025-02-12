@@ -57,6 +57,10 @@ const TestComponents = () => {
     alert('닫기 버튼이 클릭되었습니다.');
   };
 
+  const [selectedTab, setSelectedTab] = useState<'기본정보 관리' | '회원 탈퇴'>(
+    '기본정보 관리'
+  );
+
   return (
     <TestContainer>
       <TestHeader>공통 컴포넌트 테스트 장소</TestHeader>
@@ -91,7 +95,11 @@ const TestComponents = () => {
       <SubTitle>CommonInput</SubTitle>
       <CommonInput {...sampleInputData} />
       <SubTitle>MyPageSideBar</SubTitle>
-      <MyPageSideBar />
+      <MyPageSideBar
+        menuItems={['기본정보 관리', '회원 탈퇴']}
+        activeTab={selectedTab}
+        setActiveTab={setSelectedTab}
+      />
       <SubTitle>PagingButtons</SubTitle>
       <PagingButtons totalPage={21} page={page} setPage={setPage} />
 
