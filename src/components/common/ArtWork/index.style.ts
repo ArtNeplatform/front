@@ -74,7 +74,7 @@ export const Artist = styled.p`
 `;
 
 export const Title = styled.p`
-  ${(theme) => theme.theme.typography['16']}
+  ${(theme) => theme.theme.typography['14']}
   margin: 0;
 `;
 

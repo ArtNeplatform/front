@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import { postAuthRegisterQuery } from '@/constants/queryKeys';
+import { postAuthRegisterMutation } from '@/constants/mutationKey';
 import { TRegisterFormData } from '@/apis/register/type';
 
 export const usePostAuthRegister = () => {
@@ -9,13 +9,14 @@ export const usePostAuthRegister = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationKey: postAuthRegisterQuery().queryKey,
-    mutationFn: (body: TRegisterFormData) =>
-      postAuthRegisterQuery().queryFn(body),
+    mutationKey: postAuthRegisterMutation().mutationKey,
+    mutationFn: (formData: TRegisterFormData) =>
+      postAuthRegisterMutation().mutationFn(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: postAuthRegisterQuery().queryKey,
+        queryKey: postAuthRegisterMutation().mutationKey,
       }); // 쿼리 무효화
+      toast.success('회원가입이 완료되었습니다.');
       navigate('/success'); // 성공 페이지로 이동
     },
     onError: (error: Error) => {
