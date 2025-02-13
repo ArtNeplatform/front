@@ -35,8 +35,7 @@ export const Author = () => {
         author: key,
         artworkCount: data.authorInfos[key].artwork_count,
         exhibitionCount: data.authorInfos[key].exhibition_count,
-        imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
+        imageUrl: data.authorInfos[key].introduction_image_url,
       }))
     : [];
 

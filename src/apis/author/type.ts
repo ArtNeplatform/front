@@ -4,6 +4,7 @@
  */
 export type TAuthorInfo = {
   author_id: number;
+  introduction_image_url: string;
   artwork_count: number;
   exhibition_count: number;
 };
