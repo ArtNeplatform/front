@@ -13,17 +13,26 @@ export const useGetArtworks = (
   pageSize: number,
   themes: string[],
   sizes: string[],
-  forms: string[]
+  forms: string[],
+  sortingType: '이름순' | '최신순' | '인기순'
 ) => {
+  const sortingKey =
+    sortingType === '최신순'
+      ? 'latest'
+      : sortingType === '인기순'
+      ? 'popular'
+      : undefined;
+
   const {
     data: artworkData,
     isLoading,
     error,
   } = useSuspenseQuery<TArtworkResponse>({
-    queryKey: ['artworks', page, pageSize, themes, sizes, forms],
-    queryFn: () => getArtworks(page, pageSize, themes, sizes, forms),
-    staleTime: 1000 * 60 * 30, // 30분
-    gcTime: 1000 * 60 * 15, // 15분
+    queryKey: ['artworks', page, pageSize, themes, sizes, forms, sortingKey],
+    queryFn: () =>
+      getArtworks(page, pageSize, themes, sizes, forms, sortingKey),
+    staleTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 15,
   });
 
   if (error) {

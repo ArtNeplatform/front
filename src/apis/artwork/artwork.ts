@@ -10,7 +10,8 @@ export const getArtworks = async (
   pageSize: number,
   themes: string[],
   sizes: string[],
-  forms: string[]
+  forms: string[],
+  sortingKey?: 'latest' | 'popular'
 ): Promise<TArtworkResponse> => {
   const token = localStorage.getItem('token');
   const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -22,6 +23,7 @@ export const getArtworks = async (
     themes: themes.length > 0 ? themes.join(',') : undefined,
     sizes: sizes.length > 0 ? sizes.join(',') : undefined,
     forms: forms.length > 0 ? forms.join(',') : undefined,
+    sort: sortingKey,
   };
 
   try {

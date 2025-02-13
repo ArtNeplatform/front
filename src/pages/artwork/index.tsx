@@ -41,7 +41,8 @@ export const ArtWork = () => {
     itemsPerPage,
     selectedThemes,
     selectedSizes,
-    selectedForms
+    selectedForms,
+    sortingType
   );
 
   if (isLoading || !artworkData) {
@@ -74,19 +75,12 @@ export const ArtWork = () => {
     setSelectedForms([]);
   };
 
-  const sortedArtworks = artworkData.result.artworks
-    ? [...artworkData.result.artworks].sort((a, b) => {
-        if (sortingType === '이름순') {
-          return a.title.localeCompare(b.title, 'ko');
-        }
-        if (sortingType === '최신순') {
-          return (
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-          );
-        }
-        return 0; // 인기순 미구현
-      })
-    : [];
+  const sortedArtworks =
+    sortingType === '이름순'
+      ? [...artworkData.result.artworks].sort((a, b) =>
+          a.title.localeCompare(b.title, 'ko')
+        )
+      : artworkData.result.artworks;
 
   return (
     <PageLayout>
