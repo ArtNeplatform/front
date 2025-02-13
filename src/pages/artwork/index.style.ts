@@ -14,6 +14,19 @@ export const TextWrapper = styled.div`
   justify-content: flex-start;
 `;
 
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const FilterButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);

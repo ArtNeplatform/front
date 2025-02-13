@@ -5,12 +5,15 @@ import { useState } from 'react';
 import {
   Container,
   TextWrapper,
+  ButtonContainer,
+  FilterButtonContainer,
   GridContainer,
   ArtworkContainer,
 } from './index.style';
 import SortingTextButton from '@/components/common/SortingTextButton';
 import { useNavigate } from 'react-router-dom';
 import { Artwork } from '@/components/common/ArtWork';
+import { FilterButton } from '@/pages/artwork/components/FilterButton';
 import { useGetArtworks } from '@/pages/artwork/hooks/useGetArtworks';
 
 export const ArtWork = () => {
@@ -21,6 +24,9 @@ export const ArtWork = () => {
   const itemsPerPage = 16;
   const navigate = useNavigate();
   const { artworkData, isLoading } = useGetArtworks(page, itemsPerPage);
+  const [selectedTheme, setSelectedTheme] = useState<string[]>([]);
+  const [selectedSize, setSelectedSize] = useState<string[]>([]);
+  const [selectedForm, setSelectedForm] = useState<string[]>([]);
 
   if (isLoading || !artworkData) {
     return (
@@ -56,10 +62,55 @@ export const ArtWork = () => {
             Artwork
           </Text>
         </TextWrapper>
-        <SortingTextButton
-          selectedSorting={sortingType}
-          onSortingSelect={setSortingType}
-        />
+        <ButtonContainer>
+          <FilterButtonContainer>
+            <FilterButton
+              title="테마"
+              checkboxes={[
+                { id: '풍경', label: '풍경' },
+                { id: '인물', label: '인물' },
+                { id: '정물', label: '정물' },
+                { id: '동물', label: '동물' },
+                { id: '추상', label: '추상' },
+                { id: '팝아트', label: '팝아트' },
+                { id: '오브제', label: '오브제' },
+              ]}
+              selectedFilters={selectedTheme}
+              setSelectedFilters={setSelectedTheme}
+            />
+            <FilterButton
+              title="크기"
+              checkboxes={[
+                { id: '1~10호', label: '1~10호' },
+                { id: '~30호', label: '~30호' },
+                { id: '~60호', label: '~60호' },
+                { id: '~80호', label: '~80호' },
+                { id: '~100호', label: '~100호' },
+                { id: '100호 +', label: '100호 +' },
+              ]}
+              selectedFilters={selectedSize}
+              setSelectedFilters={setSelectedSize}
+            />
+            <FilterButton
+              title="형태"
+              checkboxes={[
+                { id: '정방향', label: '정방향' },
+                { id: '가로형', label: '가로형' },
+                { id: '세로형', label: '세로형' },
+                { id: '원형', label: '원형' },
+                { id: '셋트', label: '셋트' },
+                { id: '입체/설치', label: '입체/설치' },
+                { id: '미디어', label: '미디어' },
+              ]}
+              selectedFilters={selectedForm}
+              setSelectedFilters={setSelectedForm}
+            />
+          </FilterButtonContainer>
+          <SortingTextButton
+            selectedSorting={sortingType}
+            onSortingSelect={setSortingType}
+          />
+        </ButtonContainer>
         <GridContainer>
           {sortedArtworks.map((artwork) => (
             <ArtworkContainer key={artwork.id}>
