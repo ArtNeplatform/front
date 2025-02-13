@@ -30,11 +30,19 @@ export const ArtWork = () => {
     '이름순' | '최신순' | '인기순'
   >('이름순');
   const itemsPerPage = 16;
+
   const navigate = useNavigate();
-  const { artworkData, isLoading } = useGetArtworks(page, itemsPerPage);
-  const [selectedTheme, setSelectedTheme] = useState<string[]>([]);
-  const [selectedSize, setSelectedSize] = useState<string[]>([]);
-  const [selectedForm, setSelectedForm] = useState<string[]>([]);
+  const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedForms, setSelectedForms] = useState<string[]>([]);
+
+  const { artworkData, isLoading } = useGetArtworks(
+    page,
+    itemsPerPage,
+    selectedThemes,
+    selectedSizes,
+    selectedForms
+  );
 
   if (isLoading || !artworkData) {
     return (
@@ -48,18 +56,22 @@ export const ArtWork = () => {
     );
   }
 
-  const selectedFilters = [...selectedTheme, ...selectedSize, ...selectedForm];
+  const selectedFilters = [
+    ...selectedThemes,
+    ...selectedSizes,
+    ...selectedForms,
+  ];
 
   const removeFilter = (filter: string) => {
-    setSelectedTheme((prev) => prev.filter((item) => item !== filter));
-    setSelectedSize((prev) => prev.filter((item) => item !== filter));
-    setSelectedForm((prev) => prev.filter((item) => item !== filter));
+    setSelectedThemes((prev) => prev.filter((item) => item !== filter));
+    setSelectedSizes((prev) => prev.filter((item) => item !== filter));
+    setSelectedForms((prev) => prev.filter((item) => item !== filter));
   };
 
   const clearAllFilters = () => {
-    setSelectedTheme([]);
-    setSelectedSize([]);
-    setSelectedForm([]);
+    setSelectedThemes([]);
+    setSelectedSizes([]);
+    setSelectedForms([]);
   };
 
   const sortedArtworks = artworkData.result.artworks
@@ -98,8 +110,8 @@ export const ArtWork = () => {
                   { id: '팝아트', label: '팝아트' },
                   { id: '오브제', label: '오브제' },
                 ]}
-                selectedFilters={selectedTheme}
-                setSelectedFilters={setSelectedTheme}
+                selectedFilters={selectedThemes}
+                setSelectedFilters={setSelectedThemes}
               />
               <FilterButton
                 title="크기"
@@ -111,8 +123,8 @@ export const ArtWork = () => {
                   { id: '~100호', label: '~100호' },
                   { id: '100호 +', label: '100호 +' },
                 ]}
-                selectedFilters={selectedSize}
-                setSelectedFilters={setSelectedSize}
+                selectedFilters={selectedSizes}
+                setSelectedFilters={setSelectedSizes}
               />
               <FilterButton
                 title="형태"
@@ -125,8 +137,8 @@ export const ArtWork = () => {
                   { id: '입체/설치', label: '입체/설치' },
                   { id: '미디어', label: '미디어' },
                 ]}
-                selectedFilters={selectedForm}
-                setSelectedFilters={setSelectedForm}
+                selectedFilters={selectedForms}
+                setSelectedFilters={setSelectedForms}
               />
             </FilterButtonContainer>
             <FilterSelectedContainer>

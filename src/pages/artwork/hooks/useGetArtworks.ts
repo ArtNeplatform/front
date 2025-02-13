@@ -8,14 +8,20 @@ import { AxiosError } from 'axios';
  * 특정 작품의 상세 정보를 가져오는 React Query 커스텀 훅
  * @author 김서윤
  */
-export const useGetArtworks = (page: number, pageSize: number) => {
+export const useGetArtworks = (
+  page: number,
+  pageSize: number,
+  themes: string[],
+  sizes: string[],
+  forms: string[]
+) => {
   const {
     data: artworkData,
     isLoading,
     error,
   } = useSuspenseQuery<TArtworkResponse>({
-    queryKey: ['artworks', page, pageSize],
-    queryFn: () => getArtworks(page, pageSize),
+    queryKey: ['artworks', page, pageSize, themes, sizes, forms],
+    queryFn: () => getArtworks(page, pageSize, themes, sizes, forms),
     staleTime: 1000 * 60 * 30, // 30분
     gcTime: 1000 * 60 * 15, // 15분
   });

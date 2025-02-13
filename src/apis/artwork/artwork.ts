@@ -7,15 +7,27 @@ import { TArtworkResponse } from './type';
  */
 export const getArtworks = async (
   page: number,
-  pageSize: number
+  pageSize: number,
+  themes: string[],
+  sizes: string[],
+  forms: string[]
 ): Promise<TArtworkResponse> => {
   const token = localStorage.getItem('token');
   const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
+  // 선택된 필터들을 콤마(,)로 구분된 문자열로 변환
+  const queryParams = {
+    page,
+    pageSize,
+    themes: themes.length > 0 ? themes.join(',') : undefined,
+    sizes: sizes.length > 0 ? sizes.join(',') : undefined,
+    forms: forms.length > 0 ? forms.join(',') : undefined,
+  };
+
   try {
     const response = await instance.get<TArtworkResponse>('/api/artworks', {
       headers,
-      params: { page, pageSize },
+      params: queryParams,
     });
 
     return response.data;
