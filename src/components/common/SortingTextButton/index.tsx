@@ -9,17 +9,19 @@ import SortingChooseModal from '../SortingChooseModal';
  * @author 노찬영
  */
 
-export const SortingTextButton = () => {
-  const [selectedSorting, setSelectedSorting] = useState<string>('이름순');
+interface SortingTextButtonProps {
+  selectedSorting: '이름순' | '최신순' | '인기순';
+  onSortingSelect: (sorting: '이름순' | '최신순' | '인기순') => void;
+}
+
+export const SortingTextButton = ({
+  selectedSorting,
+  onSortingSelect,
+}: SortingTextButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleSortingClick = () => {
     setIsModalOpen((prev) => !prev);
-  };
-
-  const handleSortingSelect = (sorting: string) => {
-    setSelectedSorting(sorting);
-    setIsModalOpen(false);
   };
 
   return (
@@ -30,7 +32,10 @@ export const SortingTextButton = () => {
       {isModalOpen && (
         <SortingChooseModal
           selectedSorting={selectedSorting}
-          onSortingSelect={handleSortingSelect}
+          onSortingSelect={(sorting) => {
+            onSortingSelect(sorting);
+            setIsModalOpen(false);
+          }}
         />
       )}
     </Wrapper>
