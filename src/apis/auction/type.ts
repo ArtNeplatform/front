@@ -1,3 +1,7 @@
+/**
+ * 경매 리스트 조회 성공
+ * @author 이하늘
+ */
 export type TGetAuctionListResponse = {
   auction_id: number;
   status: string;
@@ -17,6 +21,10 @@ export type TGetAuctionListRequestParams = {
   sort?: string;
 };
 
+/**
+ * 경매 상세 조회 성공
+ * @author 이하늘
+ */
 export type TGetAuctionDetailResponse = {
   auction_id: number;
   start_price: string | null;
@@ -36,4 +44,23 @@ export type TGetAuctionDetailResponse = {
     thumbnail_image_url: string;
     images: string[];
   };
+};
+
+/**
+ * 경매 입찰 폼 데이터
+ * @author 이하늘
+ */
+export type TAuctionBidFormData = {
+  auction_id: number | null;
+  bid_price: string | null;
+};
+
+/**
+ * 경매 입찰 성공
+ * @author 이하늘
+ */
+export type TPostAuctionBidResponse = {
+  success: boolean;
+  message: string;
+  current_price: string;
 };
