@@ -129,7 +129,6 @@ export const Artwork = ({
           {startPrice && <StartPrice>{startPrice.toLocaleString()}</StartPrice>}
         </PriceContainer>
         {auctionPeriod && <Period>{auctionPeriod}</Period>}
-        {formattedPrice && <Price>{formattedPrice}</Price>}
       </ArtworkInfo>
     </ArtworkContainer>
   );
