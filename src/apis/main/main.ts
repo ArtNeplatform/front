@@ -7,12 +7,11 @@ import { TMainResponse } from './type';
  * @author 김서윤
  **/
 export const getMainData = async (): Promise<TMainResponse> => {
-  const baseURL = import.meta.env.VITE_APP_SERVER_URL;
   const token = localStorage.getItem('token');
   const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
   try {
-    const response = await instance.get<TMainResponse>(`${baseURL}/api/main`, {
+    const response = await instance.get<TMainResponse>(`/api/main`, {
       headers,
     });
     return response.data;
