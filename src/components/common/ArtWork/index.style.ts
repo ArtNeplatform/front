@@ -1,3 +1,4 @@
+import theme from '@/styles/theme';
 import styled from '@emotion/styled';
 
 // 스타일 컴포넌트들 정의
@@ -12,18 +13,17 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 export const ArtworkInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 16px 0;
 `;
 export const GlassmorphismOverlay = styled.div<{ hoverable: boolean }>`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 36px;
   opacity: 0;
   transition: opacity 0.3s ease;
   background: rgba(0, 0, 0, 0.3);
@@ -40,11 +40,9 @@ export const GlassmorphismOverlay = styled.div<{ hoverable: boolean }>`
 
 export const HeartButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  bottom: 0;
+  height: 36px;
+  height: 36px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -54,14 +52,10 @@ export const HeartButton = styled.button`
   transition: all 0.2s ease;
 
   svg {
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
+    padding: 4px;
     transition: all 0.2s ease;
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
   }
 
   &:active {
@@ -70,18 +64,35 @@ export const HeartButton = styled.button`
 `;
 
 export const Artist = styled.p`
-  ${(theme) => theme.theme.typography['14']}
+  color: ${theme.colors.black};
+  ${theme.typography['14']}
+  font-weight: 600;
   margin: 0;
 `;
 
 export const Title = styled.p`
-  ${(theme) => theme.theme.typography['14']}
+  display: flex;
+  align-items: center;
+  width: 176px;
+  height: 40px;
+  padding-bottom: 8px;
+  color: ${theme.colors.black};
+  ${theme.typography['14']}
+  font-weight: 600;
   margin: 0;
 `;
 
 export const Size = styled.p`
-  color: ${(theme) => theme.theme.colors.gray};
-  ${(theme) => theme.theme.typography['14']}
+  color: ${theme.colors.fontGray};
+  ${theme.typography['14']}
+  font-weight: 400;
+  margin: 0;
+`;
+
+export const Period = styled.p`
+  color: ${theme.colors.fontGray};
+  ${theme.typography['13']}
+  font-weight: 400;
   margin: 0;
 `;
 

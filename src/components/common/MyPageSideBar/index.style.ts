@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const Container = styled.div`
   width: 250px;
@@ -10,12 +10,15 @@ export const MenuWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Menu = styled.div<{ isActive: boolean }>`
+export const Menu = styled.div<{ $isActive: boolean }>`
   padding: 12px 24px;
   cursor: pointer;
-  ${theme.typography["14"]}
+  ${theme.typography['14']}
+  font-weight: 400;
+
   background-color: ${theme.colors.white};
   border: 1px solid ${theme.colors.lightGray};
-  box-shadow: ${({ isActive }) =>
-    isActive ? `inset 2px 0 0 ${theme.colors.black}` : "none"};
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? `inset 2px 0 0 ${theme.colors.black}` : 'none'};
+  cursor: pointer;
 `;
