@@ -21,7 +21,44 @@ export const ButtonContainer = styled.div`
   align-items: flex-start;
 `;
 
+export const FilterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 100%;
+`;
+
 export const FilterButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const FilterSelectedContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+`;
+
+export const FilterInitContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+`;
+
+export const InitIcon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+export const MiniLine = styled.div`
+  width: 1px;
+  height: 14px;
+  background-color: #dbdbdb;
+`;
+
+export const SelectedFilterContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
