@@ -1,10 +1,19 @@
-import styled from "@emotion/styled";
-import theme from "@styles/theme.ts";
+import styled from '@emotion/styled';
+import theme from '@styles/theme.ts';
 
 export const Container = styled.div`
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1px;
+  width: 100%;
 `;
 
 export const StyledButton = styled.button<{ active: boolean }>`
@@ -17,7 +26,7 @@ export const StyledButton = styled.button<{ active: boolean }>`
   background: ${theme.colors.white};
   border: none;
   cursor: pointer;
-  ${theme.typography["14"]}
+  ${theme.typography['14']}
   ${(props) =>
     props.active &&
     `
@@ -40,7 +49,7 @@ export const PageButton = styled.div<{ active: boolean }>`
   align-items: center;
   cursor: pointer;
   background: ${theme.colors.white};
-  ${theme.typography["14"]}
+  ${theme.typography['14']}
   ${(props) =>
     props.active
       ? `

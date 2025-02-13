@@ -7,6 +7,7 @@ export const ArtworkContainer = styled.div<{ $border: string }>`
   flex-direction: column;
   gap: 16px;
   border: ${(props) => props.$border};
+  cursor: pointer;
 `;
 export const ImageContainer = styled.div`
   position: relative;
@@ -95,9 +96,21 @@ export const Period = styled.p`
   margin: 0;
 `;
 
-export const Price = styled.p`
-  color: ${theme.colors.black};
-  ${theme.typography['18']}
-  font-weight: 500;
+export const Price = styled.span`
+  color: ${(theme) => theme.theme.colors.black};
+  ${(theme) => theme.theme.typography['18']}
   margin: 0;
+`;
+
+export const StartPrice = styled.span`
+  color: ${(theme) => theme.theme.colors.fontGray};
+  ${(theme) => theme.theme.typography['16']}
+  margin: 0;
+  text-decoration: line-through;
+`;
+
+export const PriceContainer = styled.div`
+  display: 'flex';
+  gap: '8px';
+  align-items: 'center';
 `;

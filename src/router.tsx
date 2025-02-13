@@ -8,9 +8,18 @@ import AuthorPage from './pages/authorPage/AuthorPage';
 
 import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
-import { AuctionRegister } from '@/pages/auction-register';
+import { AuctionRegister } from './pages/auction-register';
+import { Author } from './pages/author';
+import { AuthorDetail } from './pages/author-detail';
+import { Exhibition } from './pages/exhibition';
+import { ExhibitionDetail } from './pages/exhibition-detail';
 import { Register } from '@/pages/register';
 import { ExhibitRegister } from '@/pages/exhibit-register';
+import { Auction } from './pages/auction';
+import { Main } from '@/pages/main';
+import { Artwork } from '@/pages/artwork';
+import { ArtworkDetail } from '@/pages/artwork-detail';
+import { AuctionDetail } from './pages/auction-detail';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -46,10 +55,43 @@ export const routes: TRoutes[] = [
     isTabBar: true,
   },
   {
+    path: '/author',
+    element: <Author />,
+    isTabBar: true,
+  },
+  {
+    path: '/author/:id',
+    element: <AuthorDetail />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibition',
+    element: <Exhibition />,
+    isTabBar: true,
+  },
+  {
+    path: '/exhibition/:id',
+    element: <ExhibitionDetail />,
+    isTabBar: true,
+  },
+  {
     path: '/exhibit-register',
     element: <ExhibitRegister />,
     isTabBar: true,
   },
+  {
+    path: '/auction',
+    element: <Auction />,
+    isTabBar: true,
+  },
+  {
+    path: '/auction/:id',
+    element: <AuctionDetail />,
+    isTabBar: true,
+  },
+  { path: '/main', element: <Main />, isTabBar: true },
+  { path: '/artwork', element: <Artwork />, isTabBar: true },
+  { path: '/artwork/:id', element: <ArtworkDetail />, isTabBar: true },
 ];
 
 /**

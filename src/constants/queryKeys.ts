@@ -1,3 +1,5 @@
+import { getAuctionDetail } from '@/apis/auction/getAuctionDetail';
+import { getAuctionLists } from '@/apis/auction/getAuctionList';
 import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
 import {
   getAuthorArtworksExhibitions,
@@ -5,8 +7,11 @@ import {
 } from '@/apis/authorPage/author';
 import { AuthorProfileType } from '@/apis/authorPage/type';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
+import { getAuthorDetail } from '@/apis/author/getAuthorDetail';
+import { getAuthorLists } from '@/apis/author/getAuthorLists';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
+import { getMainData } from '@/apis/main/main';
 import { getUserMypage } from '@/apis/myPage/myPage';
 
 /**
@@ -129,5 +134,74 @@ export const getAvailableArtworksQuery = () => {
   return {
     queryKey: ['availableArtworks'],
     queryFn: getAvailableArtworks,
+  };
+};
+
+/**
+ * 경매 리스트 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuctionListQuery = (sort: string) => {
+  return {
+    queryKey: ['auctionList', sort],
+    queryFn: () => getAuctionLists({ sort }),
+  };
+};
+
+/**
+ * 경매 상세 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuctionDetailQuery = (auctionId: number) => {
+  return {
+    queryKey: ['auctiondetail', auctionId],
+    queryFn: () => getAuctionDetail(auctionId),
+  };
+};
+
+/**
+ * 메인 페이지 데이터를 조회하는 쿼리 키 함수
+ * @returns ['mainData'] 형태의 배열 반환
+ * @example - queryClient.invalidateQueries(getMainDataQueryKey());
+ * @author 김서윤
+ */
+export const getMainDataQueryKey = () => ['mainData'];
+
+/**
+ * 메인 페이지 조회 API를 위한 React Query 설정 함수
+ * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
+ * @example - const { data } = useQuery(getMainDataQuery());
+ * @author 김서윤
+ */
+export const getMainDataQuery = () => {
+  return {
+    queryKey: getMainDataQueryKey(),
+    queryFn: getMainData,
+  };
+};
+
+/**
+ * 작가 리스트 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuthorListQuery = (
+  sort: string,
+  page: number,
+  limit: number
+) => {
+  return {
+    queryKey: ['authorList', sort, page, limit],
+    queryFn: () => getAuthorLists({ sort, page, limit }),
+  };
+};
+
+/**
+ * 작가 상세 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuthorDetailQuery = (authorId: number) => {
+  return {
+    queryKey: ['authorDetail', authorId],
+    queryFn: () => getAuthorDetail({ authorId }),
   };
 };
