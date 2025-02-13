@@ -4,7 +4,7 @@ import App from './App.tsx';
 import { QueryClientProvider } from './contexts/query/QueryClientProvider.tsx';
 import { AuthProvider } from './contexts/authContext.tsx';
 import * as Kakao from 'kakao-js-sdk';
-
+import { Toaster } from 'sonner';
 Kakao.initKakao(import.meta.env.VITE_KAKAO_API_KEY);
 
 createRoot(document.getElementById('root')!).render(
@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider>
       <AuthProvider>
         <App />
+        <Toaster />
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

@@ -8,40 +8,45 @@ import { Container, ButtonContainer, ContentHeader } from './index.style.ts';
 import Divider from '@/components/common/Divider/index.tsx';
 import theme from '@/styles/theme.ts';
 import { useGetAvailableArtwork } from './hooks/useGetAvailableArtwork';
+import { Text } from '@/styles/text.tsx';
+import AuctionModal from '@/pages/auction-register/components/AuctionModal';
+import useAuctionRegisterForm from './hooks/useAuctionRegisterForm';
 
 export const AuctionRegister = () => {
   const { availableArtworks } = useGetAvailableArtwork();
+  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const { handleSubmit, formData, setFormData } = useAuctionRegisterForm();
 
-  const toggleImageSelection = (artworkId: string) => {
-    setSelectedImages((prev) =>
-      prev.includes(artworkId)
-        ? prev.filter((id) => id !== artworkId)
-        : [...prev, artworkId]
-    );
+  const handleOpenModal = (artworkId: number) => {
+    setFormData({ ...formData, artwork_id: artworkId });
+    setSelectedImages((prev) => [...prev, artworkId.toString()]);
+    setModalOpen(true);
   };
 
-  const handleRegister = () => {
-    // 등록 로직 추가
-    console.log('등록할 이미지:', selectedImages);
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleModalConfirm = (price: number) => {
+    setFormData({ ...formData, start_price: price });
+    setModalOpen(false);
   };
 
   return (
     <PageLayout>
       <ContentHeader>
-        <h1>작품 등록</h1>
-        <p>
-          작품을 등록하기 위해서는 최소 1개 이상의 이미지를 업로드해야 합니다.
-        </p>
+        <Text size={24} weight="semibold">
+          경매 등록
+        </Text>
+        <Divider />
       </ContentHeader>
       <Container>
         <SquareGridContainer columnCount={5}>
           {availableArtworks?.map((artwork, index) => (
             <div
               key={artwork.artwork_id + index}
-              onClick={() =>
-                toggleImageSelection(artwork.artwork_id.toString())
-              }
+              onClick={() => handleOpenModal(artwork.artwork_id)}
               style={{
                 position: 'relative',
                 opacity: selectedImages.includes(artwork.artwork_id.toString())
@@ -51,8 +56,7 @@ export const AuctionRegister = () => {
             >
               <Artwork
                 imageUrl={artwork.thumbnail_image_url}
-                artist="작가 이름"
-                title="작품 제목"
+                title={artwork.title}
                 hoverable={false}
                 variant="eager"
               />
@@ -86,10 +90,33 @@ export const AuctionRegister = () => {
             background={theme.colors.black}
             borderColor="black"
             borderRadius="2px"
-            onClick={handleRegister}
+            onClick={handleSubmit}
+            disabled={
+              formData.artwork_id === null || formData.start_price === null
+            }
           />
         </ButtonContainer>
       </Container>
+
+      <AuctionModal
+        isOpen={isModalOpen}
+        title={
+          formData.artwork_id
+            ? availableArtworks?.find(
+                (artwork) => artwork.artwork_id === formData.artwork_id
+              )?.title
+            : ''
+        }
+        imageSrc={
+          formData.artwork_id
+            ? availableArtworks?.find(
+                (artwork) => artwork.artwork_id === formData.artwork_id
+              )?.thumbnail_image_url
+            : ''
+        }
+        onClose={handleCloseModal}
+        onConfirm={(price) => handleModalConfirm(price)}
+      />
     </PageLayout>
   );
 };

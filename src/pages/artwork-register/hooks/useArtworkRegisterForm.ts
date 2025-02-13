@@ -1,20 +1,16 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { postArtworkRegisterMutation } from '@/constants/mutationKey';
+import { TArtworkRegisterFormData } from '@/apis/artworkRegister/type';
+import { toast } from 'sonner';
 import { useState } from 'react';
+import { getAvailableArtworksQuery } from '@/constants/queryKeys';
 
-type TArtworkRegisterFormData = {
-  images: File[];
-  title: string;
-  year: string;
-  genre: string;
-  material: string;
-  description: string;
-  height: string;
-  width: string;
-  number: string;
-  frameNumber: string;
-};
-const useArtworkForm = () => {
+const useArtworkRegisterForm = () => {
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState<TArtworkRegisterFormData>({
     images: [],
+    theme: '',
+    form: '',
     title: '',
     year: '',
     genre: '',
@@ -23,7 +19,7 @@ const useArtworkForm = () => {
     height: '',
     width: '',
     number: '',
-    frameNumber: '',
+    frame: '',
   });
 
   /**
@@ -43,7 +39,7 @@ const useArtworkForm = () => {
       height,
       width,
       number,
-      frameNumber,
+      frame,
     } = formData;
 
     if (
@@ -56,16 +52,33 @@ const useArtworkForm = () => {
       !height ||
       !width ||
       !number ||
-      !frameNumber
+      !frame
     ) {
-      console.log('유효성 검사 실패');
-
-      alert('모든 항목을 입력해주세요. 빈칸이 있습니다.');
+      toast.error('모든 항목을 입력해주세요. 빈칸이 있습니다.');
       return false;
     }
-    console.log('유효성 검사 성공');
     return true;
   };
+
+  /**
+   * 작품 등록 뮤테이션
+   * @author 홍규진
+   */
+  const mutation = useMutation({
+    mutationKey: postArtworkRegisterMutation().mutationKey,
+    mutationFn: (data: TArtworkRegisterFormData) =>
+      postArtworkRegisterMutation().mutationFn(data),
+    onSuccess: async () => {
+      toast.success('작품 등록이 성공적으로 완료되었습니다.');
+      queryClient.invalidateQueries({
+        queryKey: postArtworkRegisterMutation().mutationKey,
+      });
+      await getAvailableArtworksQuery().queryFn();
+    },
+    onError: (error: Error) => {
+      toast.error(`작품 등록 실패: ${error.message}`);
+    },
+  });
 
   /**
    * 작품 등록 폼 제출 함수
@@ -73,18 +86,23 @@ const useArtworkForm = () => {
    * @param e 폼 제출 이벤트
    * @author 홍규진
    */
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm(formData)) {
-      console.log(formData);
-      console.log('유효성 검사 성공');
+      await mutation.mutateAsync(formData);
     } else {
-      console.log('유효성 검사 실패');
-      alert('모든 항목을 입력해주세요.');
+      //어차피 위에서 토스트 메시지 띄워줬으니 여기서는 리턴
+      return;
     }
   };
 
-  return { formData, setFormData, handleSubmit, validateForm };
+  return {
+    formData,
+    setFormData,
+    handleSubmit,
+    isLoading: mutation.isPending,
+    isError: mutation.isError,
+  };
 };
 
-export default useArtworkForm;
+export default useArtworkRegisterForm;

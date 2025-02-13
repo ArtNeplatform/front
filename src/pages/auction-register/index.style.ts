@@ -4,15 +4,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 24px 24px;
 `;
 
 export const ContentHeader = styled.div`
-  max-width: 1400px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 12px 24px;
   display: flex;
   flex-direction: column;
   align-items: start;

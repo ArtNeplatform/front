@@ -20,7 +20,7 @@ import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtw
 interface ArtworkProps {
   artworkId: number;
   imageUrl: string;
-  artist: string;
+  artist?: string;
   title: string;
   artworkWidth?: number;
   artworkHeight?: number;
@@ -111,7 +111,7 @@ export const Artwork = ({
         )}
       </ImageContainer>
       <ArtworkInfo>
-        <Artist>{artist}</Artist>
+        {artist && <Artist>{artist}</Artist>}
         <Title>{title}</Title>
         {formattedSize && <Size>{formattedSize}</Size>}
         {formattedPrice && <Price>{formattedPrice}</Price>}
