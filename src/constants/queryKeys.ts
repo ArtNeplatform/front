@@ -1,6 +1,7 @@
 import { getAuctionDetail } from '@/apis/auction/getAuctionDetail';
 import { getAuctionLists } from '@/apis/auction/getAuctionList';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
+import { getAuthorDetail } from '@/apis/author/getAuthorDetail';
 import { getAuthorLists } from '@/apis/author/getAuthorLists';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
@@ -78,10 +79,24 @@ export const getMainDataQuery = () => {
  * 작가 리스트 조회 쿼리
  * @author 이하늘
  * */
-export const getAuthorListQuery = (sort: string, page: number, limit: number) => {
+export const getAuthorListQuery = (
+  sort: string,
+  page: number,
+  limit: number
+) => {
   return {
     queryKey: ['authorList', sort, page, limit],
     queryFn: () => getAuthorLists({ sort, page, limit }),
   };
 };
 
+/**
+ * 작가 상세 조회 쿼리
+ * @author 이하늘
+ * */
+export const getAuthorDetailQuery = (authorId: number) => {
+  return {
+    queryKey: ['authorDetail', authorId],
+    queryFn: () => getAuthorDetail({ authorId }),
+  };
+};

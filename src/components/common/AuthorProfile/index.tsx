@@ -7,23 +7,23 @@ import {
 } from './index.style';
 
 interface AuthorProfileProps {
-  AuthorName: string;
+  authorName: string;
   artworkCount: number;
   exhibitionCount: number;
   profileImage: string;
 }
 
 export const AuthorProfile = ({
-  AuthorName,
+  authorName,
   artworkCount,
   exhibitionCount,
   profileImage,
 }: AuthorProfileProps) => {
   return (
     <ProfileContainer>
-      <ProfileImage src={profileImage} alt={`${AuthorName}의 프로필 이미지`} />
+      <ProfileImage src={profileImage} alt={`${authorName}의 프로필 이미지`} />
       <ProfileInfo>
-        <Name>{AuthorName}</Name>
+        <Name>{authorName}</Name>
         <Stats>
           작품 {artworkCount} | 전시 {exhibitionCount}
         </Stats>
