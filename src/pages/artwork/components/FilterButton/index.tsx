@@ -49,6 +49,9 @@ export const FilterButton = ({
         <Text size={14} color="font03gray" weight="regular">
           {title}
         </Text>
+        <Text size={14} color="purple" weight="semibold">
+          {selectedFilters.length}
+        </Text>
         <ArrowIcon src={Arrow} alt="보러가기" />
       </ButtonContainer>
 
