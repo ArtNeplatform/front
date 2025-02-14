@@ -1,11 +1,11 @@
 import { getAuctionDetail } from '@/apis/auction/getAuctionDetail';
 import { getAuctionLists } from '@/apis/auction/getAuctionList';
-import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
+import { getPurchasedArtworks } from '@/apis/mypage-buyer/artWork';
 import {
   getAuthorArtworksExhibitions,
   getAuthorProfile,
-} from '@/apis/authorPage/author';
-import { AuthorProfileType } from '@/apis/authorPage/type';
+} from '@/apis/mypage-author/author';
+import { AuthorProfileType } from '@/apis/mypage-author/type';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getAuthorDetail } from '@/apis/author/getAuthorDetail';
 import { getAuthorLists } from '@/apis/author/getAuthorLists';

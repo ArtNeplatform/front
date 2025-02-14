@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { updateUserInfo } from '@/apis/artBuyerPage/artBuyer';
+import { updateUserInfo } from '@/apis/mypage-buyer/artBuyer';
 import { getUpdateUserInfoQueryKey } from '@/constants/queryKeys';
 import { getQueryClient } from '@/contexts/query/getQueryClient';
 import { TGetResponse } from '@/apis/type';

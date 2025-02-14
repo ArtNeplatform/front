@@ -31,21 +31,14 @@ type TRoutes = {
  * @author 홍규진
  * */
 
-/**
- * 작품구매자_마이페이지는 /artBuyerPage 이고,
- * 작가_마이페이지는 /authorPage 로 구분했습니다.
- * @author 노찬영
- * */
-
 // eslint-disable-next-line react-refresh/only-export-components
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
-  { path: '/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
-  { path: '/author', element: <AuthorPage />, isTabBar: true },
+  { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
+  { path: '/mypage/author', element: <AuthorPage />, isTabBar: true },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
-
   {
     path: '/artwork-register',
     element: <ArtworkRegister />,

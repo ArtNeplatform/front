@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getAuthorProfile } from '@/apis/authorPage/author';
+import { getAuthorProfile } from '@/apis/mypage-author/author';
 import { getAuthorProfileQuery } from '@/constants/queryKeys';
-import { TAuthorProfile, AuthorProfileType } from '@/apis/authorPage/type';
+import { TAuthorProfile, AuthorProfileType } from '@/apis/mypage-author/type';
 
 /**
  * 작가 프로필 조회를 위한 React Query 훅
