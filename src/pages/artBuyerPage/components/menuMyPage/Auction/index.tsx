@@ -51,11 +51,13 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
               <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
               <TableCell>{auction.status}</TableCell>
               <TableCell>
-                <AuctionButton
-                  onClick={() => handleBtnClick(auction.artwork_id)}
-                >
-                  입찰하기
-                </AuctionButton>
+                {auction.status === '응찰중' && (
+                  <AuctionButton
+                    onClick={() => handleBtnClick(auction.artwork_id)}
+                  >
+                    입찰하기
+                  </AuctionButton>
+                )}
               </TableCell>
             </TableRow>
           ))}

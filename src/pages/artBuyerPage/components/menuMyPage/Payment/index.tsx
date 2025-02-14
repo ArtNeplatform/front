@@ -58,11 +58,13 @@ export const Payment = ({ userId }: PaymentProps) => {
               </TableCell>
               <TableCell>{payment.status}</TableCell>
               <TableCell>
-                <PaymentButton
-                  onClick={() => handleBtnClick(payment.artwork_id)}
-                >
-                  결제하기
-                </PaymentButton>
+                {payment.status === '결제 대기중' && (
+                  <PaymentButton
+                    onClick={() => handleBtnClick(payment.artwork_id)}
+                  >
+                    결제하기
+                  </PaymentButton>
+                )}
               </TableCell>
             </TableRow>
           ))}
