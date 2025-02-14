@@ -29,6 +29,7 @@ export const ArtBuyerProfile = ({ onEditProfile }: ArtBuyerProfileProps) => {
   const { userMypageData } = useGetBuyerMypage();
 
   const { buyer, paymentCounts } = userMypageData;
+  const paymentData = paymentCounts?.[0] ?? { pending: 0, completed: 0, received: 0 };
 
   return (
     <ProfileContainer>
@@ -45,15 +46,15 @@ export const ArtBuyerProfile = ({ onEditProfile }: ArtBuyerProfileProps) => {
       <PaymentStatus>
         <PaymentItem>
           <PaymentLabel>결제 대기중</PaymentLabel>
-          <PaymentCount>{paymentCounts.pending ?? 0}</PaymentCount>
+          <PaymentCount>{paymentData.pending}</PaymentCount>
         </PaymentItem>
         <PaymentItem>
           <PaymentLabel>결제 완료</PaymentLabel>
-          <PaymentCount>{paymentCounts.completed ?? 0}</PaymentCount>
+          <PaymentCount>{paymentData.completed}</PaymentCount>
         </PaymentItem>
         <PaymentItem>
           <PaymentLabel>수령 완료</PaymentLabel>
-          <PaymentCount>{paymentCounts.received ?? 0}</PaymentCount>
+          <PaymentCount>{paymentData.received}</PaymentCount>
         </PaymentItem>
       </PaymentStatus>
     </ProfileContainer>
