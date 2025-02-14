@@ -77,10 +77,10 @@ export const ArtWork = () => {
 
   const sortedArtworks =
     sortingType === '이름순'
-      ? [...artworkData.result.artworks].sort((a, b) =>
+      ? [...artworkData.artworks].sort((a, b) =>
           a.title.localeCompare(b.title, 'ko')
         )
-      : artworkData.result.artworks;
+      : artworkData.artworks;
 
   return (
     <PageLayout>
@@ -175,7 +175,7 @@ export const ArtWork = () => {
           ))}
         </GridContainer>
         <PagingButtons
-          totalPage={Math.ceil(artworkData.result.total / itemsPerPage)}
+          totalPage={Math.ceil(artworkData.total / itemsPerPage)}
           page={page}
           setPage={setPage}
         />

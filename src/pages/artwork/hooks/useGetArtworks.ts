@@ -1,8 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getArtworks } from '@/apis/artwork/artwork';
-import { TArtworkResponse } from '@/apis/artwork/type';
-import { toast } from 'sonner';
-import { AxiosError } from 'axios';
+import { TArtWorkResult } from '@/apis/artwork/type';
 
 /**
  * 특정 작품의 상세 정보를 가져오는 React Query 커스텀 훅
@@ -27,21 +25,13 @@ export const useGetArtworks = (
     data: artworkData,
     isLoading,
     error,
-  } = useSuspenseQuery<TArtworkResponse>({
+  } = useSuspenseQuery<TArtWorkResult>({
     queryKey: ['artworks', page, pageSize, themes, sizes, forms, sortingKey],
     queryFn: () =>
       getArtworks(page, pageSize, themes, sizes, forms, sortingKey),
     staleTime: 1000 * 60 * 30,
     gcTime: 1000 * 60 * 15,
   });
-
-  if (error) {
-    const axiosError = error as AxiosError<TArtworkResponse>;
-    const errorMessage =
-      axiosError.response?.data?.message ||
-      '작품 상세 정보를 불러오는 데 실패했습니다.';
-    toast.error(errorMessage);
-  }
 
   return { artworkData, isLoading, error };
 };

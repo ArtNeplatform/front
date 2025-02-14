@@ -1,5 +1,6 @@
 import { instance } from '@/apis/axios';
-import { TArtworkResponse } from './type';
+import { TArtWorkResult } from './type';
+import { TGetResponse } from '@apis/type';
 
 /**
  * 특정 작품의 상세 정보를 가져오는 API 함수
@@ -12,7 +13,7 @@ export const getArtworks = async (
   sizes: string[],
   forms: string[],
   sortingKey?: 'latest' | 'popular'
-): Promise<TArtworkResponse> => {
+): Promise<TArtWorkResult> => {
   // 선택된 필터들을 콤마(,)로 구분된 문자열로 변환
   const queryParams = {
     page,
@@ -23,15 +24,12 @@ export const getArtworks = async (
     sort: sortingKey,
   };
 
-  try {
-    const response = await instance.get<TArtworkResponse>('/api/artworks', {
+  const response = await instance.get<TGetResponse<TArtWorkResult>>(
+    '/api/artworks',
+    {
       params: queryParams,
-    });
+    }
+  );
 
-    return response.data;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error('작품 리스트 API 호출 오류:', error);
-    throw error;
-  }
+  return response.data.result;
 };

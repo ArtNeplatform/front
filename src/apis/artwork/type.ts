@@ -15,6 +15,13 @@ export interface TArtworkResponse {
   };
 }
 
+export interface TArtWorkResult {
+  total: number;
+  page: number;
+  pageSize: number;
+  artworks: TArtwork[];
+}
+
 export type TArtwork = {
   id: number;
   title: string;
