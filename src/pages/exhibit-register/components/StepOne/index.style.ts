@@ -21,6 +21,7 @@ export const StepContainer = styled.div`
 export const GalleryList = styled.div`
   flex: 1;
   max-width: 200px;
+  max-height: 540px;
   overflow-y: auto; /* 세로 스크롤 */
   overflow-x: hidden;
   border-radius: 8px;
