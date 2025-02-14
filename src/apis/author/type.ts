@@ -63,7 +63,7 @@ export type TArtworks = {
   total: number;
   totalPages: number;
   currentPage: number;
-  items: { dataValues: TArtworkItem }[];
+  items: TArtworkItem[];
 };
 
 export type TExhibitionItem = {
@@ -83,7 +83,7 @@ export type TExhibitions = {
   total: number;
   totalPages: number;
   currentPage: number;
-  items: { dataValues: TExhibitionItem }[];
+  items: TExhibitionItem[];
 };
 
 export type TGetAuthorDetailApiResponse = {

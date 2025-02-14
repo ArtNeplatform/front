@@ -189,10 +189,30 @@ export const getAuthorListQuery = (
  * 작가 상세 조회 쿼리
  * @author 이하늘
  * */
-export const getAuthorDetailQuery = (authorId: number) => {
+export const getAuthorDetailQuery = (
+  authorId: number,
+  artworkPage: number,
+  artworkLimit: number,
+  exhibitionPage: number,
+  exhibitionLimit: number
+) => {
   return {
-    queryKey: ['authorDetail', authorId],
-    queryFn: () => getAuthorDetail({ authorId }),
+    queryKey: [
+      'authorDetail',
+      authorId,
+      artworkPage,
+      artworkLimit,
+      exhibitionPage,
+      exhibitionLimit,
+    ],
+    queryFn: () =>
+      getAuthorDetail({
+        authorId,
+        artworkPage,
+        artworkLimit,
+        exhibitionPage,
+        exhibitionLimit,
+      }),
   };
 };
 

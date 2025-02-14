@@ -8,12 +8,26 @@ import { AuthorInfo } from './components/AuthorInfo';
 import { AuthorArtwork } from './components/AuthorArtwork';
 import { useGetAuthorDetail } from './hooks/useGetAuthorDetail';
 import { useParams } from 'react-router-dom';
+import { PagingButtons } from '@/components/common/PagingButtons';
 
 export const AuthorDetail = () => {
   const { id } = useParams<{ id: string }>();
   const authorId = id ? parseInt(id, 10) : 0;
   const [activeTab, setActiveTab] = useState<string>('작가소개');
-  const { data: authorData, isLoading } = useGetAuthorDetail(Number(authorId));
+
+  const [artworkPage, setArtworkPage] = useState<number>(1);
+  const [artworkLimit] = useState<number>(10);
+  const [exhibitionPage, setExhibitionPage] = useState<number>(1);
+  const [exhibitionLimit] = useState<number>(4);
+
+  const { data: authorData, isLoading } = useGetAuthorDetail({
+    authorId: Number(authorId),
+    artworkPage,
+    artworkLimit,
+    exhibitionPage,
+    exhibitionLimit,
+  });
+  console.log(authorData);
 
   if (isLoading) {
     return <div>로딩 중...</div>;
@@ -22,6 +36,13 @@ export const AuthorDetail = () => {
   if (!authorData) {
     return <div>작가 정보를 불러올 수 없습니다.</div>;
   }
+
+  // 작품 페이지 수 계산
+  const totalArtworkPage = Math.ceil(authorData.artworks.total / artworkLimit);
+  // 전시 페이지 수 계산
+  const totalExhibitionPage = Math.ceil(
+    authorData.exhibitions.total / exhibitionLimit
+  );
 
   // const sampleProfileData = {
   //   AuthorName: '홍길동',
@@ -116,8 +137,34 @@ export const AuthorDetail = () => {
               />
             )}
 
-            {activeTab === '작품' && <AuthorArtwork artworks={authorData.artworks}/>}
-            {activeTab === '전시' && <AuthorExhibition exhibitions={authorData.exhibitions}/>}
+            {activeTab === '작품' &&
+              (authorData?.artworks && authorData?.artworks.total > 0 ? (
+                <>
+                  <AuthorArtwork artworks={authorData.artworks} />
+                  <PagingButtons
+                    totalPage={totalArtworkPage} // 작품 총 페이지 수
+                    page={artworkPage}
+                    setPage={setArtworkPage}
+                  />
+                </>
+              ) : (
+                <div>아직 등록된 작품이 없습니다.</div>
+              ))}
+
+            {activeTab === '전시' &&
+              (authorData?.exhibitions.items.length !== 0 &&
+              authorData?.exhibitions.total > 0 ? (
+                <>
+                  <AuthorExhibition exhibitions={authorData.exhibitions} />
+                  <PagingButtons
+                    totalPage={totalExhibitionPage} // 전시 총 페이지 수
+                    page={exhibitionPage}
+                    setPage={setExhibitionPage}
+                  />
+                </>
+              ) : (
+                <div>아직 등록된 전시가 없습니다.</div>
+              ))}
           </Content>
         </AuthorContainer>
       </PageLayout>
