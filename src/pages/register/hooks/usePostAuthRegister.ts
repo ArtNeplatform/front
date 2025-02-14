@@ -12,12 +12,13 @@ export const usePostAuthRegister = () => {
     mutationKey: postAuthRegisterMutation().mutationKey,
     mutationFn: (formData: TRegisterFormData) =>
       postAuthRegisterMutation().mutationFn(formData),
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: postAuthRegisterMutation().mutationKey,
       }); // 쿼리 무효화
+      localStorage.setItem('accessToken', data.token);
       toast.success('회원가입이 완료되었습니다.');
-      navigate('/success'); // 성공 페이지로 이동
+      navigate('/'); // 성공 페이지로 이동
     },
     onError: (error: Error) => {
       toast.error(error.message); // 오류 메시지 표시
