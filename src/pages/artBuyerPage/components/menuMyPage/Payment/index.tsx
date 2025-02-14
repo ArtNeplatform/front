@@ -7,6 +7,7 @@ import {
   PaymentButton,
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+import { useKakaoPay } from '@/pages/artBuyerPage/hooks/useKakaoPay';
 
 interface PaymentProps {
   userId: number;
@@ -19,6 +20,7 @@ interface PaymentProps {
  */
 export const Payment = ({ userId }: PaymentProps) => {
   const { userMypageData } = useGetUserMypage(userId);
+  const { initiatePayment } = useKakaoPay();
 
   const { result } = userMypageData;
 
@@ -30,8 +32,7 @@ export const Payment = ({ userId }: PaymentProps) => {
   const { payments } = result;
 
   const handleBtnClick = (paymentId: number) => {
-    // TODO: 카카오페이 결제 API 연결
-    console.log(`결제하기 버튼 클릭: 결제자 ID ${paymentId}`);
+    initiatePayment(paymentId);
   };
 
   return (
