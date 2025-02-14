@@ -28,14 +28,14 @@ import { useHandleLink } from '@/hooks/common/useHandleLink.ts';
 export const Main = () => {
   const { mainData, isLoading } = useGetMainData();
 
-  const authors = mainData?.result?.authors || [];
+  const authors = mainData?.authors || [];
   const [selectedAuthorId, setSelectedAuthorId] = useState<number | null>(
     authors.length > 0 ? authors[0].author_id : null
   );
 
-  const artworks = mainData?.result?.artworks || [];
-  const ongoingAuctions = mainData?.result?.ongoingAuctions || [];
-  const ongoingExhibitions = mainData?.result?.ongoingExhibitions || [];
+  const artworks = mainData?.artworks || [];
+  const ongoingAuctions = mainData?.ongoingAuctions || [];
+  const ongoingExhibitions = mainData?.ongoingExhibitions || [];
 
   const selectedAuthor = authors.find(
     (author) => author.author_id === selectedAuthorId
@@ -88,6 +88,8 @@ export const Main = () => {
                 variant="lazy"
                 isLiked={auction.is_like}
                 isAuction={true}
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                onClick={useHandleLink(`/auction/${auction.auction_id}`)}
               />
             ))}
           </ArtWorkContainer>

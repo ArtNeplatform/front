@@ -1,9 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import { AxiosError } from 'axios';
 import { getMainData } from '@/apis/main/main';
 import { getMainDataQuery } from '@/constants/queryKeys';
-import { TMainResponse } from '@/apis/main/type';
+import { TMainResult } from '@/apis/main/type';
 
 /**
  * 메인 페이지 데이터를 가져오는 커스텀 훅
@@ -17,20 +15,12 @@ export const useGetMainData = () => {
     data: mainData,
     isLoading,
     error,
-  } = useSuspenseQuery<TMainResponse>({
+  } = useSuspenseQuery<TMainResult>({
     queryKey: getMainDataQuery().queryKey,
     queryFn: getMainData,
     staleTime: 1000 * 60 * 60, // 1시간
     gcTime: 1000 * 60 * 30, // 30분
   });
-
-  if (error) {
-    const axiosError = error as AxiosError<TMainResponse>;
-    const errorMessage =
-      axiosError.response?.data?.message ||
-      '메인 데이터를 불러오는데 실패했습니다.';
-    toast.error(errorMessage);
-  }
 
   return { mainData, isLoading, error };
 };
