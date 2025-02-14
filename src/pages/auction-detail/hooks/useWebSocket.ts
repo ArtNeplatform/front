@@ -13,7 +13,7 @@ const useWebSocket = (auctionId: number) => {
     // 웹소켓 객체 생성
     const WS_URL =
       window.location.protocol === 'https:'
-        ? 'wss://3.35.110.159:5000'
+        ? 'wss://3.35.110.159.nip.io'
         : 'ws://3.35.110.159:5000';
 
     const socket = new WebSocket(WS_URL);
