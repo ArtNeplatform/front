@@ -84,8 +84,10 @@ export const ArtworkDetail = () => {
     <PageLayout>
       <Container>
         <TopContainer>
-          <ImageContainer>
-            <ImageList>
+          <ImageContainer
+            $isSingleImage={fixed_info.artwork_image.length === 1}
+          >
+            <ImageList $isSingleImage={fixed_info.artwork_image.length === 1}>
               {smallImageList.map((image, index) => (
                 <SmallImage
                   key={index}
