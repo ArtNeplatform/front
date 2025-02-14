@@ -39,8 +39,8 @@ type TRoutes = {
 
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
-  { path: '/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
-  { path: '/author', element: <AuthorPage />, isTabBar: true },
+  { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
+  { path: '/mypqge/author', element: <AuthorPage />, isTabBar: true },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
