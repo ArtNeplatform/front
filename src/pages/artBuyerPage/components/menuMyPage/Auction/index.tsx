@@ -1,4 +1,5 @@
 import {
+  AuctionButton,
   AuctionContainer,
   Table,
   TableCell,
@@ -31,6 +32,7 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
             <TableHeader>경매 종료일</TableHeader>
             <TableHeader>금액</TableHeader>
             <TableHeader>진행상황</TableHeader>
+            <TableHeader></TableHeader>
           </TableRow>
         </thead>
         <tbody>
@@ -42,6 +44,9 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
               </TableCell>
               <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
               <TableCell>{auction.status}</TableCell>
+              <TableCell>
+                <AuctionButton>입찰하기</AuctionButton>
+              </TableCell>
             </TableRow>
           ))}
         </tbody>

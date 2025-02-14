@@ -47,15 +47,38 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: 22px 16px;
-
   &:nth-of-type(1) {
     text-align: left;
+    padding: 22px 16px;
   }
 
   &:nth-of-type(2),
   &:nth-of-type(3),
-  &:nth-of-type(4) {
+  &:nth-of-type(4),
+  &:nth-of-type(5) {
+    text-align: center;
+    padding: 22px 16px;
+  }
+
+  &:nth-of-type(5) {
+    width: 76px;
+    padding: 19px 8px;
     text-align: center;
   }
+`;
+
+export const AuctionButton = styled.button`
+  width: 100%;
+  display: flex;
+  padding: 7px 6px;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: ${theme.colors.font03gray};
+  color: ${theme.colors.white};
+  ${theme.typography['14']}
+  font-weight: 400;
 `;
