@@ -29,6 +29,7 @@ const ArtWorks = () => {
                 key={artwork.id}
                 imageUrl={artwork.thumbnail_image_url}
                 title={artwork.title}
+                artworkId={artwork.id}
               />
             ))}
           </ArtworkGrid>

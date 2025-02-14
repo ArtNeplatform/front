@@ -29,21 +29,19 @@ export const TableHeader = styled.th`
   text-align: center;
   ${theme.typography['14']}
   font-weight: 600;
+  padding: 22px 16px;
 
   &:nth-of-type(1) {
     width: 630px;
-    padding: 22px 16px;
   }
 
   &:nth-of-type(2),
   &:nth-of-type(3),
   &:nth-of-type(4) {
     width: 150px;
-    padding: 22px 16px;
   }
   &:nth-of-type(5) {
     width: 76px;
-    padding: 19px 8px;
     text-align: center;
   }
 `;
@@ -53,15 +51,20 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: 22px 16px;
-
   &:nth-of-type(1) {
+    padding: 22px 16px;
     text-align: left;
   }
 
   &:nth-of-type(2),
   &:nth-of-type(3),
   &:nth-of-type(4) {
+    padding: 22px 16px;
+    text-align: center;
+  }
+
+  &:nth-of-type(5) {
+    padding: 19px 8px;
     text-align: center;
   }
 `;

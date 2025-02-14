@@ -5,6 +5,7 @@ import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
 import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
 import AuthorPage from './pages/authorPage/AuthorPage';
+import Payment from './pages/artBuyerPage/components/menuMyPage/Payment/ex';
 
 import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
@@ -45,6 +46,7 @@ export const routes: TRoutes[] = [
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
+  { path: '/paytest', element: <Payment />, isTabBar: true },
 
   {
     path: '/artwork-register',

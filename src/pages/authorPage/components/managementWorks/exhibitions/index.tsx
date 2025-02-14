@@ -17,6 +17,8 @@ const Exhibitions = () => {
 
   const { data } = useGetAuthorArtworksExhibitions();
 
+  const artworks = data?.result?.artworks || [];
+
   const exhibitions = data?.result?.exhibitions || [];
 
   return (
@@ -25,13 +27,19 @@ const Exhibitions = () => {
 
       <ArtworkContainer>
         <ArtworkGrid>
-          {exhibitions.map((exhibition) => (
-            <Artwork
-              key={exhibition.id}
-              imageUrl={exhibition.image_url}
-              title={exhibition.title}
-            />
-          ))}
+          {exhibitions.map((exhibition) => {
+            const relatedArtwork = artworks.find(
+              (artwork) => artwork.id === exhibition.id
+            );
+            return (
+              <Artwork
+                key={exhibition.id}
+                imageUrl={exhibition.image_url}
+                title={exhibition.title}
+                artworkId={relatedArtwork?.id || exhibition.id}
+              />
+            );
+          })}
         </ArtworkGrid>
       </ArtworkContainer>
 

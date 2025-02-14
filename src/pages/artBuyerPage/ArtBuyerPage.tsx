@@ -24,7 +24,7 @@ export default function ArtBuyerPage() {
       case '계정설정':
         return <AccountSettings />;
       case '구매 작품':
-        return <PurchasedWorks />;
+        return <PurchasedWorks userId={userId} />;
       default:
         return null;
     }

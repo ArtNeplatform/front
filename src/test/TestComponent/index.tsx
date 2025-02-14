@@ -68,16 +68,16 @@ const TestComponents = () => {
       <ComponentSection>
         <TestCase>
           <SubTitle>Default Case</SubTitle>
-          <Artwork {...sampleData} />
+          <Artwork artworkId={1} {...sampleData} />
         </TestCase>
 
         <TestCase>
           <SubTitle>With Hover Disabled</SubTitle>
-          <Artwork {...sampleData} hoverable={false} />
+          <Artwork artworkId={1} {...sampleData} hoverable={false} />
         </TestCase>
         <TestCase>
           <SubTitle>Lazy Loading Image</SubTitle>
-          <Artwork {...sampleData} variant="lazy" />
+          <Artwork artworkId={1} {...sampleData} variant="lazy" />
         </TestCase>
         <TestCase>
           <SubTitle>Header(non-loggedIn)</SubTitle>
@@ -91,7 +91,12 @@ const TestComponents = () => {
       </ComponentSection>
 
       <SubTitle>AuthorDetailCategory</SubTitle>
-      <AuthorDetailCategory />
+      <AuthorDetailCategory
+        activeTab={''}
+        setActiveTab={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
       <SubTitle>CommonInput</SubTitle>
       <CommonInput {...sampleInputData} />
       <SubTitle>MyPageSideBar</SubTitle>
@@ -115,7 +120,7 @@ const TestComponents = () => {
 
       <Spacing />
       <SubTitle>Author Profile</SubTitle>
-      <AuthorProfile {...sampleProfileData} />
+      <AuthorProfile authorName={'홍길동'} {...sampleProfileData} />
       <Spacing />
 
       <Spacing />
