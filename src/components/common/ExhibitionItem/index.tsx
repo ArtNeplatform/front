@@ -6,7 +6,11 @@ interface ExhibitionItemProps {
   onClick: () => void;
 }
 
-export const ExhibitionItem = ({ imageUrl, title, onClick }: ExhibitionItemProps) => {
+export const ExhibitionItem = ({
+  imageUrl,
+  title,
+  onClick,
+}: ExhibitionItemProps) => {
   return (
     <ArtworkItem onClick={onClick}>
       <ArtworkImage src={imageUrl} alt={title} />
