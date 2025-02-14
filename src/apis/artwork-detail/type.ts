@@ -32,13 +32,6 @@ export interface TArtworkDetailResult {
   tab_data: TArtworkDetailTabData;
 }
 
-export interface TArtworkDetailResponse {
-  isSuccess: boolean;
-  code: number;
-  message: string;
-  result: TArtworkDetailResult;
-}
-
 export type TUserSpace = {
   userspace_id: number;
   name: string;

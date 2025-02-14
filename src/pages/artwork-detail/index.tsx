@@ -54,7 +54,7 @@ export const ArtworkDetail = () => {
     );
   }
 
-  const { fixed_info, tab_data } = artworkData.result;
+  const { fixed_info, tab_data } = artworkData;
   const artworks = tab_data.other_artworks || [];
   const visibleArtworks = artworks.slice(startIndex, startIndex + itemsPerPage);
 

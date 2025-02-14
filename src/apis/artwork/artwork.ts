@@ -13,9 +13,6 @@ export const getArtworks = async (
   forms: string[],
   sortingKey?: 'latest' | 'popular'
 ): Promise<TArtworkResponse> => {
-  const token = localStorage.getItem('token');
-  const headers = token ? { Authorization: `Bearer ${token}` } : {};
-
   // 선택된 필터들을 콤마(,)로 구분된 문자열로 변환
   const queryParams = {
     page,
@@ -28,7 +25,6 @@ export const getArtworks = async (
 
   try {
     const response = await instance.get<TArtworkResponse>('/api/artworks', {
-      headers,
       params: queryParams,
     });
 
