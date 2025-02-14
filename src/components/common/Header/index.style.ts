@@ -22,6 +22,18 @@ export const NavMenu = styled.nav`
   gap: 20px;
   align-items: center;
 `;
+export const NavItem = styled.div`
+  ${theme.typography['16']}
+  &:hover {
+    cursor: pointer;
+  }
+  a {
+    font-weight: 400;
+
+    text-decoration: none;
+    color: black;
+  }
+`;
 
 export const Button = styled.button`
   padding: 4px 20px;
