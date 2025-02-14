@@ -9,29 +9,22 @@ import {
   ExhibitionContainer,
 } from './index.style';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-
 import { Artwork } from '@/components/common/ArtWork';
+
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 
 /**
  * @description 작품 구매자의 작품과 전시를 표시하는 컴포넌트
  * @author 노찬영
  */
 const MyCollection = () => {
-  const { userMypageData } = useGetUserMypage();
+  const { userMypageData } = useGetBuyerMypage();
 
-  const { result } = userMypageData;
+  // 작품 구매자 작품 데이터
+  const artworks = userMypageData.myCollection.artworks;
 
-  // 구매자와 작가 데이터 구분
-  const isBuyer = !('author' in result);
-
-  // 구매자와 작가의 작품 및 전시 데이터 추출
-  const artworks = isBuyer
-    ? result.myCollection.artworks
-    : result.storage.artworks;
-  const exhibitions = isBuyer
-    ? result.myCollection.exhibitions
-    : result.storage.exhibitions;
+    // 작품 구매자 전시 데이터
+  const exhibitions = userMypageData.myCollection.exhibitions;
 
   return (
     <MyCollectionContainer>

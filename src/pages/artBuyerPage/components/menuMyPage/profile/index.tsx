@@ -12,7 +12,7 @@ import {
 import RightArrow from '@assets/svg/right-arrow.svg?react';
 import NoneProfile from '@assets/svg/Icon_Profile.svg';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 
 interface ArtBuyerProfileProps {
   onEditProfile: () => void;
@@ -26,13 +26,9 @@ interface ArtBuyerProfileProps {
  **/
 
 export const ArtBuyerProfile = ({ onEditProfile }: ArtBuyerProfileProps) => {
-  const { userMypageData } = useGetUserMypage();
-  const { result = {} } = userMypageData || {};
+  const { userMypageData } = useGetBuyerMypage();
 
-  const { buyer, paymentCounts = {} } = result as {
-    buyer: { name: string; profile_image: string };
-    paymentCounts: { pending?: number; completed?: number; received?: number };
-  };
+  const { buyer, paymentCounts } = userMypageData;
 
   return (
     <ProfileContainer>

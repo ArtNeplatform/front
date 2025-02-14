@@ -6,7 +6,8 @@ import {
   TableCell,
   PaymentButton,
 } from './index.style';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 import { useKakaoPay } from '@/pages/artBuyerPage/hooks/useKakaoPay';
 
 /**
@@ -14,17 +15,10 @@ import { useKakaoPay } from '@/pages/artBuyerPage/hooks/useKakaoPay';
  * @author 노찬영
  */
 export const Payment = () => {
-  const { userMypageData } = useGetUserMypage();
+  const { userMypageData } = useGetBuyerMypage();
   const { initiatePayment } = useKakaoPay();
 
-  const { result } = userMypageData;
-
-  // result가 TBuyerMypage인지 확인
-  if (!('payments' in result)) {
-    return <p>결제 정보가 없습니다.</p>;
-  }
-
-  const { payments } = result;
+  const { payments } = userMypageData;
 
   const handleBtnClick = (paymentId: number) => {
     initiatePayment(paymentId);

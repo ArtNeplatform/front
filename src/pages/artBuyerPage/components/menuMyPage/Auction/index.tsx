@@ -6,19 +6,18 @@ import {
   TableHeader,
   TableRow,
 } from './index.style';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 import { useNavigate } from 'react-router-dom';
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 
 /**
  * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
  * @author 노찬영
  */
 export const ArtBuyerAuction = () => {
-  const { userMypageData } = useGetUserMypage();
+  const { userMypageData } = useGetBuyerMypage();
   const navigate = useNavigate();
 
-  const { result } = userMypageData;
-  const { auctions } = result;
+  const { auctions } = userMypageData;
 
   const handleBtnClick = (auctionId: number) => {
     navigate(`/auction/${auctionId}`);

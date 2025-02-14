@@ -12,7 +12,8 @@ import { getAuthorLists } from '@/apis/author/getAuthorLists';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getMainData } from '@/apis/main/main';
-import { getUserMypage } from '@/apis/myPage/myPage';
+import { getBuyerMypage } from '@/apis/mypage-buyer/myPage/myPage';
+import { getAuthorMypage } from '@/apis/mypage-author/myPage/myPage';
 
 /**
  * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
@@ -29,22 +30,42 @@ export const getArtistListQuery = () => {
 };
 
 /**
- * 사용자 마이페이지 조회를 위한 쿼리 키 반환 함수
+ * 작품 구매자 마이페이지 조회를 위한 쿼리 키 반환 함수
  * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
  * @author 노찬영
  */
-export const getUserMypageQueryKey = () => ['userMypage'];
+export const getBuyerMypageQueryKey = () => ['buyerMypage'];
 
 /**
- * 사용자 마이페이지 조회 API를 위한 React Query 설정 함수
+ * 작품 구매자 마이페이지 조회 API를 위한 React Query 설정 함수
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
  * @example - const { data } = useQuery(getUserMypageQuery(123));
  * @author 노찬영
  */
-export const getUserMypageQuery = () => {
+export const getBuyerMypageQuery = () => {
   return {
-    queryKey: getUserMypageQueryKey(),
-    queryFn: () => getUserMypage(), // 마이페이지 데이터를 조회하는 함수
+    queryKey: getBuyerMypageQueryKey(),
+    queryFn: () => getBuyerMypage(), // 마이페이지 데이터를 조회하는 함수
+  };
+};
+
+/**
+ * 작가 마이페이지 조회를 위한 쿼리 키 반환 함수
+ * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
+ * @author 노찬영
+ */
+export const getAuthorMypageQueryKey = () => ['authorMypage'];
+
+/**
+ * 작가 마이페이지 조회 API를 위한 React Query 설정 함수
+ * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
+ * @example - const { data } = useQuery(getUserMypageQuery(123));
+ * @author 노찬영
+ */
+export const getAuthorMypageQuery = () => {
+  return {
+    queryKey: getAuthorMypageQueryKey(),
+    queryFn: () => getAuthorMypage(), // 마이페이지 데이터를 조회하는 함수
   };
 };
 

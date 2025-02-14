@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getUserMypage } from '@/apis/myPage/myPage';
-import { getUserMypageQueryKey } from '@/constants/queryKeys';
-import { TUserMypageResponse } from '@/apis/myPage/type';
+import { getBuyerMypageQuery } from '@/constants/queryKeys';
+import { TBuyerMypage } from '@/apis/mypage-buyer/myPage/type';
+import { getBuyerMypage } from '@/apis/mypage-buyer/myPage/myPage';
 
 /**
  * 특정 사용자의 마이페이지 정보를 가져오는 커스텀 훅
@@ -13,14 +13,14 @@ import { TUserMypageResponse } from '@/apis/myPage/type';
  * @author 노찬영
  */
 
-export const useGetUserMypage = () => {
+export const useGetBuyerMypage = () => {
   const {
     data: userMypageData,
     isLoading,
     error,
-  } = useSuspenseQuery<TUserMypageResponse>({
-    queryKey: getUserMypageQueryKey(),
-    queryFn: () => getUserMypage(),
+  } = useSuspenseQuery<TBuyerMypage>({
+    queryKey: getBuyerMypageQuery().queryKey,
+    queryFn: () => getBuyerMypage(),
     staleTime: 1000 * 60 * 30, // 30분
     gcTime: 1000 * 60 * 60, // 1시간
   });

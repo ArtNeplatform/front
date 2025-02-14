@@ -4,6 +4,7 @@
  */
 
 // 작품 구매자 타입
+
 export type TBuyerMypage = {
   buyer: {
     name: string;

@@ -16,18 +16,14 @@ import {
 import DefaultImage from '@assets/svg/Icon_Profile.svg';
 import EditButton from '@assets/svg/Icon_Edit.svg?react';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 import { useUpdateUserInfo } from '@/pages/artBuyerPage/hooks/useUpdateUserInfo';
 
 export const BasicInfo = () => {
-  const { userMypageData } = useGetUserMypage();
+  const { userMypageData } = useGetBuyerMypage();
 
   // 사용자 데이터 확인
-  const buyer =
-    userMypageData?.result && 'buyer' in userMypageData.result
-      ? userMypageData.result.buyer
-      : null;
+  const buyer = userMypageData.buyer;
 
   const profileImage = buyer?.profile_image
     ? buyer?.profile_image

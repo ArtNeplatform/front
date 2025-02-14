@@ -5,18 +5,14 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-
 import { Artwork } from '@/components/common/ArtWork';
 
+import { useGetBuyerMypage } from '../../hooks/useGetBuyerMypage';
+
 const PurchasedWorks = () => {
-  const { userMypageData } = useGetUserMypage();
-  if (!userMypageData) return null;
+  const { userMypageData } = useGetBuyerMypage();
 
-  const { result } = userMypageData;
-
-  if (!('myCollection' in result)) return null;
-  const artworks = result.myCollection.artworks;
+  const artworks = userMypageData.myCollection.artworks;
 
   return (
     <PurchasedWorksContainer>
