@@ -10,6 +10,7 @@ import {
   BigImage,
   TextContainer,
   LikeButton,
+  PlusIcon,
   BottomContainer,
   CategoryContainer,
   AuthorContainer,
@@ -31,6 +32,7 @@ import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtw
 import { useScrollToSection } from '@/pages/artwork-detail/hooks/useScrollToSection.ts';
 import ArrowLeft from '@/assets/svg/arrow-left-black.svg';
 import ArrowRight from '@/assets/svg/arrow-right-black.svg';
+import Plus from '@/assets/svg/icon-plus.svg';
 
 export const ArtworkDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -115,6 +117,7 @@ export const ArtworkDetail = () => {
               }
               disabled={isLiking}
             >
+              <PlusIcon src={Plus} alt="마이 컬렉션 추가" />
               <Text size={16} color="white" weight="medium">
                 마이 컬렉션
               </Text>

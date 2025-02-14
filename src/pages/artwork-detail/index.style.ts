@@ -53,18 +53,25 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  min-width: 25%;
 `;
 
 export const LikeButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   padding: 10px 70px;
   width: fit-content;
   outline: none;
   border: none;
   cursor: pointer;
   background-color: ${theme.colors.black};
+`;
+
+export const PlusIcon = styled.img`
+  width: 14px;
+  height: 14px;
 `;
 
 export const BottomContainer = styled.div`
