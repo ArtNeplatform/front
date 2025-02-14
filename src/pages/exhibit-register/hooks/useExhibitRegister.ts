@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { instance } from '@/apis/axios';
-
+import { TGetResponse } from '@/apis/type';
+import { useNavigate } from 'react-router-dom';
 interface ExhibitState {
   step: number;
   selectedBackground: string | null; // 배경 이미지
@@ -11,6 +12,7 @@ interface ExhibitState {
 }
 
 export const useExhibitRegister = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState<ExhibitState>({
     step: 0,
     selectedBackground: null,
@@ -61,9 +63,16 @@ export const useExhibitRegister = () => {
     formData.append('exhibition_image', combinedImageFile);
     formData.append('title', title);
 
-    instance.post('/api/exhibition', formData).then((res) => {
-      console.log(res);
-    });
+    const response = await instance.post<TGetResponse<void>>(
+      '/api/exhibition',
+      formData
+    );
+    if (response.data.isSuccess) {
+      toast.success('전시 등록이 완료되었습니다.');
+      navigate('/');
+    } else {
+      toast.error('전시 등록에 실패했습니다.');
+    }
   };
 
   return {
