@@ -38,7 +38,7 @@ export const Payment = () => {
           </TableRow>
         </thead>
         <tbody>
-          {payments.map((payment) => (
+          {payments?.map((payment) => (
             <TableRow key={payment.id}>
               <TableCell>{`${payment.auction.artwork.title} - ${payment.auction.artwork.author.author_name}`}</TableCell>
               <TableCell>{`₩${payment.payment_price.toLocaleString()}`}</TableCell>

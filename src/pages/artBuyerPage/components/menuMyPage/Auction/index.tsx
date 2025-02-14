@@ -37,7 +37,7 @@ export const ArtBuyerAuction = () => {
           </TableRow>
         </thead>
         <tbody>
-          {auctions.map((auction) => (
+          {auctions?.map((auction) => (
             <TableRow key={auction.auction_id}>
               <TableCell>{`${auction.auction.artwork.title} - ${auction.auction.artwork.author.author_name}`}</TableCell>
               <TableCell>

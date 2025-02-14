@@ -21,7 +21,7 @@ const PurchasedWorks = () => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {artworks.map((artwork) => (
+          {artworks?.map((artwork) => (
             <Artwork
               key={artwork.id}
               imageUrl={artwork.thumbnail_image_url}

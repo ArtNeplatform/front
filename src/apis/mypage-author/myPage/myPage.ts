@@ -7,7 +7,7 @@ import { TGetResponse } from '@/apis/type';
  * @returns 사용자 마이페이지 정보(TArtistMypage)
  * @author 노찬영
  **/
-export const getUserMypage = async (): Promise<TArtistMypage> => {
+export const getAuthorMypage = async (): Promise<TArtistMypage> => {
   const response = await instance.get<TGetResponse<TArtistMypage>>(
     `/api/mypage`
   );

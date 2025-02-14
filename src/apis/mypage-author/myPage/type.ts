@@ -3,13 +3,9 @@
  * @author 노찬영
  */
 
-// 작가 타입
+// 작가 마이페이지 타입
 export type TArtistMypage = {
-  author: {
-    name: string;
-    profile_image: string;
-    affiliation: string;
-  };
+  author: TAuthor;
   auctions: TAuction[];
   storage: {
     artworks: TArtwork[];
@@ -17,34 +13,43 @@ export type TArtistMypage = {
   };
 };
 
+// 작가 정보 타입
+export type TAuthor = {
+  name: string;
+  profile_image_url: string;
+};
+
+// 경매 타입
 export type TAuction = {
-  artwork_id: number;
-  title: string;
-  author: { name: string };
-  end_date: string;
-  price: number;
+  auction_id: number;
+  bid_date: string;
+  bid_price: number;
   status: string;
+  auction: {
+    artwork_id: number;
+    artwork: {
+      title: string;
+      author: {
+        author_name: string;
+        author_image_url: string;
+      };
+    };
+  };
 };
 
-export type TPayment = {
-  artwork_id: number;
-  title: string;
-  author: { name: string };
-  price: number;
-  created_at: string;
-  status: string;
-};
-
+// 작품 타입
 export type TArtwork = {
   id: number;
   title: string;
-  image_url: string;
-  size?: string;
   author?: { name: string };
+  thumbnail_image_url: string;
+  height: string;
+  width: string;
 };
 
+// 전시 타입
 export type TExhibition = {
-  exhi_id: number;
+  id: number;
   title: string;
   image_url: string;
 };

@@ -3,12 +3,12 @@ import {
   ProfileImage,
   ProfileInfo,
   Name,
-  Affiliation,
   EditButton,
 } from './index.style';
 import RightArrow from '@assets/svg/right-arrow.svg?react';
 import NoneProfile from '@assets/svg/Icon_Profile.svg';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+
+import { useGetAuthorMypage } from '@/pages/authorPage/hooks/useGetAuthorMypage';
 
 interface AuthorProfileProps {
   onEditProfile: () => void;
@@ -22,21 +22,18 @@ interface AuthorProfileProps {
  **/
 
 export const AuthorProfile = ({ onEditProfile }: AuthorProfileProps) => {
-  const { userMypageData } = useGetUserMypage();
-  const { result } = userMypageData;
+  const { userMypageData } = useGetAuthorMypage();
 
-  // `result`가 `TArtistMypage` 타입인지 확인
-  const isArtist = 'author' in result;
-  const name = isArtist ? result.author.name : '작가 이름';
-  const affiliation = isArtist ? result.author.affiliation : '소속 정보 없음';
+  const author = userMypageData.author;
 
   return (
     <ProfileContainer>
-      {/* TODO[찬영] - 프로필 사진 데이터 연결 */}
-      <ProfileImage src={NoneProfile} alt={`작가의 프로필 이미지`} />
+      <ProfileImage
+        src={author.profile_image_url || NoneProfile}
+        alt={`작가의 프로필 이미지`}
+      />
       <ProfileInfo>
-        <Name>{name}</Name>
-        <Affiliation>{affiliation}</Affiliation>
+        <Name>{author.name}</Name>
         <EditButton onClick={onEditProfile}>
           기본정보 수정 <RightArrow />
         </EditButton>

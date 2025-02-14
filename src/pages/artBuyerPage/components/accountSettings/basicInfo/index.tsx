@@ -25,10 +25,6 @@ export const BasicInfo = () => {
   // 사용자 데이터 확인
   const buyer = userMypageData.buyer;
 
-  const profileImage = buyer?.profile_image_url
-    ? buyer?.profile_image_url
-    : DefaultImage;
-
   // TODO[찬영] - 로그인 API Response 데이터 연결
   const [nickname, setNickname] = useState('');
   const [birth, setBirth] = useState('');
@@ -55,7 +51,7 @@ export const BasicInfo = () => {
       <AccountInfo>
         <SectionTitle>계정 정보</SectionTitle>
         <ProfileImageContainer>
-          <ProfileImage src={profileImage} />
+          <ProfileImage src={buyer.profile_image_url || DefaultImage} />
           <EditButton style={{ stroke: '#E1E1E1', strokeWidth: '0.833333' }} />
         </ProfileImageContainer>
         <UserDetails>
