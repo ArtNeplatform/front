@@ -3,18 +3,6 @@
  * @author 김서윤
  */
 
-export interface TArtworkResponse {
-  isSuccess: boolean;
-  code: number;
-  message: string;
-  result: {
-    total: number;
-    page: number;
-    pageSize: number;
-    artworks: TArtwork[];
-  };
-}
-
 export interface TArtWorkResult {
   total: number;
   page: number;
