@@ -16,7 +16,8 @@ interface TextProps {
  */
 export const Text = styled.span<TextProps>`
   ${({ size, theme }) => theme.typography[size]};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ color, theme }) =>
+    color ? theme.colors[color] : theme.colors.black};
   font-weight: ${({ weight }) =>
     weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400};
 `;
