@@ -37,7 +37,7 @@ export type TArtistMypage = {
     exhibitions: TExhibition[];
   };
 };
-// 작품 구매자/ 작가 마이페이지 조회
+
 // 공통 타입
 export type TAuction = {
   artwork_id: number;

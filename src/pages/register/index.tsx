@@ -37,7 +37,7 @@ export const Register = () => {
     } else {
       formData.social_type = 'KAKAO';
     }
-  }, []);
+  }, [formData]);
 
   const { mutate: postAuthRegister } = usePostAuthRegister();
 
