@@ -10,20 +10,9 @@ import { TToggleLikeResponse } from './type';
 export const toggleArtworkLike = async (
   artworkId: number
 ): Promise<TToggleLikeResponse> => {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('로그인이 필요합니다.');
-  }
-
   try {
     const response = await instance.post<TToggleLikeResponse>(
-      `/api/artworks/${artworkId}/like`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `/api/artworks/${artworkId}/like`
     );
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

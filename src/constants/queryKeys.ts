@@ -158,25 +158,15 @@ export const getAuctionDetailQuery = (auctionId: number) => {
 };
 
 /**
- * 메인 페이지 데이터를 조회하는 쿼리 키 함수
- * @returns ['mainData'] 형태의 배열 반환
- * @example - queryClient.invalidateQueries(getMainDataQueryKey());
- * @author 김서윤
- */
-export const getMainDataQueryKey = () => ['mainData'];
-
-/**
- * 메인 페이지 조회 API를 위한 React Query 설정 함수
+ * 메인 페이지 데이터를 조회하는 React Query 설정
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
  * @example - const { data } = useQuery(getMainDataQuery());
  * @author 김서윤
  */
-export const getMainDataQuery = () => {
-  return {
-    queryKey: getMainDataQueryKey(),
-    queryFn: getMainData,
-  };
-};
+export const getMainDataQuery = () => ({
+  queryKey: ['mainData'],
+  queryFn: getMainData,
+});
 
 /**
  * 작가 리스트 조회 쿼리
