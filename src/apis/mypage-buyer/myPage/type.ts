@@ -45,7 +45,8 @@ export type TArtwork = {
   id: number;
   title: string;
   image_url: string;
-  size?: string;
+  width?: string;
+  height?: string;
   author?: { name: string };
 };
 

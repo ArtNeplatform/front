@@ -164,8 +164,8 @@ export const ArtWork = () => {
                 imageUrl={artwork.thumbnail_image_url}
                 artist={artwork.author_name}
                 title={artwork.title}
-                artworkWidth={parseFloat(artwork.width)}
-                artworkHeight={parseFloat(artwork.height)}
+                artworkWidth={artwork.width}
+                artworkHeight={artwork.height}
                 variant="lazy"
                 isLiked={artwork.is_liked}
                 isAuction={false}

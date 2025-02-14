@@ -27,7 +27,8 @@ const PurchasedWorks = () => {
               imageUrl={artwork.image_url}
               title={artwork.title}
               artist={artwork.author?.name}
-              artworkSize={artwork.size}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
               artworkId={artwork.id}
             />
           ))}

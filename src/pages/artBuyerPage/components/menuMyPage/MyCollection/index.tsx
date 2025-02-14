@@ -23,7 +23,7 @@ const MyCollection = () => {
   // 작품 구매자 작품 데이터
   const artworks = userMypageData.myCollection.artworks;
 
-    // 작품 구매자 전시 데이터
+  // 작품 구매자 전시 데이터
   const exhibitions = userMypageData.myCollection.exhibitions;
 
   return (
@@ -39,7 +39,8 @@ const MyCollection = () => {
               imageUrl={artwork.image_url}
               title={artwork.title}
               artist={artwork.author?.name || '작가 미상'}
-              artworkSize={artwork.size}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
               artworkId={artwork.id}
             />
           ))}
