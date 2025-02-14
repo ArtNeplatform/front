@@ -106,6 +106,8 @@ export const Auction = () => {
                   onClick={() => {
                     navigate(`/auction/${auction.auction_id}`);
                   }}
+                  isAuction={true}
+                  isLiked={auction.is_liked}
                 />
               </ArtworkContainer>
             )

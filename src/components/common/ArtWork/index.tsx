@@ -20,6 +20,7 @@ import { useState } from 'react';
 import EmptyHeart from '@assets/svg/empty-heart.svg?react';
 import theme from '@styles/theme.ts';
 import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtworkLike';
+import { useAuctionLike } from '@/pages/auction/hooks/useAuctionLike';
 interface ArtworkProps {
   artworkId: number;
   imageUrl: string;
@@ -78,11 +79,17 @@ export const Artwork = ({
 }: ArtworkProps) => {
   const [isLiked, setIsLiked] = useState(initialLiked);
   const { toggleLike, isPending } = useToggleArtworkLike();
+  const { auctionLike, isAuctionLikePending } = useAuctionLike();
 
   const handleLikeToggle = (e: React.MouseEvent) => {
     e.stopPropagation(); // 링크 이동 버블링 방지
-    if (isPending) return;
-    toggleLike({ artworkId, isAuction });
+    if (isPending || isAuctionLikePending) return;
+    if (!isAuction) {
+      toggleLike({ artworkId, isAuction: false });
+    } else {
+      auctionLike({ auctionId: artworkId });
+    }
+
     setIsLiked((prev) => !prev);
   };
 

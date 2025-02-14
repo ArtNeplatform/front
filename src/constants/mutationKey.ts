@@ -59,3 +59,13 @@ export const toggleArtworkLikeMutation = (artworkId: number) => {
     mutationFn: () => toggleArtworkLike(artworkId),
   };
 };
+
+/**
+ * 경매 입찰 뮤테이션
+ * @author 이하늘
+ * */
+export const postAuctionLikeMutation = () => {
+  return {
+    mutationKey: ['auctionLike'],
+  };
+};
