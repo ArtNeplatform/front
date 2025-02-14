@@ -77,7 +77,10 @@ export const ArtworkDetail = () => {
   );
 
   const handleImageClick = (index: number) => {
-    setSelectedImageIndex(index);
+    const originalIndex = fixed_info.artwork_image.findIndex(
+      (img) => img === smallImageList[index]
+    );
+    setSelectedImageIndex(originalIndex);
   };
 
   return (

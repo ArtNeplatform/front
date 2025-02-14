@@ -85,6 +85,7 @@ export const Main = () => {
                 artworkWidth={auction.width}
                 artworkHeight={auction.height}
                 price={auction.current_price}
+                startPrice={auction.start_price}
                 variant="lazy"
                 isLiked={auction.is_like}
                 isAuction={true}
