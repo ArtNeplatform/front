@@ -3,8 +3,7 @@
  * @author 이하늘
  */
 export type TExhibition = {
-  id: number;
+  exhibition_id: number;
   title: string;
   image_url: string;
 };
-

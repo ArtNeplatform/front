@@ -68,10 +68,12 @@ export const Exhibition = () => {
         <GridContainer>
           {paginatedExhibitions?.map((exhibition: TExhibition) => (
             <ExhibitionItem
-              key={exhibition.id}
+              key={exhibition.exhibition_id}
               imageUrl={exhibition.image_url}
               title={exhibition.title}
-              onClick={() => navigate(`/exhibition/${exhibition.id}`)}
+              onClick={() =>
+                navigate(`/exhibition/${exhibition.exhibition_id}`)
+              }
             />
           ))}
         </GridContainer>
