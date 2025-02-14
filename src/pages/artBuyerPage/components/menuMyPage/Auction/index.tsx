@@ -7,6 +7,7 @@ import {
   TableRow,
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+import { useNavigate } from 'react-router-dom';
 
 interface ArtBuyerAuctionnProps {
   userId: number;
@@ -18,9 +19,14 @@ interface ArtBuyerAuctionnProps {
  */
 export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
   const { userMypageData } = useGetUserMypage(userId);
+  const navigate = useNavigate();
 
   const { result } = userMypageData;
   const { auctions } = result;
+
+  const handleBtnClick = (auctionId: number) => {
+    navigate(`/auction/${auctionId}`);
+  };
 
   return (
     <AuctionContainer>
@@ -45,7 +51,11 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
               <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
               <TableCell>{auction.status}</TableCell>
               <TableCell>
-                <AuctionButton>입찰하기</AuctionButton>
+                <AuctionButton
+                  onClick={() => handleBtnClick(auction.artwork_id)}
+                >
+                  입찰하기
+                </AuctionButton>
               </TableCell>
             </TableRow>
           ))}

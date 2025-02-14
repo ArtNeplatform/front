@@ -29,6 +29,11 @@ export const Payment = ({ userId }: PaymentProps) => {
 
   const { payments } = result;
 
+  const handleBtnClick = (paymentId: number) => {
+    // TODO: 카카오페이 결제 API 연결
+    console.log(`결제하기 버튼 클릭: 결제자 ID ${paymentId}`);
+  };
+
   return (
     <PaymentContainer>
       <h1>결제</h1>
@@ -52,7 +57,11 @@ export const Payment = ({ userId }: PaymentProps) => {
               </TableCell>
               <TableCell>{payment.status}</TableCell>
               <TableCell>
-                <PaymentButton>결제하기</PaymentButton>
+                <PaymentButton
+                  onClick={() => handleBtnClick(payment.artwork_id)}
+                >
+                  결제하기
+                </PaymentButton>
               </TableCell>
             </TableRow>
           ))}
