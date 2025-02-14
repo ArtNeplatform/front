@@ -56,7 +56,7 @@ export const Author = () => {
     <PageLayout>
       <Container>
         <TextWrapper>
-          <Text size={48} color="black" weight="semibold">
+          <Text size={32} color="black" weight="semibold">
             Author
           </Text>
         </TextWrapper>
