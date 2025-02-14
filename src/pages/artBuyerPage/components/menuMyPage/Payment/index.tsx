@@ -4,6 +4,7 @@ import {
   TableHeader,
   TableRow,
   TableCell,
+  PaymentButton,
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
@@ -38,6 +39,7 @@ export const Payment = ({ userId }: PaymentProps) => {
             <TableHeader>금액</TableHeader>
             <TableHeader>입찰정보</TableHeader>
             <TableHeader>진행상황</TableHeader>
+            <TableHeader></TableHeader>
           </TableRow>
         </thead>
         <tbody>
@@ -49,6 +51,9 @@ export const Payment = ({ userId }: PaymentProps) => {
                 {new Date(payment.created_at).toLocaleDateString('ko-KR')}
               </TableCell>
               <TableCell>{payment.status}</TableCell>
+              <TableCell>
+                <PaymentButton>결제하기</PaymentButton>
+              </TableCell>
             </TableRow>
           ))}
         </tbody>
