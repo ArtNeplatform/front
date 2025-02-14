@@ -9,16 +9,12 @@ import {
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 import { useNavigate } from 'react-router-dom';
 
-interface ArtBuyerAuctionnProps {
-  userId: number;
-}
-
 /**
  * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
  * @author 노찬영
  */
-export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+export const ArtBuyerAuction = () => {
+  const { userMypageData } = useGetUserMypage();
   const navigate = useNavigate();
 
   const { result } = userMypageData;

@@ -29,8 +29,8 @@ export const useGetAuthorProfile = (type: AuthorProfileType) => {
 
       return response;
     },
-    staleTime: 1000 * 60 * 60, // 1시간
-    gcTime: 1000 * 60 * 30, // 30분
+    staleTime: 1000 * 60 * 30, // 30분
+    gcTime: 1000 * 60 * 60, // 1시간
     retry: 1, // 실패 시 1회 재시도
   });
 

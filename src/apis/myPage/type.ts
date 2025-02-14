@@ -4,14 +4,15 @@
  */
 
 export interface TUserMypageResponse {
-  success: boolean;
-  code: number;
-  message: string;
   result: TBuyerMypage | TArtistMypage;
 }
 
 // 작품 구매자 타입
 export type TBuyerMypage = {
+  buyer: {
+    name: string;
+    profile_image: string;
+  };
   paymentCounts: {
     pending: number;
     completed: number;
@@ -29,6 +30,7 @@ export type TBuyerMypage = {
 export type TArtistMypage = {
   author: {
     name: string;
+    profile_image: string;
     affiliation: string;
   };
   auctions: TAuction[];

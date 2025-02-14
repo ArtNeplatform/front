@@ -12,8 +12,8 @@ import {
 import { Artwork } from '@/components/common/ArtWork';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-const ArtworkCollection = ({ userId }: { userId: number }) => {
-  const { userMypageData } = useGetUserMypage(userId);
+const ArtworkCollection = () => {
+  const { userMypageData } = useGetUserMypage();
   const { result } = userMypageData;
 
   // 구매자일 경우 작품 & 전시 데이터 가져오기

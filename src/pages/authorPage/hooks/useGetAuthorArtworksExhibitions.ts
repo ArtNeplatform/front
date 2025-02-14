@@ -19,8 +19,8 @@ export const useGetAuthorArtworksExhibitions = () => {
     useSuspenseQuery<TAuthorArtworksExhibitions>({
       queryKey: getAuthorArtworksExhibitionsQuery().queryKey,
       queryFn: getAuthorArtworksExhibitions,
-      staleTime: 1000 * 60 * 60, // 1시간
-      gcTime: 1000 * 60 * 30, // 30분
+      staleTime: 1000 * 60 * 30, // 30분
+      gcTime: 1000 * 60 * 60, // 1시간
     });
 
   if (error) {

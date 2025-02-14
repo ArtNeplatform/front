@@ -11,23 +11,18 @@ import NoneProfile from '@assets/svg/Icon_Profile.svg';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 interface AuthorProfileProps {
-  userId: number;
   onEditProfile: () => void;
 }
 
 /**
  * 작가 프로필 컴포넌트입니다.
  * 프로필 사진, 작가 이름, 작가 소속, 기본정보 수정 버튼을 표시합니다.
- * @param {number} userId - 사용자 ID
  * @param {() => void} onEditProfile - 작가 계정 정보 수정
  * @author 노찬영
  **/
 
-export const AuthorProfile = ({
-  userId,
-  onEditProfile,
-}: AuthorProfileProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+export const AuthorProfile = ({ onEditProfile }: AuthorProfileProps) => {
+  const { userMypageData } = useGetUserMypage();
   const { result } = userMypageData;
 
   // `result`가 `TArtistMypage` 타입인지 확인

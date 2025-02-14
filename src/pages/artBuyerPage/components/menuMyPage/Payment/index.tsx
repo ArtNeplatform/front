@@ -9,17 +9,12 @@ import {
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 import { useKakaoPay } from '@/pages/artBuyerPage/hooks/useKakaoPay';
 
-interface PaymentProps {
-  userId: number;
-}
-
 /**
  * @description 작품 구매자의 결제 내역을 표시하는 컴포넌트
- * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
-export const Payment = ({ userId }: PaymentProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+export const Payment = () => {
+  const { userMypageData } = useGetUserMypage();
   const { initiatePayment } = useKakaoPay();
 
   const { result } = userMypageData;

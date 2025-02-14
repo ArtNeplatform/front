@@ -13,13 +13,28 @@ import {
   StyledButton,
   UserDetails,
 } from './index.style';
-
+import DefaultImage from '@assets/svg/Icon_Profile.svg';
 import EditButton from '@assets/svg/Icon_Edit.svg?react';
+
+import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
+
 import { useUpdateUserInfo } from '@/pages/artBuyerPage/hooks/useUpdateUserInfo';
 
 export const BasicInfo = () => {
+  const { userMypageData } = useGetUserMypage();
+
+  // 사용자 데이터 확인
+  const buyer =
+    userMypageData?.result && 'buyer' in userMypageData.result
+      ? userMypageData.result.buyer
+      : null;
+
+  const profileImage = buyer?.profile_image
+    ? buyer?.profile_image
+    : DefaultImage;
+
   // TODO[찬영] - 로그인 API Response 데이터 연결
-  const [nickname, setNickname] = useState('홍길동');
+  const [nickname, setNickname] = useState('');
   const [birth, setBirth] = useState('');
   const [address, setAddress] = useState('');
   const [isSaved, setIsSaved] = useState(false);
@@ -31,7 +46,7 @@ export const BasicInfo = () => {
       { nickname, birth, address },
       {
         onSuccess: () => {
-          setIsSaved(true); // 저장 성공 상태 업데이트
+          setIsSaved(true);
         },
       }
     );
@@ -44,7 +59,7 @@ export const BasicInfo = () => {
       <AccountInfo>
         <SectionTitle>계정 정보</SectionTitle>
         <ProfileImageContainer>
-          <ProfileImage />
+          <ProfileImage src={profileImage} />
           <EditButton style={{ stroke: '#E1E1E1', strokeWidth: '0.833333' }} />
         </ProfileImageContainer>
         <UserDetails>
@@ -67,7 +82,7 @@ export const BasicInfo = () => {
         <SectionTitle>기본 정보</SectionTitle>
         <BasicField>
           <div className="name">이름</div>
-          <div className="name">홍길동</div>
+          <div className="name">{buyer?.name || '사용자 이름'}</div>
         </BasicField>
         <BasicField>
           <span>휴대전화</span>

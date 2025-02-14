@@ -30,23 +30,21 @@ export const getArtistListQuery = () => {
 
 /**
  * 사용자 마이페이지 조회를 위한 쿼리 키 반환 함수
- * @param userId - 조회할 사용자 ID
- * @returns 쿼리 키 배열 ['userMypage', userId]을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
+ * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
  * @author 노찬영
  */
-export const getUserMypageQueryKey = (userId: number) => ['userMypage', userId];
+export const getUserMypageQueryKey = () => ['userMypage'];
 
 /**
  * 사용자 마이페이지 조회 API를 위한 React Query 설정 함수
- * @param userId - 조회할 사용자 ID
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
  * @example - const { data } = useQuery(getUserMypageQuery(123));
  * @author 노찬영
  */
-export const getUserMypageQuery = (userId: number) => {
+export const getUserMypageQuery = () => {
   return {
-    queryKey: getUserMypageQueryKey(userId), // 사용자별로 캐싱을 관리할 수 있도록 설정
-    queryFn: () => getUserMypage(userId), // 해당 userId의 마이페이지 데이터를 조회하는 함수
+    queryKey: getUserMypageQueryKey(),
+    queryFn: () => getUserMypage(), // 마이페이지 데이터를 조회하는 함수
   };
 };
 

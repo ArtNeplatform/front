@@ -44,7 +44,7 @@ export const ProfileImageContainer = styled.div`
   }
 `;
 
-export const ProfileImage = styled.div`
+export const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;

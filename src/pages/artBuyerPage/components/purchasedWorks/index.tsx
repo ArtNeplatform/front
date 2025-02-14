@@ -9,12 +9,8 @@ import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 import { Artwork } from '@/components/common/ArtWork';
 
-interface PurchasedWorksProps {
-  userId: number;
-}
-
-const PurchasedWorks = ({ userId }: PurchasedWorksProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+const PurchasedWorks = () => {
+  const { userMypageData } = useGetUserMypage();
   if (!userMypageData) return null;
 
   const { result } = userMypageData;

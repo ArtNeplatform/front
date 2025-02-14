@@ -7,18 +7,13 @@ import {
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-interface AuthorAuctionProps {
-  userId: number;
-}
-
 /**
  * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
- * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
 
-export const AuthorAuction = ({ userId }: AuthorAuctionProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+export const AuthorAuction = () => {
+  const { userMypageData } = useGetUserMypage();
   const { result } = userMypageData;
 
   // 구매자 또는 작가의 경매 내역 가져오기

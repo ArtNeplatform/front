@@ -13,16 +13,12 @@ import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 import { Artwork } from '@/components/common/ArtWork';
 
-interface MyCollectionProps {
-  userId: number;
-}
-
 /**
  * @description 작품 구매자의 작품과 전시를 표시하는 컴포넌트
  * @author 노찬영
  */
-const MyCollection = ({ userId }: MyCollectionProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+const MyCollection = () => {
+  const { userMypageData } = useGetUserMypage();
 
   const { result } = userMypageData;
 
