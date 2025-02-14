@@ -18,6 +18,7 @@ export const StepContainer = styled.div`
 export const GalleryList = styled.div`
   flex: 1;
   max-width: 200px;
+  max-height: 540px;
   overflow-y: auto; /* 세로 스크롤 */
   overflow-x: hidden;
 
@@ -39,7 +40,7 @@ export const SelectedGallery = styled.div`
 {
   /**selceted 여부에 따라서 색이나 테두리 색이 변하도록 해야함 */
 }
-export const GalleryImage = styled.img<{ selected: boolean }  >`
+export const GalleryImage = styled.img<{ selected: boolean }>`
   width: 100%;
   height: auto;
   border-radius: 8px;

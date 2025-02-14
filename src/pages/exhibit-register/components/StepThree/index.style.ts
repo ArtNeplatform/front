@@ -42,6 +42,9 @@ export const OverlayImage = styled.img<{
   }
 `;
 
+export const NameInput = styled.input`
+  
+`;
 // 기존 컴포넌트와 통합
 export const DisplayImage = styled.img`
   object-fit: cover;

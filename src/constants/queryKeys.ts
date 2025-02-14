@@ -15,6 +15,8 @@ import { getMainData } from '@/apis/main/main';
 import { getUserMypage } from '@/apis/myPage/myPage';
 import { getExhibitions } from '@/apis/exhibition/getExhibitionList';
 import { getExhibitionDetail } from '@/apis/exhibition/getExhibitionDetail';
+import { getExhibitAvailableArtwork } from '@/apis/exhibit-register/getExhibitAvailableArtwork';
+import { getExhibitBackgroundImages } from '@/apis/exhibit-register/getExhibitBackgroundImages';
 
 /**
  * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
@@ -235,5 +237,26 @@ export const getExhibitionDetailQeury = (exhibitionId: number) => {
   return {
     queryKey: ['exhibitionDetail', exhibitionId],
     queryFn: () => getExhibitionDetail(exhibitionId),
+  };
+};
+
+/**
+ * 전시 등록시 배경 이미지 조회 쿼리
+ * @author 홍규진
+ * */
+export const getExhibitBackgroundImagesQuery = () => {
+  return {
+    queryKey: ['exhibitBackgroundImages'],
+    queryFn: getExhibitBackgroundImages,
+  };
+};
+/**
+ * 전시 등록시 전시 가능 작품 조회 쿼리
+ * @author 홍규진
+ * */
+export const getExhibitAvailableArtworkQuery = () => {
+  return {
+    queryKey: ['exhibitAvailableArtwork'],
+    queryFn: getExhibitAvailableArtwork,
   };
 };

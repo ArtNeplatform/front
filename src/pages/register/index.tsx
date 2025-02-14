@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { PageLayout } from '@/components/common/PageLayout';
 import { Text } from '@/styles/text';
 import {
@@ -26,18 +25,6 @@ export const Register = () => {
    * 구글 로그인 후 토큰 받아오기 - 소셜 로그인 후 토큰 받아올 때, URI에 반영되는 토큰 파싱해서 토큰 받아오기
    * @author 홍규진
    */
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-
-    if (code) {
-      formData.code = code;
-      formData.social_type = 'GOOGLE';
-    } else {
-      formData.social_type = 'KAKAO';
-    }
-  }, []);
 
   const { mutate: postAuthRegister } = usePostAuthRegister();
 

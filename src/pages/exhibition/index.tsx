@@ -25,16 +25,6 @@ export const Exhibition = () => {
       : 'popular'
   );
 
-  // const dummyExhibitions = Array.from({ length: 12 }, (_, index) => ({
-  //   id: index + 1,
-  //   title: `Exhibition ${index + 1}`,
-  //   imageUrl: `https://picsum.photos/327/${Math.floor(
-  //     250 + Math.random() * 150
-  //   )}?random=${Math.random()}`,
-  // }));
-
-  console.log(data);
-
   const paginatedExhibitions = data?.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
@@ -57,7 +47,7 @@ export const Exhibition = () => {
     <PageLayout>
       <Container>
         <TextWrapper>
-          <Text size={48} color="black" weight="semibold">
+          <Text size={32} color="black" weight="semibold">
             Exhibition
           </Text>
         </TextWrapper>

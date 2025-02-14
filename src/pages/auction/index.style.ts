@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  padding: 100px 0;
+  padding: 70px 0;
 `;
 
 export const GridContainer = styled.div`

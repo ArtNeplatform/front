@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import NotFound from '@pages/notFound.tsx';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
-import Home from '@pages/home.tsx';
 import Test from '@pages/test.tsx';
 import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
 import AuthorPage from './pages/authorPage/AuthorPage';
@@ -20,6 +19,7 @@ import { Main } from '@/pages/main';
 import { ArtWork } from '@/pages/artwork';
 import { ArtworkDetail } from '@/pages/artwork-detail';
 import { AuctionDetail } from './pages/auction-detail';
+import { LoginRedirect } from './pages/login-redirect';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -38,11 +38,12 @@ type TRoutes = {
  * */
 
 export const routes: TRoutes[] = [
-  { path: '/', element: <Home />, isTabBar: true },
+  { path: '/', element: <Main />, isTabBar: true },
   { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
   { path: '/mypqge/author', element: <AuthorPage />, isTabBar: true },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
+  { path: '/login/redirect', element: <LoginRedirect />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
   {
     path: '/artwork-register',
@@ -89,7 +90,6 @@ export const routes: TRoutes[] = [
     element: <AuctionDetail />,
     isTabBar: true,
   },
-  { path: '/main', element: <Main />, isTabBar: true },
   { path: '/artwork', element: <ArtWork />, isTabBar: true },
   { path: '/artwork/:id', element: <ArtworkDetail />, isTabBar: true },
 ];
