@@ -37,6 +37,7 @@ type TRoutes = {
  * @author 노찬영
  * */
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const routes: TRoutes[] = [
   { path: '/', element: <Home />, isTabBar: true },
   { path: '/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
@@ -44,6 +45,7 @@ export const routes: TRoutes[] = [
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
+
   {
     path: '/artwork-register',
     element: <ArtworkRegister />,

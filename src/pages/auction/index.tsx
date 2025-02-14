@@ -16,6 +16,9 @@ import { TGetAuctionListResponse } from '@/apis/auction/type';
 
 export const Auction = () => {
   const [page, setPage] = useState(1);
+  const [sortingType, setSortingType] = useState<
+    '이름순' | '최신순' | '인기순'
+  >('이름순');
   const [sort] = useState<'title' | 'popular' | 'latest'>('title');
   const itemsPerPage = 16;
   const navigate = useNavigate();
@@ -69,7 +72,10 @@ export const Auction = () => {
           </Text>
         </TextWrapper>
 
-        <SortingTextButton />
+        <SortingTextButton
+          selectedSorting={sortingType}
+          onSortingSelect={setSortingType}
+        />
 
         <GridContainer>
           {paginatedAuctions.map(

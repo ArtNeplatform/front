@@ -5,17 +5,23 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { ArtBuyerDataProps } from '@/types/artBuyer';
-
-import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
+import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 import { Artwork } from '@/components/common/ArtWork';
 
-// 명시적으로 ArtBuyerDataProps 타입 지정
-const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
-const { artworks } = artBuyerData.result.myCollection;
+interface PurchasedWorksProps {
+  userId: number;
+}
 
-const PurchasedWorks = () => {
+const PurchasedWorks = ({ userId }: PurchasedWorksProps) => {
+  const { userMypageData } = useGetUserMypage(userId);
+  if (!userMypageData) return null;
+
+  const { result } = userMypageData;
+
+  if (!('myCollection' in result)) return null;
+  const artworks = result.myCollection.artworks;
+
   return (
     <PurchasedWorksContainer>
       <h1>구매 작품</h1>
@@ -28,8 +34,9 @@ const PurchasedWorks = () => {
               key={artwork.id}
               imageUrl={artwork.image_url}
               title={artwork.title}
-              artist={artwork.author.name}
+              artist={artwork.author?.name}
               artworkSize={artwork.size}
+              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>

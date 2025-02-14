@@ -11,7 +11,6 @@ import {
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
 interface MenuMyPageProps {
-  // TODO[찬영] - userId 실제 로그인된 사용자 ID로 변경
   userId: number;
   setSelectedMenu: (menu: '마이페이지' | '계정설정' | '구매 작품') => void;
 }

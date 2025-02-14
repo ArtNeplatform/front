@@ -23,11 +23,11 @@ export const useGetAuthorProfile = (type: AuthorProfileType) => {
       const response = await getAuthorProfile(type);
 
       // result가 undefined인 경우 예외 처리
-      if (!response.result) {
+      if (!response) {
         throw new Error('작가 프로필 데이터를 불러올 수 없습니다.');
       }
 
-      return response.result;
+      return response;
     },
     staleTime: 1000 * 60 * 60, // 1시간
     gcTime: 1000 * 60 * 30, // 30분
@@ -35,7 +35,7 @@ export const useGetAuthorProfile = (type: AuthorProfileType) => {
   });
 
   if (error) {
-    const axiosError = error as AxiosError<TAuthorProfile>;
+    const axiosError = error as AxiosError<{ message: string }>;
     const errorMessage =
       axiosError.response?.data?.message ||
       '작가 프로필 정보를 불러오는데 실패했습니다.';
