@@ -91,7 +91,6 @@ export const ExhibitContainer = styled.div`
 export const ExhibitRightContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   column-gap: 20px;
   row-gap: 40px;
 `;
