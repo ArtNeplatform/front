@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ModalContainer,
   ButtonGroup,
@@ -8,8 +9,9 @@ import { CommonButton } from '@components/common/CommonButton';
 
 interface FilterModalProps {
   checkboxes: { id: string; label: string }[];
+  selectedFilters: string[];
   onCancel: () => void;
-  onConfirm: () => void;
+  onConfirm: (selected: string[]) => void;
 }
 
 /**
@@ -21,9 +23,18 @@ interface FilterModalProps {
 
 export const FilterModal = ({
   checkboxes,
+  selectedFilters,
   onCancel,
   onConfirm,
 }: FilterModalProps) => {
+  const [selected, setSelected] = useState<string[]>(selectedFilters);
+
+  const handleCheckboxChange = (id: string) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
   return (
     <ModalContainer>
       {checkboxes.map(({ id, label }) => (
@@ -31,8 +42,8 @@ export const FilterModal = ({
           key={id}
           id={id}
           label={label}
-          onChange={() => {}}
-          checked={false}
+          onChange={() => handleCheckboxChange(id)}
+          checked={selected.includes(id)}
         />
       ))}
       <ButtonGroup>
@@ -44,7 +55,7 @@ export const FilterModal = ({
           borderColor="#E5E5EC"
         />
         <CommonButton
-          onClick={onConfirm}
+          onClick={() => onConfirm(selected)}
           text="확인"
           color="#fff"
           background="#111"

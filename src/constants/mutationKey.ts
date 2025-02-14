@@ -3,6 +3,7 @@ import { postAuctionRegister } from '@/apis/auctionRegister/postAuctionRegister'
 import { postArtworkRegister } from '@/apis/artworkRegister/postArtworkRegister';
 import { getAvailableArtworksQuery } from '@/constants/queryKeys';
 import { postAuctionBid } from '@/apis/auction/postAuctionBid';
+import { toggleArtworkLike } from '@/apis/artwork-like/like';
 /**
  * 인증 회원가입 뮤테이션
  * @author 홍규진
@@ -45,5 +46,16 @@ export const postAuctionBidMutation = () => {
   return {
     mutationKey: ['auctionBid'],
     mutationFn: postAuctionBid,
+  };
+};
+
+/*
+ * 작품 좋아요 뮤테이션
+ * @author 김서윤
+ */
+export const toggleArtworkLikeMutation = (artworkId: number) => {
+  return {
+    mutationKey: ['artworkDetail', artworkId],
+    mutationFn: () => toggleArtworkLike(artworkId),
   };
 };

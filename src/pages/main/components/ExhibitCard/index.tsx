@@ -15,7 +15,7 @@ export const ExhibitCard = ({
   title,
   isBig,
 }: ExhibitCardProps) => {
-  const handleLink = useHandleLink(`/exhibit/${exhibitionId}`);
+  const handleLink = useHandleLink(`/exhibition/${exhibitionId}`);
 
   return (
     <ExhibitContainer onClick={handleLink} $isBig={isBig}>

@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import { Container, MenuWrapper, Menu } from './index.style';
 
-const category = ['작품소개', '작가소개', '다른작품'];
+const category = ['작품소개', '작가소개', '다른작품'] as const;
 
-export const ArtworkDetailCategory = () => {
-  const [activeTab, setActiveTab] = useState<string>('작품소개');
+interface ArtworkDetailCategoryProps {
+  scrollToSection: (section: (typeof category)[number]) => void;
+}
+
+export const ArtworkDetailCategory = ({
+  scrollToSection,
+}: ArtworkDetailCategoryProps) => {
+  const [activeTab, setActiveTab] =
+    useState<(typeof category)[number]>('작품소개');
+
   return (
     <Container>
       <MenuWrapper>
@@ -12,7 +20,10 @@ export const ArtworkDetailCategory = () => {
           <Menu
             key={tab}
             isActive={activeTab === tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => {
+              setActiveTab(tab);
+              scrollToSection(tab);
+            }}
           >
             {tab}
           </Menu>

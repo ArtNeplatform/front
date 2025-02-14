@@ -3,17 +3,12 @@
  * @author 김서윤
  */
 
-export interface TMainResponse {
-  isSuccess: boolean;
-  code: number;
-  message: string;
-  result: {
-    artworks: TArtwork[];
-    ongoingAuctions: TAuction[];
-    authors: TAuthor[];
-    ongoingExhibitions: TExhibition[];
-  };
-}
+export type TMainResult = {
+  artworks: TArtwork[];
+  ongoingAuctions: TAuction[];
+  authors: TAuthor[];
+  ongoingExhibitions: TExhibition[];
+};
 
 export type TArtwork = {
   artwork_id: number;
