@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toggleArtworkLike } from '@/apis/artwork-like/like';
-import { TToggleLikeResponse } from '@/apis/artwork-like/type';
+import { TToggleLikeResult } from '@/apis/artwork-like/type';
 import { toast } from 'sonner';
+import { toggleArtworkLikeMutation } from '@/constants/mutationKey';
 
 interface LikeParams {
   artworkId: number;
@@ -16,13 +17,14 @@ interface LikeParams {
 export const useToggleArtworkLike = () => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation<TToggleLikeResponse, Error, LikeParams>({
+  const mutation = useMutation<TToggleLikeResult, Error, LikeParams>({
+    ...toggleArtworkLikeMutation, // mutationKey 추가됨
     mutationFn: async ({ artworkId, isAuction }) => {
       console.log(isAuction);
       return toggleArtworkLike(artworkId);
     },
     onSuccess: (data, { artworkId }) => {
-      toast.success(data.result.message);
+      toast.success(data.message);
       queryClient.invalidateQueries({ queryKey: ['artworkDetail', artworkId] });
     },
     onError: () => {

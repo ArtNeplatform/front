@@ -3,17 +3,12 @@
  * @author 김서윤
  */
 
-export interface TToggleLikeResponse {
-  isSuccess: boolean;
-  code: number;
+export interface TToggleLikeResult {
   message: string;
-  result: {
-    message: string;
-    newFavorite?: {
-      created_at: string;
-      id: number;
-      user_id: number;
-      artwork_id: string;
-    };
+  newFavorite?: {
+    created_at: string;
+    id: number;
+    user_id: number;
+    artwork_id: string;
   };
 }

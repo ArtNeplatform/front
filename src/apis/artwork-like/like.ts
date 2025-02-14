@@ -1,5 +1,6 @@
 import { instance } from '@/apis/axios';
-import { TToggleLikeResponse } from './type';
+import { TToggleLikeResult } from './type';
+import { TGetResponse } from '@/apis/type';
 
 /**
  * 작품 좋아요 토글 API 호출
@@ -9,15 +10,9 @@ import { TToggleLikeResponse } from './type';
  */
 export const toggleArtworkLike = async (
   artworkId: number
-): Promise<TToggleLikeResponse> => {
-  try {
-    const response = await instance.post<TToggleLikeResponse>(
-      `/api/artworks/${artworkId}/like`
-    );
-    return response.data;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error('좋아요 토글 실패:', error.message);
-    throw error;
-  }
+): Promise<TToggleLikeResult> => {
+  const response = await instance.post<TGetResponse<TToggleLikeResult>>(
+    `/api/artworks/${artworkId}/like`
+  );
+  return response.data.result;
 };
