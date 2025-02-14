@@ -36,9 +36,9 @@ const MyCollection = () => {
           {artworks.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
-              artist={artwork.author?.name || '작가 미상'}
+              artist={artwork.author?.author_name || '작가 미상'}
               artworkWidth={artwork.width}
               artworkHeight={artwork.height}
               artworkId={artwork.id}
@@ -51,7 +51,7 @@ const MyCollection = () => {
         <SectionTitle>전시</SectionTitle>
         <ExhibitionGrid>
           {exhibitions.map((exhibition) => (
-            <ExhibitionItem key={exhibition.exhi_id}>
+            <ExhibitionItem key={exhibition.id}>
               <ExhibitionImage
                 src={exhibition.image_url}
                 alt={exhibition.title}

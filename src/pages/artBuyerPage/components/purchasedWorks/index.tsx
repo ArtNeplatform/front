@@ -24,9 +24,9 @@ const PurchasedWorks = () => {
           {artworks.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
-              artist={artwork.author?.name}
+              artist={artwork.author?.author_name}
               artworkWidth={artwork.width}
               artworkHeight={artwork.height}
               artworkId={artwork.id}

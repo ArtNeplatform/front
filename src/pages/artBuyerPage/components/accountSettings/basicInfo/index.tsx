@@ -25,8 +25,8 @@ export const BasicInfo = () => {
   // 사용자 데이터 확인
   const buyer = userMypageData.buyer;
 
-  const profileImage = buyer?.profile_image
-    ? buyer?.profile_image
+  const profileImage = buyer?.profile_image_url
+    ? buyer?.profile_image_url
     : DefaultImage;
 
   // TODO[찬영] - 로그인 API Response 데이터 연결

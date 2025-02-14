@@ -38,17 +38,17 @@ export const ArtBuyerAuction = () => {
         </thead>
         <tbody>
           {auctions.map((auction) => (
-            <TableRow key={auction.artwork_id}>
-              <TableCell>{`${auction.title} - ${auction.author.name}`}</TableCell>
+            <TableRow key={auction.auction_id}>
+              <TableCell>{`${auction.auction.artwork.title} - ${auction.auction.artwork.author.author_name}`}</TableCell>
               <TableCell>
-                {new Date(auction.end_date).toLocaleDateString('ko-KR')}
+                {new Date(auction.bid_date).toLocaleDateString('ko-KR')}
               </TableCell>
-              <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
+              <TableCell>{`₩${auction.bid_price.toLocaleString()}`}</TableCell>
               <TableCell>{auction.status}</TableCell>
               <TableCell>
                 {auction.status === '응찰중' && (
                   <AuctionButton
-                    onClick={() => handleBtnClick(auction.artwork_id)}
+                    onClick={() => handleBtnClick(auction.auction_id)}
                   >
                     입찰하기
                   </AuctionButton>

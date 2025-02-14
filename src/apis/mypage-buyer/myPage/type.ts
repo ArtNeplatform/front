@@ -8,13 +8,9 @@
 export type TBuyerMypage = {
   buyer: {
     name: string;
-    profile_image: string;
+    profile_image_url: string;
   };
-  paymentCounts: {
-    pending: number;
-    completed: number;
-    received: number;
-  };
+  paymentCounts: TPaymentCount[];
   auctions: TAuction[];
   payments: TPayment[];
   myCollection: {
@@ -23,35 +19,58 @@ export type TBuyerMypage = {
   };
 };
 
+export type TPaymentCount = {
+  pending: number;
+  completed: number;
+  received: number;
+};
+
 export type TAuction = {
-  artwork_id: number;
-  title: string;
-  author: { name: string };
-  end_date: string;
-  price: number;
+  auction_id: number;
+  bid_date: string;
+  bid_price: number;
   status: string;
+  auction: {
+    artwork_id: number;
+    artwork: {
+      title: string;
+      author: {
+        author_name: string;
+        author_image_url: string;
+      };
+    };
+  };
 };
 
 export type TPayment = {
-  artwork_id: number;
-  title: string;
-  author: { name: string };
-  price: number;
+  id: number;
+  auction_id: number;
+  payment_price: number;
   created_at: string;
-  status: string;
+  payment_status: string;
+  auction: {
+    artwork_id: number;
+    artwork: {
+      title: string;
+      author: {
+        author_name: string;
+        author_image_url: string;
+      };
+    };
+  };
 };
 
 export type TArtwork = {
   id: number;
   title: string;
-  image_url: string;
+  thumbnail_image_url: string;
   width?: string;
   height?: string;
-  author?: { name: string };
+  author?: { author_name: string; author_image_url: string };
 };
 
 export type TExhibition = {
-  exhi_id: number;
+  id: number;
   title: string;
   image_url: string;
 };

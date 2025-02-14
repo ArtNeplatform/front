@@ -39,17 +39,17 @@ export const Payment = () => {
         </thead>
         <tbody>
           {payments.map((payment) => (
-            <TableRow key={payment.artwork_id}>
-              <TableCell>{`${payment.title} - ${payment.author.name}`}</TableCell>
-              <TableCell>{`₩${payment.price.toLocaleString()}`}</TableCell>
+            <TableRow key={payment.id}>
+              <TableCell>{`${payment.auction.artwork.title} - ${payment.auction.artwork.author.author_name}`}</TableCell>
+              <TableCell>{`₩${payment.payment_price.toLocaleString()}`}</TableCell>
               <TableCell>
                 {new Date(payment.created_at).toLocaleDateString('ko-KR')}
               </TableCell>
-              <TableCell>{payment.status}</TableCell>
+              <TableCell>{payment.payment_status}</TableCell>
               <TableCell>
-                {payment.status === '결제 대기중' && (
+                {payment.payment_status === '결제 대기중' && (
                   <PaymentButton
-                    onClick={() => handleBtnClick(payment.artwork_id)}
+                    onClick={() => handleBtnClick(payment.auction_id)}
                   >
                     결제하기
                   </PaymentButton>

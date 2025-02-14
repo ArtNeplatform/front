@@ -33,7 +33,7 @@ export const ArtBuyerProfile = ({ onEditProfile }: ArtBuyerProfileProps) => {
   return (
     <ProfileContainer>
       <ProfileImage
-        src={buyer.profile_image || NoneProfile}
+        src={buyer.profile_image_url || NoneProfile}
         alt={`${buyer.name}의 프로필 이미지`}
       />
       <ProfileInfo>
