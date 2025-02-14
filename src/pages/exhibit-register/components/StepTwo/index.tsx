@@ -9,6 +9,7 @@ import {
   Container,
 } from './index.style.ts';
 import { TGetExhibitAvailableArtworksResponse } from '@/apis/exhibit-register/types';
+import { Link } from 'react-router-dom';
 
 interface StepTwoProps {
   handleOverlaySelect: (url: string) => void;
@@ -33,21 +34,29 @@ export const StepTwo = ({
     <Container>
       <StepContainer>
         <GalleryList>
-          {artworks?.map((artwork) => (
-            <SelectedGallery
-              key={artwork.id}
-              onClick={() => handleOverlaySelect(artwork.thumbnail_image_url)}
-            >
-              <GalleryImage
-                src={artwork.thumbnail_image_url}
-                alt={artwork.title}
-                selected={selectedOverlay === artwork.thumbnail_image_url}
-              />
-              <Text size={16} color="black">
-                {artwork.title}
-              </Text>
-            </SelectedGallery>
-          ))}
+          {artworks && artworks.length > 0 ? (
+            artworks.map((artwork) => (
+              <SelectedGallery
+                key={artwork.id}
+                onClick={() => handleOverlaySelect(artwork.thumbnail_image_url)}
+              >
+                <GalleryImage
+                  src={artwork.thumbnail_image_url}
+                  alt={artwork.title}
+                  selected={selectedOverlay === artwork.thumbnail_image_url}
+                />
+                <Text size={16} color="black">
+                  {artwork.title}
+                </Text>
+              </SelectedGallery>
+            ))
+          ) : (
+            <Text size={14} color="black">
+              전시할 수 있는 작품이 없습니다.
+              <br />
+              <Link to="/artwork-register">작품 등록하기</Link>
+            </Text>
+          )}
         </GalleryList>
         <SelectedGalleryDisplay>
           {selectedBackground ? (
