@@ -67,6 +67,9 @@ const TestComponents = () => {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedForms, setSelectedForms] = useState<string[]>([]);
+  const [selectedTab, setSelectedTab] = useState<'기본정보 관리' | '회원 탈퇴'>(
+    '기본정보 관리'
+  );
 
   return (
     <TestContainer>
@@ -102,7 +105,11 @@ const TestComponents = () => {
       <SubTitle>CommonInput</SubTitle>
       <CommonInput {...sampleInputData} />
       <SubTitle>MyPageSideBar</SubTitle>
-      <MyPageSideBar />
+      <MyPageSideBar
+        menuItems={['기본정보 관리', '회원 탈퇴']}
+        activeTab={selectedTab}
+        setActiveTab={setSelectedTab}
+      />
       <SubTitle>PagingButtons</SubTitle>
       <PagingButtons totalPage={21} page={page} setPage={setPage} />
 

@@ -19,7 +19,7 @@ export const SortingOption = styled.div<{ $isSelected: boolean }>`
   padding: 11px 16px;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  ${(theme) => theme.theme.typography['16']}
+  ${theme.typography['16']}
   font-weight: ${({ $isSelected }) => ($isSelected ? '600' : '400')};
 
   &:hover {

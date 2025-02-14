@@ -52,6 +52,12 @@ const theme = {
     fontGray: '#767676',
     priceBox: '#F7F7FB',
     purple: '#756FEC',
+    red: '#EE3574',
+    profileBox: '#E7E7E7',
+    profileButton: '#F9F9F9',
+    border: '#EAEAEA',
+    borderBottom: '#D9D9D9',
+    EditButton: '#F7F7F7',
   },
 } as const;
 
@@ -74,6 +80,7 @@ declare module '@emotion/react' {
       fontGray: string;
       priceBox: string;
       purple: string;
+      red: string;
     };
   }
 }
