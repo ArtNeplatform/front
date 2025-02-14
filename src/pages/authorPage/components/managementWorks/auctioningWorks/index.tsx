@@ -16,7 +16,7 @@ const AuctioningWorks = () => {
 
   const { data } = useGetAuthorArtworksExhibitions();
 
-  const auction_artworks = data?.result?.auction_artworks || [];
+  const auction_artworks = data?.auction_artworks || [];
 
   return (
     <ArtWorksContainer>

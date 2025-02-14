@@ -10,6 +10,9 @@ import { useGetAuthorLists } from './hooks/useGetAuthorLists';
 
 export const Author = () => {
   const [page, setPage] = useState(1);
+  const [sortingType, setSortingType] = useState<
+    '이름순' | '최신순' | '인기순'
+  >('이름순');
   const itemsPerPage = 8; // 한 페이지당 8명씩 표시
   const navigate = useNavigate();
 
@@ -51,7 +54,10 @@ export const Author = () => {
             Author
           </Text>
         </TextWrapper>
-        <SortingTextButton />
+        <SortingTextButton
+          selectedSorting={sortingType}
+          onSortingSelect={setSortingType}
+        />
         <GridContainer>
           {paginatedAuthors.map((author, index) => (
             <AuthorBox

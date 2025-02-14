@@ -10,6 +10,9 @@ import { useState } from 'react';
 export const Exhibition = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
+  const [sortingType, setSortingType] = useState<
+    '이름순' | '최신순' | '인기순'
+  >('이름순');
   const itemsPerPage = 10;
 
   const dummyExhibitions = Array.from({ length: 12 }, (_, index) => ({
@@ -32,7 +35,10 @@ export const Exhibition = () => {
             Exhibition
           </Text>
         </TextWrapper>
-        <SortingTextButton />
+        <SortingTextButton
+          selectedSorting={sortingType}
+          onSortingSelect={setSortingType}
+        />
         <GridContainer>
           {paginatedExhibitions.map((exhibition, index) => (
             <ExhibitionItem

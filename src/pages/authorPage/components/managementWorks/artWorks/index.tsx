@@ -15,7 +15,7 @@ const ArtWorks = () => {
   const navigate = useNavigate();
   const { data } = useGetAuthorArtworksExhibitions();
 
-  const artworks = data?.result?.artworks || [];
+  const artworks = data?.artworks || [];
 
   return (
     <ArtWorksContainer>

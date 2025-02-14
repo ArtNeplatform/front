@@ -17,7 +17,7 @@ import { Register } from '@/pages/register';
 import { ExhibitRegister } from '@/pages/exhibit-register';
 import { Auction } from './pages/auction';
 import { Main } from '@/pages/main';
-import { Artwork } from '@/pages/artwork';
+import { ArtWork } from '@/pages/artwork';
 import { ArtworkDetail } from '@/pages/artwork-detail';
 import { AuctionDetail } from './pages/auction-detail';
 type TRoutes = {
@@ -92,7 +92,7 @@ export const routes: TRoutes[] = [
     isTabBar: true,
   },
   { path: '/main', element: <Main />, isTabBar: true },
-  { path: '/artwork', element: <Artwork />, isTabBar: true },
+  { path: '/artwork', element: <ArtWork />, isTabBar: true },
   { path: '/artwork/:id', element: <ArtworkDetail />, isTabBar: true },
 ];
 

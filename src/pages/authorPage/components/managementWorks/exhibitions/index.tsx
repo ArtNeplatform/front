@@ -17,9 +17,9 @@ const Exhibitions = () => {
 
   const { data } = useGetAuthorArtworksExhibitions();
 
-  const artworks = data?.result?.artworks || [];
+  const artworks = data?.artworks || [];
 
-  const exhibitions = data?.result?.exhibitions || [];
+  const exhibitions = data?.exhibitions || [];
 
   return (
     <ArtWorksContainer>

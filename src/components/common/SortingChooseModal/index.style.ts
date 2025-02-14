@@ -10,6 +10,7 @@ export const ModalWrapper = styled.div`
   width: 140px;
   flex-direction: column;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.06);
+  z-index: 10;
 `;
 
 export const SortingOption = styled.div<{ $isSelected: boolean }>`
