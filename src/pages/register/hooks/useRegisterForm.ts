@@ -6,8 +6,6 @@ export const useRegisterForm = () => {
     name: '',
     phone_number: '',
     nickname: '',
-    social_type: '',
-    code: '',
   });
 
   const handleChange = (

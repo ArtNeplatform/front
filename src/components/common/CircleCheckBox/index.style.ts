@@ -50,5 +50,6 @@ export const Label = styled.label<{ checked: boolean }>`
   text-overflow: ellipsis;
   cursor: pointer;
   ${(theme) => theme.theme.typography['14']}
-  color: ${({ checked }) => (checked ? `#111` : `#767676`)};
+  color: ${({ checked }) =>
+    checked ? `${theme.colors.black}` : `${theme.colors.fontGray}`};
 `;

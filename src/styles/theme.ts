@@ -58,6 +58,10 @@ const theme = {
     border: '#EAEAEA',
     borderBottom: '#D9D9D9',
     EditButton: '#F7F7F7',
+    background: '#F8F8FA',
+    buttonBackground: '#F5F5F5',
+    grayLine: '#DBDBDB',
+    imageBorder: '#E1E1E1',
   },
 } as const;
 
@@ -81,6 +85,15 @@ declare module '@emotion/react' {
       priceBox: string;
       purple: string;
       red: string;
+      profileBox: string;
+      profileButton: string;
+      border: string;
+      borderBottom: string;
+      EditButton: string;
+      background: string;
+      buttonBackground: string;
+      grayLine: string;
+      imageBorder: string;
     };
   }
 }

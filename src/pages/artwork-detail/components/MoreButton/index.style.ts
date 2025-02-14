@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@/styles/theme';
 
 export const ButtonContainer = styled.button`
   display: flex;
@@ -8,7 +9,7 @@ export const ButtonContainer = styled.button`
   border-radius: 100px;
   outline: none;
   border: none;
-  background-color: #f7f7f7;
+  background-color: ${theme.colors.EditButton};
   gap: 4px;
   cursor: pointer;
 `;

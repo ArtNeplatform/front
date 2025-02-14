@@ -4,9 +4,10 @@ import { TArtworkRegisterFormData } from '@/apis/artworkRegister/type';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { getAvailableArtworksQuery } from '@/constants/queryKeys';
-
+import { useNavigate } from 'react-router-dom';
 const useArtworkRegisterForm = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<TArtworkRegisterFormData>({
     images: [],
     theme: '',
@@ -74,6 +75,7 @@ const useArtworkRegisterForm = () => {
         queryKey: postArtworkRegisterMutation().mutationKey,
       });
       await getAvailableArtworksQuery().queryFn();
+      navigate('/');
     },
     onError: (error: Error) => {
       toast.error(`작품 등록 실패: ${error.message}`);

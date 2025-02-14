@@ -3,8 +3,9 @@ import { ButtonContainer, Container } from './index.style.ts';
 import { StepOne } from './components/StepOne';
 import { StepTwo } from './components/StepTwo';
 import { useExhibitRegister } from './hooks/useExhibitRegister';
-import { StepThree } from './components/StepThree';
 import { CommonButton } from '@/components/common/CommonButton/index.tsx';
+import { useGetExhibitAvailableArtwork } from './hooks/useGetExhibitAvailableArtwork.ts';
+import StepThree from './components/StepThree/index.tsx';
 
 // 최상위 컴포넌트 통합
 export const ExhibitRegister = () => {
@@ -13,23 +14,11 @@ export const ExhibitRegister = () => {
     setStep,
     selectedBackground,
     selectedOverlay,
-    overlayPosition,
-    exhibitName,
     handleBackgroundSelect,
     handleOverlaySelect,
-    handlePositionUpdate,
-    handleNameChange,
+    handleSubmit,
   } = useExhibitRegister();
-
-  const handleSubmit = () => {
-    // API 호출 로직
-    console.log({
-      background: selectedBackground,
-      overlay: selectedOverlay,
-      position: overlayPosition,
-      name: exhibitName,
-    });
-  };
+  const { data: availableArtworks } = useGetExhibitAvailableArtwork();
 
   return (
     <PageLayout>
@@ -42,18 +31,17 @@ export const ExhibitRegister = () => {
         )}
         {step === 1 && (
           <StepTwo
+            selectedBackground={selectedBackground}
             handleOverlaySelect={handleOverlaySelect}
             selectedOverlay={selectedOverlay}
+            availableArtworks={availableArtworks}
           />
         )}
         {step === 2 && (
           <StepThree
-            selectedBackground={selectedBackground}
-            selectedOverlay={selectedOverlay}
-            overlayPosition={overlayPosition}
-            exhibitName={exhibitName}
-            handlePositionUpdate={handlePositionUpdate}
-            handleNameChange={handleNameChange}
+            backgroundImage={selectedBackground as string}
+            overlayImage={selectedOverlay as string}
+            handleSubmit={handleSubmit}
           />
         )}
       </Container>
@@ -67,16 +55,7 @@ export const ExhibitRegister = () => {
           disabled={step === 0}
           text="이전 단계"
         />
-        {step === 2 ? (
-          <CommonButton
-            color="white"
-            background="black"
-            borderColor="white"
-            onClick={handleSubmit}
-            disabled={!exhibitName || !selectedBackground || !selectedOverlay}
-            text="전시 등록"
-          />
-        ) : (
+        {step === 2 ? null : (
           <CommonButton
             color="white"
             background="black"

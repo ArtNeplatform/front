@@ -8,11 +8,12 @@ import {
 } from './index.style';
 import GoogleIcon from '@assets/svg/google.svg?react';
 import KakaoIcon from '@assets/svg/kakao_talk.svg?react';
-import { useKakaoLogin } from './hooks/useKakaotalkLogin';
-import { useGoogleLogin } from './hooks/useGoogleLogin';
+import {
+  initiateGoogleLogin,
+  initiateKakaoLogin,
+} from '@/apis/register/oAuthLogin';
 export const Login = () => {
-  const { handleKakaoLogin } = useKakaoLogin();
-  const { handleGoogleLogin } = useGoogleLogin();
+
   return (
     <PageLayout>
       <Container>
@@ -29,7 +30,7 @@ export const Login = () => {
           <SocialLoginButton
             type="button"
             socialType="google"
-            onClick={handleGoogleLogin}
+            onClick={initiateGoogleLogin}
           >
             <GoogleIcon />
             <Text size={16} color="primary">
@@ -40,7 +41,7 @@ export const Login = () => {
           <SocialLoginButton
             type="button"
             socialType="kakao"
-            onClick={handleKakaoLogin}
+            onClick={initiateKakaoLogin}
           >
             <KakaoIcon />
             <Text size={16} color="primary">

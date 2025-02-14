@@ -6,8 +6,9 @@ export const ArtworkItem = styled.div`
 `;
 
 export const ArtworkImage = styled.img`
-  width: 788px;
-  height: 630px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 `;
 
 export const Title = styled.p`

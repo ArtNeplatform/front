@@ -16,14 +16,23 @@ import { TGetAuctionListResponse } from '@/apis/auction/type';
 
 export const Auction = () => {
   const [page, setPage] = useState(1);
-  const [sortingType, setSortingType] = useState<
+  const [selectedSorting, setSelectedSorting] = useState<
     '이름순' | '최신순' | '인기순'
   >('이름순');
-  const [sort] = useState<'title' | 'popular' | 'latest'>('title');
   const itemsPerPage = 16;
   const navigate = useNavigate();
 
-  const { data: auctions, isLoading, error } = useGetAuctionLists(sort);
+  const {
+    data: auctions,
+    isLoading,
+    error,
+  } = useGetAuctionLists(
+    selectedSorting === '이름순'
+      ? 'title'
+      : selectedSorting === '최신순'
+      ? 'latest'
+      : 'popular'
+  );
 
   // const dummyAuctions = Array.from({ length: 45 }, (_, index) => ({
   //   auction_id: index + 1,
@@ -48,12 +57,16 @@ export const Auction = () => {
     if (auctions) {
       setPage(1); // 예시로 첫 페이지로 돌아가도록 처리
     }
-  }, [sort, auctions]); // sort가 변경될 때마다 호출됨
+  }, [selectedSorting, auctions]); // sort가 변경될 때마다 호출됨
 
   const paginatedAuctions = auctions.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
+
+  const handleSortingSelect = (sorting: '이름순' | '최신순' | '인기순') => {
+    setSelectedSorting(sorting); // 정렬 기준 변경
+  };
 
   if (isLoading) {
     return <div>로딩 중...</div>;
@@ -67,14 +80,14 @@ export const Auction = () => {
     <PageLayout>
       <Container>
         <TextWrapper>
-          <Text size={48} color="black" weight="semibold">
+          <Text size={32} color="black" weight="semibold">
             Auction
           </Text>
         </TextWrapper>
 
         <SortingTextButton
-          selectedSorting={sortingType}
-          onSortingSelect={setSortingType}
+          selectedSorting={selectedSorting}
+          onSortingSelect={handleSortingSelect}
         />
 
         <GridContainer>

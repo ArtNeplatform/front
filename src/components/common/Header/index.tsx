@@ -3,11 +3,13 @@ import {
   Header,
   LoggedInContainer,
   Logo,
+  NavItem,
   NavMenu,
   NonLoggedInContainer,
   UserInfo,
 } from '@components/common/Header/index.style.ts';
 import MainLogo from '@assets/png/main-logo.png';
+import { Link } from 'react-router-dom';
 
 /**
  * 앱 전반적으로 사용되는 HeaderComponent입니다.
@@ -37,7 +39,23 @@ export const HeaderContent = ({
 }: HeaderContentProps) => {
   return (
     <Header>
-      <Logo src={MainLogo} />
+      <NavMenu>
+        <NavItem style={{ marginRight: '100px' }}>
+          <Link to="/">
+            <Logo src={MainLogo} />
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link to="/">작품</Link>
+        </NavItem>
+        <NavItem>
+          <Link to="/auction">경매</Link>
+        </NavItem>
+        <NavItem>
+          <Link to="/author">작가</Link>
+        </NavItem>
+      </NavMenu>
+
       <NavMenu>
         {isLoggedIn ? (
           <LoggedInContainer>

@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import theme from '@styles/theme.ts';
 
+interface ImageSingpleProps {
+  $isSingleImage: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,15 +21,16 @@ export const TopContainer = styled.div`
   width: 100%;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<ImageSingpleProps>`
   display: grid;
-  grid-template-columns: 1fr 12fr;
+  grid-template-columns: ${(props) =>
+    props.$isSingleImage ? '1fr' : '1fr 12fr'};
   gap: 35px;
   max-width: 70%;
 `;
 
-export const ImageList = styled.div`
-  display: flex;
+export const ImageList = styled.div<ImageSingpleProps>`
+  display: ${(props) => (props.$isSingleImage ? 'none' : 'flex')};
   flex-direction: column;
   gap: 20px;
 `;
@@ -36,7 +41,7 @@ export const SmallImage = styled.img`
   aspect-ratio: 1 / 1;
   height: auto;
   object-fit: cover;
-  border: 1px solid #e1e1e1;
+  border: 1px solid ${theme.colors.imageBorder};
   cursor: pointer;
 `;
 
@@ -53,18 +58,25 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  min-width: 25%;
 `;
 
 export const LikeButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   padding: 10px 70px;
   width: fit-content;
   outline: none;
   border: none;
   cursor: pointer;
   background-color: ${theme.colors.black};
+`;
+
+export const PlusIcon = styled.img`
+  width: 14px;
+  height: 14px;
 `;
 
 export const BottomContainer = styled.div`
@@ -85,7 +97,7 @@ export const AuthorContainer = styled.div`
   width: 100%;
   padding: 22px 20px;
   box-sizing: border-box;
-  border: 1px solid #e7e7e7;
+  border: 1px solid ${theme.colors.profileBox};
 
   display: flex;
   flex-direction: column;
@@ -118,7 +130,7 @@ export const Arrow = styled.img`
 
 export const ArtworkContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   align-items: flex-start;
   gap: 10px;
   min-height: 250px;

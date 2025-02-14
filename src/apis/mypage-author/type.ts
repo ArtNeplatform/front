@@ -19,6 +19,9 @@ export interface ExperienceInfo {
 }
 
 export type TAuthorProfile = {
+  isSuccess: boolean;
+  code: string;
+  message: string;
   author_name: string;
   author_image_url: string;
   email: string;

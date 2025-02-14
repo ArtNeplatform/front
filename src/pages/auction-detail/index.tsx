@@ -14,16 +14,28 @@ import {
   Button,
 } from './index.style.ts';
 import { useParams } from 'react-router-dom';
-import { useGetAuctionDetail } from './hooks/useGetAuctionDtail.ts';
 import { DetailInform } from './components/DetailInform/index.tsx';
+import AuctionModal from './components/AuctionModal/index.tsx';
+import useWebSocket from './hooks/useWebSocket.ts';
+import { usePostAuctionBid } from './hooks/usePostAuctionBid.ts';
+import { useGetAuctionDetail } from './hooks/useGetAuctionDtail.ts';
 
 export const AuctionDetail = () => {
-  const { id } = useParams<{ id: string }>(); // 경매 ID를 URL에서 가져옴
-  const auctionId = id ? parseInt(id, 10) : 0; // id가 없으면 null을 사용
+  const { id } = useParams<{ id: string }>();
+  const auctionId = id ? parseInt(id, 10) : 0;
+  console.log(auctionId);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const { data, isLoading, error } = useGetAuctionDetail(auctionId);
-  const [remainingTime, setRemainingTime] = useState<number>(0); // 남은 시간을 초로 저장
+  const [remainingTime, setRemainingTime] = useState<number>(0);
+  const { artwork } = data ?? {};
+  const { currentPrice, error: socketError } = useWebSocket(auctionId);
+  const [currentPriceState, setCurrentPriceState] = useState<string | null>(
+    data?.current_price || null
+  );
+  const { handleSubmit, formData, setFormData } = usePostAuctionBid();
+  console.log(currentPrice);
 
   useEffect(() => {
     if (data?.remaining_time) {
@@ -34,8 +46,7 @@ export const AuctionDetail = () => {
       const minutes = parseInt(timeParts[2], 10) * 60; // 1분 = 60초
       const seconds = parseInt(timeParts[3], 10); // 초
 
-      const totalRemainingTime = days + hours + minutes + seconds; // 총 남은 시간 (초 단위)
-      setRemainingTime(totalRemainingTime); // 초로 설정
+      setRemainingTime(days + hours + minutes + seconds);
 
       const interval = setInterval(() => {
         setRemainingTime((prevTime) => {
@@ -47,21 +58,16 @@ export const AuctionDetail = () => {
         });
       }, 1000); // 1초마다 업데이트
 
-      return () => clearInterval(interval); // 컴포넌트 언마운트 시 interval 종료
+      return () => clearInterval(interval);
     }
   }, [data]);
 
-  // 남은 시간을 'd h m s' 형식으로 변환하는 함수
-  const formatRemainingTime = (seconds: number) => {
-    const days = Math.floor(seconds / 86400); // 1일 = 86400초
-    const hours = Math.floor((seconds % 86400) / 3600); // 1시간 = 3600초
-    const minutes = Math.floor((seconds % 3600) / 60); // 1분 = 60초
-    const remainingSeconds = seconds % 60;
+  useEffect(() => {
+    if (currentPrice) {
+      setCurrentPriceState(currentPrice); // 웹소켓을 통해 받은 currentPrice로 상태 업데이트
+    }
+  }, [currentPrice]);
 
-    return `${days}d ${hours}h ${minutes}m ${remainingSeconds}s`;
-  };
-
-  // id가 없으면 처리
   if (!auctionId) {
     return (
       <PageLayout>
@@ -73,6 +79,41 @@ export const AuctionDetail = () => {
       </PageLayout>
     );
   }
+  const formatRemainingTime = (seconds: number) => {
+    const days = Math.floor(seconds / 86400);
+    const hours = Math.floor((seconds % 86400) / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    return `${days}d ${hours}h ${minutes}m ${remainingSeconds}s`;
+  };
+
+  const handleOpenModal = () => {
+    setFormData({ ...formData, auction_id: auctionId });
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalConfirm = async (price: string) => {
+    // 바로 handleSubmit에 필요한 데이터를 전달하도록 수정
+    const updatedFormData = {
+      ...formData,
+      bid_price: price,
+      auction_id: auctionId,
+    };
+
+    try {
+      await handleSubmit(updatedFormData); // formData 상태 업데이트 없이 직접 handleSubmit 실행
+      setIsModalOpen(false); // 모달 닫기
+    } catch (error) {
+      console.error('입찰 실패', error);
+      alert('입찰에 실패했습니다. 다시 시도해주세요.');
+    }
+  };
+
   if (isLoading) {
     return (
       <PageLayout>
@@ -85,7 +126,7 @@ export const AuctionDetail = () => {
     );
   }
 
-  if (error) {
+  if (error || socketError) {
     return (
       <PageLayout>
         <Container>
@@ -96,10 +137,7 @@ export const AuctionDetail = () => {
       </PageLayout>
     );
   }
-
-  const { artwork } = data;
-
-  // 이미지 클릭 시 큰 이미지 변경
+  console.log('웹' + currentPrice, '데이터' + data.current_price);
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index);
   };
@@ -133,10 +171,11 @@ export const AuctionDetail = () => {
               dimensions={data.artwork.size}
               size={data.artwork.size}
               startPrice={data.start_price}
-              currentPrice={data.current_price}
+              currentPrice={currentPriceState}
               finalPrice={data.final_price}
+              remaining_time={data.remaining_time}
             />
-            <Button>입찰</Button>
+            <Button onClick={handleOpenModal}>입찰</Button>
             <Text size={16} color="red" weight="regular">
               {formatRemainingTime(remainingTime)}
             </Text>
@@ -153,6 +192,13 @@ export const AuctionDetail = () => {
           </CategoryContainer>
         </BottomContainer>
       </Container>
+      <AuctionModal
+        isOpen={isModalOpen}
+        title={artwork.title}
+        imageSrc={artwork.thumbnail_image_url}
+        onClose={handleCloseModal}
+        onConfirm={(price) => handleModalConfirm(price)}
+      />
     </PageLayout>
   );
 };

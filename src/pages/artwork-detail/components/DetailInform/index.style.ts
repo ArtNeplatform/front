@@ -31,7 +31,7 @@ export const MiniLine = styled.div`
 export const UnderLine = styled.div`
   width: calc(100% + 40px);
   height: 1px;
-  background-color: #e7e7e7;
+  background-color: ${theme.colors.profileBox};
 `;
 
 export const CategoryContainer = styled.div`
