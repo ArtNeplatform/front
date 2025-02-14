@@ -14,6 +14,7 @@ import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getMainData } from '@/apis/main/main';
 import { getUserMypage } from '@/apis/myPage/myPage';
 import { getExhibitions } from '@/apis/exhibition/getExhibitionList';
+import { getExhibitionDetail } from '@/apis/exhibition/getExhibitionDetail';
 
 /**
  * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
@@ -202,6 +203,17 @@ export const getAuthorDetailQuery = (authorId: number) => {
 export const getExhibitionListQuery = (sort: string) => {
   return {
     queryKey: ['exhibitionList', sort],
-    queryFn: () => getExhibitions(sort ),
+    queryFn: () => getExhibitions(sort),
+  };
+};
+
+/**
+ * 전시 상세 조회 쿼리
+ * @author 이하늘
+ * */
+export const getExhibitionDetailQeury = (exhibitionId: number) => {
+  return {
+    queryKey: ['exhibitionDetail', exhibitionId],
+    queryFn: () => getExhibitionDetail(exhibitionId),
   };
 };
