@@ -81,6 +81,11 @@ declare module '@emotion/react' {
       priceBox: string;
       purple: string;
       red: string;
+      profileBox: string;
+      profileButton: string;
+      border: string;
+      borderBottom: string;
+      EditButton: string;
     };
   }
 }
