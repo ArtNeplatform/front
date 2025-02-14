@@ -11,7 +11,12 @@ const useWebSocket = (auctionId: number) => {
 
   useEffect(() => {
     // 웹소켓 객체 생성
-    const socket = new WebSocket('ws://3.35.110.159:5000');
+    const WS_URL =
+      window.location.protocol === 'https:'
+        ? 'wss://3.35.110.159:5000'
+        : 'ws://3.35.110.159:5000';
+
+    const socket = new WebSocket(WS_URL);
 
     // 웹소켓 연결 성공
     socket.onopen = () => {
