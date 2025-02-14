@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '@/styles/theme';
 
 export const Container = styled.div`
   padding: 0 20px 80px;
@@ -55,7 +56,7 @@ export const InitIcon = styled.img`
 export const MiniLine = styled.div`
   width: 1px;
   height: 14px;
-  background-color: #dbdbdb;
+  background-color: ${theme.colors.grayLine};
 `;
 
 export const SelectedFilterContainer = styled.div`

@@ -36,7 +36,7 @@ export const SmallImage = styled.img`
   aspect-ratio: 1 / 1;
   height: auto;
   object-fit: cover;
-  border: 1px solid #e1e1e1;
+  border: 1px solid ${theme.colors.imageBorder};
   cursor: pointer;
 `;
 
@@ -85,7 +85,7 @@ export const AuthorContainer = styled.div`
   width: 100%;
   padding: 22px 20px;
   box-sizing: border-box;
-  border: 1px solid #e7e7e7;
+  border: 1px solid ${theme.colors.profileBox};
 
   display: flex;
   flex-direction: column;
@@ -118,7 +118,7 @@ export const Arrow = styled.img`
 
 export const ArtworkContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   align-items: flex-start;
   gap: 10px;
   min-height: 250px;
