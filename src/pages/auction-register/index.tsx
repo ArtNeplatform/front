@@ -59,6 +59,7 @@ export const AuctionRegister = () => {
                 title={artwork.title}
                 hoverable={false}
                 variant="eager"
+                artworkId={artwork.artwork_id}
               />
               {selectedImages.includes(artwork.artwork_id.toString()) && (
                 <CheckIcon
