@@ -2,8 +2,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
 import { getAuthorArtworksExhibitionsQuery } from '@/constants/queryKeys';
-import { getAuthorArtworksExhibitions } from '@/apis/authorPage/author';
-import { TAuthorArtworksExhibitions } from '@/apis/authorPage/type';
+import { getAuthorArtworksExhibitions } from '@/apis/mypage-author/author';
+import { TAuthorArtworksExhibitions } from '@/apis/mypage-author/type';
 
 /**
  * 작가의 작품, 경매 작품, 전시 정보를 가져오는 커스텀 훅
@@ -19,8 +19,8 @@ export const useGetAuthorArtworksExhibitions = () => {
     useSuspenseQuery<TAuthorArtworksExhibitions>({
       queryKey: getAuthorArtworksExhibitionsQuery().queryKey,
       queryFn: getAuthorArtworksExhibitions,
-      staleTime: 1000 * 60 * 60, // 1시간
-      gcTime: 1000 * 60 * 30, // 30분
+      staleTime: 1000 * 60 * 30, // 30분
+      gcTime: 1000 * 60 * 60, // 1시간
     });
 
   if (error) {

@@ -32,8 +32,8 @@ const TestComponents = () => {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
     artist: 'Sample Artist',
     title: 'Sample Title',
-    artworkWidth: 100,
-    artworkHeight: 100,
+    artworkWidth: '100',
+    artworkHeight: '100',
     price: 1000000,
   };
 

@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
+import { getPurchasedArtworks } from '@/apis/mypage-buyer/artWork';
 import { getPurchasedArtworksQuery } from '@/constants/queryKeys';
-import { TPurchasedArtwork } from '@/apis/artBuyerPage/type';
+import { TPurchasedArtwork } from '@/apis/mypage-buyer/type';
 
 /**
  * 구매한 작품 리스트를 가져오는 커스텀 훅

@@ -28,7 +28,7 @@ export const MenuChooser = <T extends string>({
 }: MenuChooserProps<T>) => {
   return (
     <Wrapper>
-      {menus.map((menu) => (
+      {menus?.map((menu) => (
         <MenuButton
           key={menu}
           $isActive={selectedMenu === menu}

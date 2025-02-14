@@ -5,24 +5,19 @@ import {
   TableHeader,
   TableRow,
 } from './index.style';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-interface AuthorAuctionProps {
-  userId: number;
-}
+import { useGetAuthorMypage } from '@/pages/authorPage/hooks/useGetAuthorMypage';
 
 /**
  * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
- * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
 
-export const AuthorAuction = ({ userId }: AuthorAuctionProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
-  const { result } = userMypageData;
+export const AuthorAuction = () => {
+  const { userMypageData } = useGetAuthorMypage();
 
-  // 구매자 또는 작가의 경매 내역 가져오기
-  const auctions = 'auctions' in result ? result.auctions : [];
+  // 작가의 경매 내역 가져오기
+  const auctions = userMypageData.auctions;
 
   return (
     <AuctionContainer>
@@ -38,13 +33,24 @@ export const AuthorAuction = ({ userId }: AuthorAuctionProps) => {
         </thead>
         <tbody>
           {auctions.map((auction) => (
-            <TableRow key={auction.artwork_id}>
-              <TableCell>{`${auction.title} - ${auction.author.name}`}</TableCell>
+            <TableRow key={auction.auction_id}>
+              <TableCell>{`${auction.auction.artwork.title} - ${auction.auction.artwork.author.author_name}`}</TableCell>
               <TableCell>
-                {new Date(auction.end_date).toLocaleDateString('ko-KR')}
+                {new Date(auction.bid_date).toLocaleDateString('ko-KR')}
               </TableCell>
-              <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
-              <TableCell>{auction.status}</TableCell>
+              <TableCell>
+                {new Intl.NumberFormat('ko-KR', {
+                  style: 'currency',
+                  currency: 'KRW',
+                }).format(auction.bid_price)}
+              </TableCell>
+              <TableCell>
+                {auction.status === 'BID'
+                  ? '경매완료'
+                  : auction.status === 'PARTICIPATE'
+                  ? '참여중'
+                  : auction.status}
+              </TableCell>
             </TableRow>
           ))}
         </tbody>

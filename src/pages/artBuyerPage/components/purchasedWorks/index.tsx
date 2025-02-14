@@ -5,22 +5,14 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-
 import { Artwork } from '@/components/common/ArtWork';
 
-interface PurchasedWorksProps {
-  userId: number;
-}
+import { useGetBuyerMypage } from '../../hooks/useGetBuyerMypage';
 
-const PurchasedWorks = ({ userId }: PurchasedWorksProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
-  if (!userMypageData) return null;
+const PurchasedWorks = () => {
+  const { userMypageData } = useGetBuyerMypage();
 
-  const { result } = userMypageData;
-
-  if (!('myCollection' in result)) return null;
-  const artworks = result.myCollection.artworks;
+  const artworks = userMypageData.myCollection.artworks;
 
   return (
     <PurchasedWorksContainer>
@@ -29,13 +21,14 @@ const PurchasedWorks = ({ userId }: PurchasedWorksProps) => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {artworks.map((artwork) => (
+          {artworks?.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
-              artist={artwork.author?.name}
-              artworkSize={artwork.size}
+              artist={artwork.author?.author_name}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
               artworkId={artwork.id}
             />
           ))}

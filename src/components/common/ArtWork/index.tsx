@@ -25,10 +25,9 @@ interface ArtworkProps {
   imageUrl: string;
   artist?: string;
   title: string;
-  artworkSize?: string;
   auctionPeriod?: string;
-  artworkWidth?: number;
-  artworkHeight?: number;
+  artworkWidth?: string;
+  artworkHeight?: string;
   price?: number;
   startPrice?: number;
   variant?: 'eager' | 'lazy';
@@ -47,7 +46,8 @@ interface ArtworkProps {
  * @param {string} imageUrl - 이미지 url
  * @param {string} artist - 작가 이름
  * @param {string} title - 작품 이름
- * @param {string} artworkSize - 작품 크기
+ * @param {string} artworkWidth - 작품 너비
+ * @param {string} artworkHeight - 작품 높이
  * @param {number} auctionPeriod - 경매 진행 기간
  * @param {number} price - 작품 가격
  * @param {number} startPrice - (경매 시) 작품 시작 가격

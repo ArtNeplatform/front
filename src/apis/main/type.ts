@@ -15,8 +15,8 @@ export type TArtwork = {
   author_name: string;
   thumbnail_image_url: string;
   title: string;
-  height: number;
-  width: number;
+  height: string;
+  width: string;
   size: string;
   is_like: boolean;
 };
@@ -26,8 +26,8 @@ export type TAuction = {
   author_name: string;
   thumbnail_image_url: string;
   title: string;
-  height: number;
-  width: number;
+  height: string;
+  width: string;
   size: string;
   start_price: number;
   current_price: number;
