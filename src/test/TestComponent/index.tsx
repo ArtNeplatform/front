@@ -101,12 +101,7 @@ const TestComponents = () => {
       </ComponentSection>
 
       <SubTitle>AuthorDetailCategory</SubTitle>
-      <AuthorDetailCategory
-        activeTab={''}
-        setActiveTab={function (): void {
-          throw new Error('Function not implemented.');
-        }}
-      />
+      <AuthorDetailCategory />
       <SubTitle>CommonInput</SubTitle>
       <CommonInput {...sampleInputData} />
       <SubTitle>MyPageSideBar</SubTitle>
@@ -133,7 +128,7 @@ const TestComponents = () => {
 
       <Spacing />
       <SubTitle>Author Profile</SubTitle>
-      <AuthorProfile authorName={'홍길동'} {...sampleProfileData} />
+      <AuthorProfile {...sampleProfileData} />
       <Spacing />
 
       <Spacing />

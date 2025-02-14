@@ -19,6 +19,7 @@ interface DetailInformProps {
   startPrice: string | null;
   currentPrice: string | null;
   finalPrice: string | null;
+  remaining_time: string | null;
 }
 
 // 가격 뒤에 "원"을 붙이는 함수
@@ -41,7 +42,10 @@ export const DetailInform = ({
   startPrice,
   currentPrice,
   finalPrice,
+  remaining_time,
 }: DetailInformProps) => {
+  const currentDisplayPrice = currentPrice || startPrice || null;
+  console.log(currentDisplayPrice + ' + ' + currentPrice);
   return (
     <Container>
       <BoxContainer>
@@ -86,11 +90,11 @@ export const DetailInform = ({
             </Text>
           </CategoryTitle>
           <Text size={14} color="font03gray" weight="regular">
-            {formatPrice(currentPrice)}
+            {formatPrice(currentDisplayPrice)}
           </Text>
         </CategoryContainer>
 
-        {finalPrice && (
+        {remaining_time === '0d 0h 0m 0s' && (
           <CategoryContainer>
             <CategoryTitle>
               <Text size={14} color="black" weight="medium">

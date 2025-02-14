@@ -35,7 +35,6 @@ const ArtworkCollection = ({ userId }: { userId: number }) => {
               title={artwork.title}
               artist={artwork.author?.name}
               artworkSize={artwork.size}
-              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>

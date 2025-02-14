@@ -100,6 +100,7 @@ export const Price = styled.span`
   color: ${(theme) => theme.theme.colors.black};
   ${(theme) => theme.theme.typography['18']}
   margin: 0;
+  margin-right: 10px;
 `;
 
 export const StartPrice = styled.span`

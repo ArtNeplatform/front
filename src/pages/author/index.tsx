@@ -10,10 +10,10 @@ import { useGetAuthorLists } from './hooks/useGetAuthorLists';
 
 export const Author = () => {
   const [page, setPage] = useState(1);
-  const [sortingType, setSortingType] = useState<
+  const itemsPerPage = 8; // 한 페이지당 8명씩 표시
+  const [selectedSorting, setSelectedSorting] = useState<
     '이름순' | '최신순' | '인기순'
   >('이름순');
-  const itemsPerPage = 8; // 한 페이지당 8명씩 표시
   const navigate = useNavigate();
 
   // const dummyAuthors = Array.from({ length: 45 }, (_, index) => ({
@@ -26,7 +26,11 @@ export const Author = () => {
   // }));
 
   const { data, isLoading, error } = useGetAuthorLists(
-    'popularity',
+    selectedSorting === '이름순'
+      ? 'title'
+      : selectedSorting === '최신순'
+      ? 'recent'
+      : 'popularity',
     page,
     itemsPerPage
   );
@@ -38,10 +42,12 @@ export const Author = () => {
         author: key,
         artworkCount: data.authorInfos[key].artwork_count,
         exhibitionCount: data.authorInfos[key].exhibition_count,
-        imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
+        imageUrl: data.authorInfos[key].introduction_image_url,
       }))
     : [];
+  const handleSortingSelect = (sorting: '이름순' | '최신순' | '인기순') => {
+    setSelectedSorting(sorting); // 정렬 기준 변경
+  };
 
   if (isLoading) return <div>Loading...</div>; // 로딩 중 표시
   if (error) return <div>작가 목록을 불러오는데 실패했습니다.</div>; // 오류 표시
@@ -55,8 +61,8 @@ export const Author = () => {
           </Text>
         </TextWrapper>
         <SortingTextButton
-          selectedSorting={sortingType}
-          onSortingSelect={setSortingType}
+          selectedSorting={selectedSorting}
+          onSortingSelect={handleSortingSelect}
         />
         <GridContainer>
           {paginatedAuthors.map((author, index) => (

@@ -16,7 +16,7 @@ const AuctioningWorks = () => {
 
   const { data } = useGetAuthorArtworksExhibitions();
 
-  const auction_artworks = data?.auction_artworks || [];
+  const auction_artworks = data?.result?.auction_artworks || [];
 
   return (
     <ArtWorksContainer>
@@ -30,7 +30,6 @@ const AuctioningWorks = () => {
               imageUrl={auctionArtwork.artwork.thumbnail_image_url}
               title={auctionArtwork.artwork.title}
               auctionPeriod={auctionArtwork.auction_period}
-              artworkId={auctionArtwork.artwork.id}
             />
           ))}
         </ArtworkGrid>

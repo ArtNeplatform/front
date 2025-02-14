@@ -17,19 +17,20 @@ import { TArtworks } from '@/apis/author/type';
 
 export const AuthorArtwork = ({ artworks }: { artworks: TArtworks }) => {
   const navigate = useNavigate();
+
   return (
     <Container>
       <GridContainer>
-        {artworks.items.map((artwork) => (
+        {artworks?.items.map((artwork) => (
           <ArtworkItem
-            key={artwork.dataValues.id}
+            key={artwork.id}
             onClick={() => {
-              navigate(`/artwork/${artwork.dataValues.id}`);
+              navigate(`/artwork/${artwork.id}`);
             }}
           >
             <ArtworkImage
-              src={artwork.dataValues.thumbnail_image_url}
-              alt={artwork.dataValues.title}
+              src={artwork.thumbnail_image_url}
+              alt={artwork.title}
             />
           </ArtworkItem>
         ))}

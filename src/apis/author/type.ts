@@ -4,6 +4,7 @@
  */
 export type TAuthorInfo = {
   author_id: number;
+  introduction_image_url: string;
   artwork_count: number;
   exhibition_count: number;
 };
@@ -62,7 +63,7 @@ export type TArtworks = {
   total: number;
   totalPages: number;
   currentPage: number;
-  items: { dataValues: TArtworkItem }[];
+  items: TArtworkItem[];
 };
 
 export type TExhibitionItem = {
@@ -82,7 +83,7 @@ export type TExhibitions = {
   total: number;
   totalPages: number;
   currentPage: number;
-  items: { dataValues: TExhibitionItem }[];
+  items: TExhibitionItem[];
 };
 
 export type TGetAuthorDetailApiResponse = {

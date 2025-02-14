@@ -15,7 +15,7 @@ const ArtWorks = () => {
   const navigate = useNavigate();
   const { data } = useGetAuthorArtworksExhibitions();
 
-  const artworks = data?.artworks || [];
+  const artworks = data?.result?.artworks || [];
 
   return (
     <ArtWorksContainer>
@@ -29,7 +29,6 @@ const ArtWorks = () => {
                 key={artwork.id}
                 imageUrl={artwork.thumbnail_image_url}
                 title={artwork.title}
-                artworkId={artwork.id}
               />
             ))}
           </ArtworkGrid>

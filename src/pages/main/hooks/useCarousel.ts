@@ -8,7 +8,7 @@ export const useCarousel = () => {
 
   const imageTextSrcArray = useMemo(() => {
     return [...imageTextArray, imageTextArray[0]];
-  }, []);
+  }, [imageTextArray]);
 
   const resetIndexAndTransition = useCallback(() => {
     setTimeout(() => {

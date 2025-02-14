@@ -17,16 +17,17 @@ export const AuthorExhibition = ({
   exhibitions: TExhibitions;
 }) => {
   const navigate = useNavigate();
+
   return (
     <Container>
       <GridContainer>
         {exhibitions.items.map((exhibition) => (
           <ExhibitionItem
-            key={exhibition.dataValues.id}
-            imageUrl={exhibition.dataValues.image_url}
-            title={exhibition.dataValues.title}
+            key={exhibition.id}
+            imageUrl={exhibition.image_url}
+            title={exhibition.title}
             onClick={() => {
-              navigate(`/exhibition/${exhibition.dataValues.id}`);
+              navigate(`/exhibition/${exhibition.id}`);
             }}
           />
         ))}

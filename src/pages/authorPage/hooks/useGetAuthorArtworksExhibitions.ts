@@ -24,7 +24,8 @@ export const useGetAuthorArtworksExhibitions = () => {
     });
 
   if (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError =
+      error as AxiosError<TAuthorArtworksExhibitions>;
     const errorMessage =
       axiosError.response?.data?.message ||
       '작가 작품/전시 정보를 불러오는데 실패했습니다.';

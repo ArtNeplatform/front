@@ -1,5 +1,4 @@
 import {
-  AuctionButton,
   AuctionContainer,
   Table,
   TableCell,
@@ -7,7 +6,6 @@ import {
   TableRow,
 } from './index.style';
 import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-import { useNavigate } from 'react-router-dom';
 
 interface ArtBuyerAuctionnProps {
   userId: number;
@@ -19,14 +17,9 @@ interface ArtBuyerAuctionnProps {
  */
 export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
   const { userMypageData } = useGetUserMypage(userId);
-  const navigate = useNavigate();
 
   const { result } = userMypageData;
   const { auctions } = result;
-
-  const handleBtnClick = (auctionId: number) => {
-    navigate(`/auction/${auctionId}`);
-  };
 
   return (
     <AuctionContainer>
@@ -38,7 +31,6 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
             <TableHeader>경매 종료일</TableHeader>
             <TableHeader>금액</TableHeader>
             <TableHeader>진행상황</TableHeader>
-            <TableHeader></TableHeader>
           </TableRow>
         </thead>
         <tbody>
@@ -50,13 +42,6 @@ export const ArtBuyerAuction = ({ userId }: ArtBuyerAuctionnProps) => {
               </TableCell>
               <TableCell>{`₩${auction.price.toLocaleString()}`}</TableCell>
               <TableCell>{auction.status}</TableCell>
-              <TableCell>
-                <AuctionButton
-                  onClick={() => handleBtnClick(auction.artwork_id)}
-                >
-                  입찰하기
-                </AuctionButton>
-              </TableCell>
             </TableRow>
           ))}
         </tbody>

@@ -51,7 +51,6 @@ const MyCollection = ({ userId }: MyCollectionProps) => {
               title={artwork.title}
               artist={artwork.author?.name || '작가 미상'}
               artworkSize={artwork.size}
-              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>
