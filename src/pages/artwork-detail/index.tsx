@@ -31,14 +31,15 @@ import {
   BigSpaceImg,
   BigImageContainer,
   SpaceArtwork,
-  // SpaceButtonContainer,
-  // ButtonContainer,
+  SpaceButtonContainer,
+  ButtonContainer,
 } from './index.style.ts';
 import { useHandleLink } from '@/hooks/common/useHandleLink.ts';
 import { DetailInform } from '@/pages/artwork-detail/components/DetailInform/index.tsx';
 import { ArtworkDetailCategory } from '@/pages/artwork-detail/components/ArtworkDetailCategory/index.tsx';
 import { AuthorProfile } from '@/pages/artwork-detail/components/AuthorProfile/index.tsx';
 import { MoreButton } from '@/pages/artwork-detail/components/MoreButton/index.tsx';
+import { MySpaceModal } from '@/pages/artwork-detail/components/MySpaceModal/index.tsx';
 import { useParams } from 'react-router-dom';
 import { useGetArtworkDetail } from '@/pages/artwork-detail/hooks/useGetArtworkDetail';
 import { useToggleArtworkLike } from '@/pages/artwork-detail/hooks/useToggleArtworkLike';
@@ -64,6 +65,7 @@ export const ArtworkDetail = () => {
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 5;
   const [selectedSpaceIndex, setSelectedSpaceIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (isLoading || !artworkData) {
     return (
@@ -164,6 +166,23 @@ export const ArtworkDetail = () => {
   // 작품을 공간 크기에 맞게 조정
   const calculatedArtworkWidth =
     (artworkWidth / 10) * (maxContainerWidth / userSpaceWidth);
+
+  const openModal = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const handleScrollEnd = () => {
+      if (window.scrollY === 0) {
+        setIsModalOpen(true);
+        window.removeEventListener('scroll', handleScrollEnd);
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollEnd);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <PageLayout>
@@ -284,14 +303,14 @@ export const ArtworkDetail = () => {
             </BigSpaceContainer>
 
             {/* TODO[서윤] - 내 공간 등록 구현 */}
-            {/* <SpaceButtonContainer>
-              <ButtonContainer>
+            <SpaceButtonContainer>
+              <ButtonContainer onClick={openModal}>
                 <Text size={14} color="black" weight="semibold">
                   내 공간 등록
                 </Text>
                 <Arrow $isBig={false} src={ArrowRight} alt="내 공간 등록" />
               </ButtonContainer>
-            </SpaceButtonContainer> */}
+            </SpaceButtonContainer>
           </CategoryContainer>
 
           {/* 작품 소개 섹션 */}
@@ -381,6 +400,7 @@ export const ArtworkDetail = () => {
           </CategoryContainer>
         </BottomContainer>
       </Container>
+      {isModalOpen && <MySpaceModal onClose={closeModal} />}
     </PageLayout>
   );
 };
