@@ -55,7 +55,7 @@ export const ArtBuyerAuction = () => {
               <TableCell>{`₩${auction.bid_price.toLocaleString()}`}</TableCell>
               <TableCell>{getStatusText(auction.status)}</TableCell>
               <TableCell>
-                {auction.status === '입찰중' && (
+                {auction.status === 'PARTICIPATE' && (
                   <AuctionButton
                     onClick={() => handleBtnClick(auction.auction_id)}
                   >

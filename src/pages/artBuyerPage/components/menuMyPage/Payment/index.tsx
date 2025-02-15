@@ -53,10 +53,8 @@ export const Payment = () => {
               </TableCell>
               <TableCell>{getPaymentStatus(payment.payment_status)}</TableCell>
               <TableCell>
-                {payment.payment_status === '결제 대기중' && (
-                  <PaymentButton
-                    onClick={() => handleBtnClick(payment.auction_id)}
-                  >
+                {payment.payment_status === 'PENDING' && (
+                  <PaymentButton onClick={() => handleBtnClick(payment.id)}>
                     결제하기
                   </PaymentButton>
                 )}
