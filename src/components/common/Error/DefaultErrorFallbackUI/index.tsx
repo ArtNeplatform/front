@@ -1,3 +1,14 @@
+import MainLogo from '@assets/png/main-logo.png';
+import {
+  ErrorContainer,
+  ErrorContent,
+  LogoImage,
+  ErrorIcon,
+  ErrorMessage,
+  ErrorDetail,
+  RetryButton,
+} from './index.style.ts';
+
 type TDefaultErrorFallbackUIProps = {
   resetErrorBoundary: () => void;
   error: Error;
@@ -8,9 +19,16 @@ export default function DefaultErrorFallbackUI({
   error,
 }: TDefaultErrorFallbackUIProps) {
   return (
-    <div>
-      <p>{`잠시 문제가 발생했어요\n다시 시도해주세요, ${error}`}</p>
-      <button onClick={resetErrorBoundary}>다시 시도</button>
-    </div>
+    <ErrorContainer>
+      <ErrorContent>
+        <LogoImage src={MainLogo} alt="Main Logo" />
+        <ErrorIcon>⚠️</ErrorIcon>
+        <ErrorMessage>잠시 문제가 발생했어요</ErrorMessage>
+        <ErrorDetail>{error.message}</ErrorDetail>
+        <RetryButton onClick={resetErrorBoundary}>
+          다시 시도하기
+        </RetryButton>
+      </ErrorContent>
+    </ErrorContainer>
   );
 }
