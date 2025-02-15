@@ -4,6 +4,7 @@ import {
 } from '@/apis/auction/type';
 import { postAuctionBidMutation } from '@/constants/mutationKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -28,7 +29,18 @@ export const usePostAuctionBid = () => {
       });
     },
     onError: (error: Error) => {
-      toast.error(`입찰 실패: ${error.message}`);
+      if (axios.isAxiosError(error)) {
+        // AxiosError인 경우
+        if (error.response) {
+          // 서버 응답에서 message를 추출하여 사용
+          const message = error.response.data.message;
+          toast.error(`입찰 실패: ${message}`); // 사용자에게 오류 메시지 표시
+        } else {
+          toast.error('서버 응답을 받을 수 없습니다.');
+        }
+      } else {
+        toast.error('입찰에 실패했습니다. 다시 시도해주세요.');
+      }
     },
   });
 
@@ -74,5 +86,6 @@ export const usePostAuctionBid = () => {
     handleSubmit,
     isLoading: mutation.isPending,
     isError: mutation.isError,
+    error: mutation.error,
   };
 };

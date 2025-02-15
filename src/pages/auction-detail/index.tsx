@@ -19,6 +19,7 @@ import AuctionModal from './components/AuctionModal/index.tsx';
 import useWebSocket from './hooks/useWebSocket.ts';
 import { usePostAuctionBid } from './hooks/usePostAuctionBid.ts';
 import { useGetAuctionDetail } from './hooks/useGetAuctionDtail.ts';
+// import { toast } from 'sonner';
 
 export const AuctionDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,15 @@ export const AuctionDetail = () => {
   const [currentPriceState, setCurrentPriceState] = useState<string | null>(
     data?.current_price || null
   );
-  const { handleSubmit, formData, setFormData } = usePostAuctionBid();
+  const allImages = [artwork.thumbnail_image_url, ...artwork.images];
+
+  const {
+    handleSubmit,
+    formData,
+    setFormData,
+    // isError,
+    // error: bidError,
+  } = usePostAuctionBid();
   console.log(currentPrice);
 
   useEffect(() => {
@@ -67,6 +76,13 @@ export const AuctionDetail = () => {
       setCurrentPriceState(currentPrice); // 웹소켓을 통해 받은 currentPrice로 상태 업데이트
     }
   }, [currentPrice]);
+
+  // 입찰 실패 시 오류 메시지 표시
+  // useEffect(() => {
+  //   if (isError && bidError?.response?.data?.message) {
+  //     toast.error(`입찰 실패: ${bidError.response.data.message}`);
+  //   }
+  // }, [isError, bidError]);
 
   if (!auctionId) {
     return (
@@ -148,7 +164,7 @@ export const AuctionDetail = () => {
         <TopContainer>
           <ImageContainer>
             <ImageList>
-              {artwork.images.map((image, index) => (
+              {allImages.map((image, index) => (
                 <SmallImage
                   key={index}
                   src={image}
@@ -158,7 +174,7 @@ export const AuctionDetail = () => {
               ))}
             </ImageList>
             <BigImage
-              src={artwork.images[selectedImageIndex]}
+              src={allImages[selectedImageIndex]}
               alt="작품 메인 이미지"
             />
           </ImageContainer>
