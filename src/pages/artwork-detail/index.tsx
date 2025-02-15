@@ -148,9 +148,9 @@ export const ArtworkDetail = () => {
   };
 
   const handleUserNextClick = () => {
-    if (startIndex + itemsPerPage >= userspaces.length) return;
+    if (startIndex + itemsPerPage >= combinedSpaces.length) return;
     setStartIndex((prevIndex) =>
-      Math.min(prevIndex + itemsPerPage, userspaces.length - itemsPerPage)
+      Math.min(prevIndex + itemsPerPage, combinedSpaces.length - itemsPerPage)
     );
   };
 
@@ -272,9 +272,11 @@ export const ArtworkDetail = () => {
                 onClick={handleUserNextClick}
                 style={{
                   opacity:
-                    startIndex + itemsPerPage >= userspaces.length ? 0.5 : 1,
+                    startIndex + itemsPerPage >= combinedSpaces.length
+                      ? 0.5
+                      : 1,
                   cursor:
-                    startIndex + itemsPerPage >= userspaces.length
+                    startIndex + itemsPerPage >= combinedSpaces.length
                       ? 'default'
                       : 'pointer',
                 }}

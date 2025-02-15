@@ -109,7 +109,7 @@ export const BottomContainer = styled.div`
   padding: 16px 32px 24px;
 `;
 
-export const CloseBtn = styled.div<ButtonProps>`
+export const CloseBtn = styled.button<ButtonProps>`
   padding: 9px 38.5px;
   background-color: ${({ $isCancle }) =>
     $isCancle ? `${theme.colors.white}` : `${theme.colors.black}`};
@@ -118,6 +118,7 @@ export const CloseBtn = styled.div<ButtonProps>`
       ? `1px solid ${theme.colors.lightGray}`
       : `1px solid ${theme.colors.black}`};
   cursor: pointer;
+  outline: none;
   display: flex;
   justify-content: center;
   align-items: center;

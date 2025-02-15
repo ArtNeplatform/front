@@ -4,6 +4,7 @@ import { postArtworkRegister } from '@/apis/artworkRegister/postArtworkRegister'
 import { getAvailableArtworksQuery } from '@/constants/queryKeys';
 import { postAuctionBid } from '@/apis/auction/postAuctionBid';
 import { toggleArtworkLike } from '@/apis/artwork-like/like';
+import { postMySpace } from '@/apis/artwork-detail/postMySpace';
 /**
  * 인증 회원가입 뮤테이션
  * @author 홍규진
@@ -57,5 +58,16 @@ export const toggleArtworkLikeMutation = (artworkId: number) => {
   return {
     mutationKey: ['artworkDetail', artworkId],
     mutationFn: () => toggleArtworkLike(artworkId),
+  };
+};
+
+/**
+ * 내 공간 등록 뮤테이션
+ * @author 김서윤
+ * */
+export const postMySpaceMutation = () => {
+  return {
+    mutationKey: ['new_userspace'],
+    mutationFn: postMySpace,
   };
 };

@@ -44,3 +44,9 @@ export type TOtherArtwork = {
   title: string;
   thumbnail: string;
 };
+
+export type TMySpaceFormData = {
+  images?: File;
+  name: string;
+  area: string;
+};
