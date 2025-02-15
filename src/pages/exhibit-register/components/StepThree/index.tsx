@@ -27,16 +27,23 @@ const StepThree = ({
     );
   };
 
-  const convertToBase64 = async (url: string): Promise<string> => {
-    const response = await fetch(url);
-    const blob = await response.blob();
+  const convertToBase64 = (url: string): Promise<string> => {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
+      const img = new Image();
+      img.crossOrigin = 'anonymous'; // 중요!
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png'));
+      };
+      img.onerror = reject;
+      img.src = url;
     });
   };
+
   const loadImage = async (base64String: string) => {
     const img = new Image();
     img.src = base64String;
@@ -101,6 +108,7 @@ const StepThree = ({
       >
         <img
           src={backgroundImage}
+          crossOrigin="anonymous"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           alt="배경"
         />
@@ -143,6 +151,7 @@ const StepThree = ({
         >
           <img
             src={overlayImage}
+            crossOrigin="anonymous"
             style={{
               width: '100%',
               height: '100%',

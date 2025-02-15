@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/authContext';
 import PrimarySpinner from '@/components/common/PrimarySpinner';
+import { toast } from 'sonner';
 
 type TProtectedRouteProps = {
   children: React.ReactNode;
@@ -25,6 +26,7 @@ export function AuthCheckRoute({
   }
 
   if (!isLoggedIn) {
+    toast.error('로그인후 이용가능합니다 😄');
     return <Navigate to={redirectPath} replace />;
   }
 
