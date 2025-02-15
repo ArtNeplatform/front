@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getBuyerMypageQuery } from '@/constants/queryKeys';
+import { getMypageQueryKey } from '@/constants/queryKeys';
 import { TBuyerMypage } from '@/apis/mypage-buyer/myPage/type';
 import { getBuyerMypage } from '@/apis/mypage-buyer/myPage/myPage';
 
@@ -19,7 +19,7 @@ export const useGetBuyerMypage = () => {
     isLoading,
     error,
   } = useSuspenseQuery<TBuyerMypage>({
-    queryKey: getBuyerMypageQuery().queryKey,
+    queryKey: getMypageQueryKey('buyer'),
     queryFn: () => getBuyerMypage(),
     staleTime: 1000 * 60 * 30, // 30분
     gcTime: 1000 * 60 * 60, // 1시간

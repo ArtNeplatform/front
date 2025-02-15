@@ -8,22 +8,17 @@ import { TGetResponse } from '@/apis/type';
  * @author 노찬영
  **/
 export const getBuyerMypage = async (): Promise<TBuyerMypage> => {
-  const DUMMY_ACCESS_TOKEN = localStorage.getItem('accessToken'); // 기존 토큰 저장
   const BUYER_TOKEN =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh5c29uZzR1QGdtYWlsLmNvbSIsImlhdCI6MTczOTU1MzczMSwiZXhwIjoxNzQyMTQ1NzMxfQ.6ePJhRS1JUNK9BPIOk9oXrYoggois21uBtGsp4gvKrU';
+  console.log('구매자 accessToken:', BUYER_TOKEN);
 
-  try {
-    // 기존 토큰 삭제 후 구매자 토큰 저장
-    localStorage.removeItem('accessToken');
-    localStorage.setItem('accessToken', BUYER_TOKEN);
+  // 구매자 토큰으로 변경
+  localStorage.setItem('accessToken', BUYER_TOKEN);
+  instance.defaults.headers.common.Authorization = `Bearer ${BUYER_TOKEN}`;
 
-    const response = await instance.get<TGetResponse<TBuyerMypage>>(
-      `/api/mypage`
-    );
+  const response = await instance.get<TGetResponse<TBuyerMypage>>(
+    `/api/mypage`
+  );
 
-    return response.data.result;
-  } finally {
-    // 원래 있던 DUMMY_ACCESS_TOKEN으로 복원
-    localStorage.setItem('accessToken', DUMMY_ACCESS_TOKEN ?? '');
-  }
+  return response.data.result;
 };

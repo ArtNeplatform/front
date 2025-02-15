@@ -46,13 +46,16 @@ export const HeaderContent = ({
           </Link>
         </NavItem>
         <NavItem>
-          <Link to="/">작품</Link>
+          <Link to="/artwork">작품</Link>
         </NavItem>
         <NavItem>
           <Link to="/auction">경매</Link>
         </NavItem>
         <NavItem>
           <Link to="/author">작가</Link>
+        </NavItem>
+        <NavItem>
+          <Link to="/exhibition">전시</Link>
         </NavItem>
       </NavMenu>
 

@@ -20,8 +20,8 @@ export const MenuMyPage = ({ setSelectedMenu }: MenuMyPageProps) => {
       </ProfileContainer>
       <MyPageContainer>
         <Payment />
-        <MyCollection />
         <ArtBuyerAuction />
+        <MyCollection />
       </MyPageContainer>
     </MyPageWrapper>
   );

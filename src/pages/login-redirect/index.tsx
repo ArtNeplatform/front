@@ -16,13 +16,13 @@ export const LoginRedirect = () => {
     console.log('provider', provider);
     // 소셜 로그인 처리
     oauthLoginMutation();
-  }, []);
+  }, [code, oauthLoginMutation, provider]);
 
   return (
     <PageLayout>
       <Container>
         <Text size={24} weight="semibold">
-          리다이렉팅중...
+          소셜 로그인중...
         </Text>
       </Container>
     </PageLayout>

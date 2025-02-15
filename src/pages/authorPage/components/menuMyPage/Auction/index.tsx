@@ -9,7 +9,7 @@ import {
 import { useGetAuthorMypage } from '@/pages/authorPage/hooks/useGetAuthorMypage';
 
 /**
- * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
+ * @description 작가의 경매 내역을 표시하는 컴포넌트
  * @author 노찬영
  */
 
@@ -48,7 +48,7 @@ export const AuthorAuction = () => {
                 {auction.status === 'BID'
                   ? '경매완료'
                   : auction.status === 'PARTICIPATE'
-                  ? '참여중'
+                  ? '입찰중'
                   : auction.status}
               </TableCell>
             </TableRow>

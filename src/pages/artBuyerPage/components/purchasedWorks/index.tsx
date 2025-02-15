@@ -8,8 +8,15 @@ import {
 import { Artwork } from '@/components/common/ArtWork';
 
 import { useGetBuyerMypage } from '../../hooks/useGetBuyerMypage';
+import { useNavigate } from 'react-router-dom';
 
 const PurchasedWorks = () => {
+  const navigate = useNavigate();
+  // 작품 클릭 시 작품 상세 페이지로 이동
+  const handleArtworkClick = (artworkId: number) => {
+    navigate(`/artwork/${artworkId}`);
+  };
+
   const { userMypageData } = useGetBuyerMypage();
 
   const artworks = userMypageData.myCollection.artworks;
@@ -30,6 +37,7 @@ const PurchasedWorks = () => {
               artworkWidth={artwork.width}
               artworkHeight={artwork.height}
               artworkId={artwork.id}
+              onClick={() => handleArtworkClick(artwork.id)}
             />
           ))}
         </ArtworkGrid>

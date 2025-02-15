@@ -36,42 +36,33 @@ export const getArtistListQuery = () => {
 };
 
 /**
- * 작품 구매자 마이페이지 조회를 위한 쿼리 키 반환 함수
- * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
+ * 마이페이지 조회를 위한 쿼리 키 반환 함수
+ * @returns 쿼리 키 배열 ['Mypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
  * @author 노찬영
  */
-export const getBuyerMypageQueryKey = () => ['buyerMypage'];
+export const getMypageQueryKey = (role: 'author' | 'buyer') => ['Mypage', role];
 
 /**
  * 작품 구매자 마이페이지 조회 API를 위한 React Query 설정 함수
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
- * @example - const { data } = useQuery(getUserMypageQuery(123));
  * @author 노찬영
  */
 export const getBuyerMypageQuery = () => {
   return {
-    queryKey: getBuyerMypageQueryKey(),
-    queryFn: () => getBuyerMypage(), // 마이페이지 데이터를 조회하는 함수
+    queryKey: getMypageQueryKey('buyer'),
+    queryFn: () => getBuyerMypage(), // 작품 구매자 마이페이지 데이터를 조회하는 함수
   };
 };
 
 /**
- * 작가 마이페이지 조회를 위한 쿼리 키 반환 함수
- * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
- * @author 노찬영
- */
-export const getAuthorMypageQueryKey = () => ['authorMypage'];
-
-/**
  * 작가 마이페이지 조회 API를 위한 React Query 설정 함수
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
- * @example - const { data } = useQuery(getUserMypageQuery(123));
  * @author 노찬영
  */
 export const getAuthorMypageQuery = () => {
   return {
-    queryKey: getAuthorMypageQueryKey(),
-    queryFn: () => getAuthorMypage(), // 마이페이지 데이터를 조회하는 함수
+    queryKey: getMypageQueryKey('author'),
+    queryFn: () => getAuthorMypage(), // 작가 마이페이지 데이터를 조회하는 함수
   };
 };
 

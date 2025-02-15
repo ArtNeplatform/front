@@ -92,6 +92,7 @@ export function AuthProvider({ children }: TAuthProviderProps): JSX.Element {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth(): TAuthContext {
   const context = useContext(AuthContext);
   if (context === undefined) {

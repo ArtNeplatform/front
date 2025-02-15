@@ -71,3 +71,23 @@ export const postMySpaceMutation = () => {
     mutationFn: postMySpace,
   };
 };
+
+/**
+ * 경매 좋아요 뮤테이션
+ * @author 이하늘
+ * */
+export const postAuctionLikeMutation = () => {
+  return {
+    mutationKey: ['auctionLike'],
+  };
+};
+
+/**
+ * 경매 좋아요 취소 뮤테이션
+ * @author 이하늘
+ * */
+export const postAuctionUnlikeMutation = () => {
+  return {
+    mutationKey: ['auctionUnlike'],
+  };
+};

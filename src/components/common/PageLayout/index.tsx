@@ -29,7 +29,7 @@ export const PageLayout = ({ children }: PageLayoutProps) => {
   }
 
   function handleLinkMypageFn() {
-    navigate('/mypage');
+    navigate('/mypage/art-buyer');
   }
 
   return (
