@@ -161,9 +161,9 @@ export const ArtworkDetail = () => {
   const userSpaceWidth = parseFloat(selectedSpace?.area ?? '4'); // 선택된 공간 너비 (m)
   const maxContainerWidth = 995; // BigImageContainer 너비
 
-  // 작품을 공간 크기에 맞게 조정 (4배 확대 적용)
+  // 작품을 공간 크기에 맞게 조정
   const calculatedArtworkWidth =
-    (userSpaceWidth / 10) * maxContainerWidth * (artworkWidth / 200) * 4;
+    (artworkWidth / 10) * (maxContainerWidth / userSpaceWidth);
 
   return (
     <PageLayout>
