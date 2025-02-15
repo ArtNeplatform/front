@@ -250,7 +250,7 @@ export const BigImageContainer = styled.div`
 
 export const SpaceArtwork = styled.img<{ $width: number }>`
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: ${({ $width }) => `${$width}px`};

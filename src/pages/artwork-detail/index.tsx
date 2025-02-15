@@ -31,8 +31,8 @@ import {
   BigSpaceImg,
   BigImageContainer,
   SpaceArtwork,
-  SpaceButtonContainer,
-  ButtonContainer,
+  // SpaceButtonContainer,
+  // ButtonContainer,
 } from './index.style.ts';
 import { useHandleLink } from '@/hooks/common/useHandleLink.ts';
 import { DetailInform } from '@/pages/artwork-detail/components/DetailInform/index.tsx';
@@ -47,6 +47,10 @@ import ArrowLeft from '@/assets/svg/arrow-left-black.svg';
 import ArrowRight from '@/assets/svg/arrow-right-black.svg';
 import Plus from '@/assets/svg/icon-plus.svg';
 import DefaultSpace from '@/assets/png/example_space.png';
+import ExampleSpace2 from '@/assets/png/example_space_2.png';
+import ExampleSpace3 from '@/assets/png/example_space_3.png';
+import ExampleSpace4 from '@/assets/png/example_space_4.png';
+import ExampleSpace5 from '@/assets/png/example_space_5.png';
 import SpaceLeft from '@/assets/svg/space-left.svg';
 import SpaceRight from '@/assets/svg/space-right.svg';
 
@@ -59,7 +63,7 @@ export const ArtworkDetail = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 5;
-  const [selectedSpaceIndex, setSelectedSpaceIndex] = useState(-1);
+  const [selectedSpaceIndex, setSelectedSpaceIndex] = useState(0);
 
   if (isLoading || !artworkData) {
     return (
@@ -77,12 +81,46 @@ export const ArtworkDetail = () => {
   const artworks = tab_data.other_artworks || [];
   const userspaces = tab_data.userspace || [];
   const visibleArtworks = artworks.slice(startIndex, startIndex + itemsPerPage);
-  const visibleUserspaces = userspaces.slice(
+
+  const defaultSpaces = [
+    { userspace_id: -1, name: '기본 공간', image_url: DefaultSpace, area: '4' },
+    {
+      userspace_id: -2,
+      name: '기본 공간 2',
+      image_url: ExampleSpace2,
+      area: '2',
+    },
+    {
+      userspace_id: -3,
+      name: '기본 공간 3',
+      image_url: ExampleSpace3,
+      area: '3',
+    },
+    {
+      userspace_id: -4,
+      name: '기본 공간 4',
+      image_url: ExampleSpace4,
+      area: '5',
+    },
+    {
+      userspace_id: -5,
+      name: '기본 공간 5',
+      image_url: ExampleSpace5,
+      area: '4',
+    },
+  ];
+
+  // 기본 공간 5개 + 유저 공간 추가
+  const combinedSpaces = [...defaultSpaces, ...userspaces];
+
+  // 현재 화면에 보일 공간 목록 (최대 5개씩 슬라이드)
+  const visibleUserspaces = combinedSpaces.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
-  const selectedSpace = userspaces[selectedSpaceIndex] ?? null;
+  // 선택된 공간 인덱스가 -1 ~ -5면 기본 공간 중 하나를 선택한 것
+  const selectedSpace = combinedSpaces[selectedSpaceIndex] ?? null;
 
   const handlePrevClick = () => {
     if (startIndex === 0) return;
@@ -191,18 +229,6 @@ export const ArtworkDetail = () => {
                 }}
               />
               <SpaceAllContainer>
-                {/* 첫 번째 이미지는 DefaultSpace */}
-                <SpaceImgContainer
-                  $isSelected={selectedSpaceIndex === -1}
-                  onClick={() => setSelectedSpaceIndex(-1)}
-                >
-                  <SpaceImg src={DefaultSpace} alt="내 공간" />
-                  {selectedSpaceIndex === -1 && (
-                    <SpaceText>기본 공간</SpaceText>
-                  )}
-                </SpaceImgContainer>
-
-                {/* userspace 데이터 기반 공간 이미지 */}
                 {visibleUserspaces.map((space, index) => {
                   const actualIndex = startIndex + index; // 전체 리스트 기준 인덱스 계산
                   return (
@@ -219,6 +245,7 @@ export const ArtworkDetail = () => {
                   );
                 })}
               </SpaceAllContainer>
+
               <Arrow
                 $isBig={true}
                 src={ArrowRight}
@@ -255,14 +282,16 @@ export const ArtworkDetail = () => {
                 />
               </BigImageContainer>
             </BigSpaceContainer>
-            <SpaceButtonContainer>
+
+            {/* TODO[서윤] - 내 공간 등록 구현 */}
+            {/* <SpaceButtonContainer>
               <ButtonContainer>
                 <Text size={14} color="black" weight="semibold">
                   내 공간 등록
                 </Text>
                 <Arrow $isBig={false} src={ArrowRight} alt="내 공간 등록" />
               </ButtonContainer>
-            </SpaceButtonContainer>
+            </SpaceButtonContainer> */}
           </CategoryContainer>
 
           {/* 작품 소개 섹션 */}
