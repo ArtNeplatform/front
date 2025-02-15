@@ -54,6 +54,9 @@ export const HeaderContent = ({
         <NavItem>
           <Link to="/author">작가</Link>
         </NavItem>
+        <NavItem>
+          <Link to="/exhibition">전시</Link>
+        </NavItem>
       </NavMenu>
 
       <NavMenu>
