@@ -19,6 +19,7 @@ import { Main } from '@/pages/main';
 import { ArtWork } from '@/pages/artwork';
 import { ArtworkDetail } from '@/pages/artwork-detail';
 import { AuctionDetail } from './pages/auction-detail';
+import { LoginRedirect } from './pages/login-redirect';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -44,6 +45,7 @@ export const routes: TRoutes[] = [
 
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
+  { path: '/login/redirect', element: <LoginRedirect />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
 
   {
