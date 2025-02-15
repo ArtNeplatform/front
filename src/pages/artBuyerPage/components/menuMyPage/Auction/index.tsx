@@ -26,7 +26,7 @@ export const ArtBuyerAuction = () => {
   // status 값을 한글로 변환하는 함수
   const getStatusText = (status: string) => {
     const statusMap: Record<string, string> = {
-      BID: '응찰중',
+      BID: '경매완료',
       PARTICIPATE: '입찰중',
     };
     return statusMap[status] || status; // 기본적으로 원래 상태값 유지
@@ -55,7 +55,7 @@ export const ArtBuyerAuction = () => {
               <TableCell>{`₩${auction.bid_price.toLocaleString()}`}</TableCell>
               <TableCell>{getStatusText(auction.status)}</TableCell>
               <TableCell>
-                {auction.status === '입찰중' && (
+                {auction.status === 'PARTICIPATE' && (
                   <AuctionButton
                     onClick={() => handleBtnClick(auction.auction_id)}
                   >
