@@ -62,7 +62,7 @@ export const getBuyerMypageQuery = () => {
 export const getAuthorMypageQuery = () => {
   return {
     queryKey: getMypageQueryKey('author'),
-    queryFn: () => getAuthorMypage(),
+    queryFn: () => getAuthorMypage(), // 작가 마이페이지 데이터를 조회하는 함수
   };
 };
 
