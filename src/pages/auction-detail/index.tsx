@@ -191,7 +191,11 @@ export const AuctionDetail = () => {
               finalPrice={data.final_price}
               remaining_time={data.remaining_time}
             />
-            <Button onClick={handleOpenModal}>입찰</Button>
+            {data.remaining_time !== '0d 0h 0m 0s' ? (
+              <Button onClick={handleOpenModal}>입찰</Button>
+            ) : (
+              <Button disabled>경매 완료</Button>
+            )}
             <Text size={16} color="red" weight="regular">
               {formatRemainingTime(remainingTime)}
             </Text>
