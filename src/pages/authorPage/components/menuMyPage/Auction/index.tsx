@@ -48,7 +48,7 @@ export const AuthorAuction = () => {
                 {auction.status === 'BID'
                   ? '경매완료'
                   : auction.status === 'PARTICIPATE'
-                  ? '참여중'
+                  ? '입찰중'
                   : auction.status}
               </TableCell>
             </TableRow>
