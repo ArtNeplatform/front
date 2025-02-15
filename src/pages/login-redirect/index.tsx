@@ -22,7 +22,7 @@ export const LoginRedirect = () => {
     <PageLayout>
       <Container>
         <Text size={24} weight="semibold">
-          리다이렉팅중...
+          소셜 로그인중...
         </Text>
       </Container>
     </PageLayout>

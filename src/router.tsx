@@ -39,8 +39,18 @@ type TRoutes = {
 
 export const routes: TRoutes[] = [
   { path: '/', element: <Main />, isTabBar: true },
-  { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
-  { path: '/mypqge/author', element: <AuthorPage />, isTabBar: true },
+  {
+    path: '/mypage/art-buyer',
+    element: <ArtBuyerPage />,
+    isTabBar: true,
+    isCheckAuth: true,
+  },
+  {
+    path: '/mypage/author',
+    element: <AuthorPage />,
+    isTabBar: true,
+    isCheckAuth: true,
+  },
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
   { path: '/login/redirect', element: <LoginRedirect />, isTabBar: true },
@@ -49,11 +59,13 @@ export const routes: TRoutes[] = [
     path: '/artwork-register',
     element: <ArtworkRegister />,
     isTabBar: true,
+    isCheckAuth: true,
   },
   {
     path: '/auction-register',
     element: <AuctionRegister />,
     isTabBar: true,
+    isCheckAuth: true,
   },
   {
     path: '/author',
@@ -79,6 +91,7 @@ export const routes: TRoutes[] = [
     path: '/exhibit-register',
     element: <ExhibitRegister />,
     isTabBar: true,
+    isCheckAuth: true,
   },
   {
     path: '/auction',
@@ -89,6 +102,7 @@ export const routes: TRoutes[] = [
     path: '/auction/:id',
     element: <AuctionDetail />,
     isTabBar: true,
+    isCheckAuth: true,
   },
   { path: '/artwork', element: <ArtWork />, isTabBar: true },
   { path: '/artwork/:id', element: <ArtworkDetail />, isTabBar: true },
@@ -108,7 +122,7 @@ export default function Router() {
             key={path}
             path={path}
             element={
-              <AuthCheckRoute redirectPath="/">{element}</AuthCheckRoute>
+              <AuthCheckRoute redirectPath="/login">{element}</AuthCheckRoute>
             }
           />
         ) : (
