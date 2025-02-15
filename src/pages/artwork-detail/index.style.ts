@@ -254,6 +254,7 @@ export const SpaceArtwork = styled.img<{ $width: number }>`
   left: 50%;
   transform: translate(-50%, -50%);
   width: ${({ $width }) => `${$width}px`};
+  max-width: 20%;
   height: auto;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
 `;
