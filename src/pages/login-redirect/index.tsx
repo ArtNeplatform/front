@@ -16,7 +16,7 @@ export const LoginRedirect = () => {
     console.log('provider', provider);
     // 소셜 로그인 처리
     oauthLoginMutation();
-  }, []);
+  }, [code, oauthLoginMutation, provider]);
 
   return (
     <PageLayout>
