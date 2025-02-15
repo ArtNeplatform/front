@@ -24,6 +24,12 @@ export const Payment = () => {
     initiatePayment(paymentId);
   };
 
+  const getPaymentStatus = (status: string) => {
+    if (status === 'COMPLETED') return '결제 완료';
+    if (status === 'PENDING') return '결제 대기중';
+    return status;
+  };
+
   return (
     <PaymentContainer>
       <h1>결제</h1>
@@ -45,7 +51,7 @@ export const Payment = () => {
               <TableCell>
                 {new Date(payment.created_at).toLocaleDateString('ko-KR')}
               </TableCell>
-              <TableCell>{payment.payment_status}</TableCell>
+              <TableCell>{getPaymentStatus(payment.payment_status)}</TableCell>
               <TableCell>
                 {payment.payment_status === '결제 대기중' && (
                   <PaymentButton
