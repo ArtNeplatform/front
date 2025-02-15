@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getAuthorMypageQuery } from '@/constants/queryKeys';
+import { getMypageQueryKey } from '@/constants/queryKeys';
 import { getAuthorMypage } from '@/apis/mypage-author/myPage/myPage';
 import { TArtistMypage } from '@/apis/mypage-author/myPage/type';
 
@@ -19,7 +19,7 @@ export const useGetAuthorMypage = () => {
     isLoading,
     error,
   } = useSuspenseQuery<TArtistMypage>({
-    queryKey: getAuthorMypageQuery().queryKey,
+    queryKey: getMypageQueryKey('author'),
     queryFn: () => getAuthorMypage(),
     staleTime: 1000 * 60 * 30, // 30분
     gcTime: 1000 * 60 * 60, // 1시간

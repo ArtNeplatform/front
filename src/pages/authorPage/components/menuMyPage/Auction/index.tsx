@@ -9,7 +9,7 @@ import {
 import { useGetAuthorMypage } from '@/pages/authorPage/hooks/useGetAuthorMypage';
 
 /**
- * @description 작품 구매자의 경매 내역을 표시하는 컴포넌트
+ * @description 작가의 경매 내역을 표시하는 컴포넌트
  * @author 노찬영
  */
 

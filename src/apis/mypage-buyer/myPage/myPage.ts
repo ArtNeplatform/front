@@ -10,7 +10,7 @@ import { TGetResponse } from '@/apis/type';
 export const getBuyerMypage = async (): Promise<TBuyerMypage> => {
   const BUYER_TOKEN =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh5c29uZzR1QGdtYWlsLmNvbSIsImlhdCI6MTczOTU1MzczMSwiZXhwIjoxNzQyMTQ1NzMxfQ.6ePJhRS1JUNK9BPIOk9oXrYoggois21uBtGsp4gvKrU';
-  console.log('변경된 accessToken:', BUYER_TOKEN);
+  console.log('구매자 accessToken:', BUYER_TOKEN);
 
   // 구매자 토큰으로 변경
   localStorage.setItem('accessToken', BUYER_TOKEN);
