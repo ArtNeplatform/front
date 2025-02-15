@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import NotFound from '@/pages/not-found';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
+import NotFound from './pages/not-found';
 import Test from '@pages/test.tsx';
 import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
 import AuthorPage from './pages/authorPage/AuthorPage';
@@ -19,7 +19,6 @@ import { Main } from '@/pages/main';
 import { ArtWork } from '@/pages/artwork';
 import { ArtworkDetail } from '@/pages/artwork-detail';
 import { AuctionDetail } from './pages/auction-detail';
-import { LoginRedirect } from './pages/login-redirect';
 type TRoutes = {
   path: string;
   element: JSX.Element;
@@ -31,37 +30,31 @@ type TRoutes = {
  * @author 홍규진
  * */
 
+/**
+ * 작품구매자_마이페이지는 /artBuyerPage 이고,
+ * 작가_마이페이지는 /authorPage 로 구분했습니다.
+ * @author 노찬영
+ * */
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const routes: TRoutes[] = [
   { path: '/', element: <Main />, isTabBar: true },
-  {
-    path: '/mypage/art-buyer',
-    element: <ArtBuyerPage />,
-    isTabBar: true,
-    isCheckAuth: true,
-  },
-  {
-    path: '/mypage/author',
-    element: <AuthorPage />,
-    isTabBar: true,
-    isCheckAuth: true,
-  },
+  { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
+  { path: '/mypage/author', element: <AuthorPage />, isTabBar: true },
 
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
-  { path: '/login/redirect', element: <LoginRedirect />, isTabBar: true },
   { path: '/register', element: <Register />, isTabBar: true },
+
   {
     path: '/artwork-register',
     element: <ArtworkRegister />,
     isTabBar: true,
-    isCheckAuth: true,
   },
   {
     path: '/auction-register',
     element: <AuctionRegister />,
     isTabBar: true,
-    isCheckAuth: true,
   },
   {
     path: '/author',
@@ -87,7 +80,6 @@ export const routes: TRoutes[] = [
     path: '/exhibit-register',
     element: <ExhibitRegister />,
     isTabBar: true,
-    isCheckAuth: true,
   },
   {
     path: '/auction',
@@ -98,8 +90,8 @@ export const routes: TRoutes[] = [
     path: '/auction/:id',
     element: <AuctionDetail />,
     isTabBar: true,
-    isCheckAuth: true,
   },
+  { path: '/main', element: <Main />, isTabBar: true },
   { path: '/artwork', element: <ArtWork />, isTabBar: true },
   { path: '/artwork/:id', element: <ArtworkDetail />, isTabBar: true },
 ];
@@ -118,7 +110,7 @@ export default function Router() {
             key={path}
             path={path}
             element={
-              <AuthCheckRoute redirectPath="/login">{element}</AuthCheckRoute>
+              <AuthCheckRoute redirectPath="/">{element}</AuthCheckRoute>
             }
           />
         ) : (
