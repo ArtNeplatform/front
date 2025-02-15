@@ -9,33 +9,22 @@ import {
   ExhibitionContainer,
 } from './index.style';
 
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
-
 import { Artwork } from '@/components/common/ArtWork';
 
-interface MyCollectionProps {
-  userId: number;
-}
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
 
 /**
  * @description 작품 구매자의 작품과 전시를 표시하는 컴포넌트
  * @author 노찬영
  */
-const MyCollection = ({ userId }: MyCollectionProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+const MyCollection = () => {
+  const { userMypageData } = useGetBuyerMypage();
 
-  const { result } = userMypageData;
+  // 작품 구매자 작품 데이터
+  const artworks = userMypageData.myCollection.artworks;
 
-  // 구매자와 작가 데이터 구분
-  const isBuyer = !('author' in result);
-
-  // 구매자와 작가의 작품 및 전시 데이터 추출
-  const artworks = isBuyer
-    ? result.myCollection.artworks
-    : result.storage.artworks;
-  const exhibitions = isBuyer
-    ? result.myCollection.exhibitions
-    : result.storage.exhibitions;
+  // 작품 구매자 전시 데이터
+  const exhibitions = userMypageData.myCollection.exhibitions;
 
   return (
     <MyCollectionContainer>
@@ -44,13 +33,15 @@ const MyCollection = ({ userId }: MyCollectionProps) => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {artworks.map((artwork) => (
+          {artworks?.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
-              artist={artwork.author?.name || '작가 미상'}
-              artworkSize={artwork.size}
+              artist={artwork.author?.author_name || '작가 미상'}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
+              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>
@@ -60,7 +51,7 @@ const MyCollection = ({ userId }: MyCollectionProps) => {
         <SectionTitle>전시</SectionTitle>
         <ExhibitionGrid>
           {exhibitions.map((exhibition) => (
-            <ExhibitionItem key={exhibition.exhi_id}>
+            <ExhibitionItem key={exhibition.id}>
               <ExhibitionImage
                 src={exhibition.image_url}
                 alt={exhibition.title}

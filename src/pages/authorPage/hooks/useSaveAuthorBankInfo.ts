@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { saveAuthorBankInfo } from '@/apis/authorPage/account';
+import { saveAuthorBankInfo } from '@/apis/mypage-author/account';
 
 /**
  * 작가 계좌 정보 저장을 위한 커스텀 뮤테이션 훅

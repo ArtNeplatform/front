@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
+import { getPurchasedArtworks } from '@/apis/mypage-buyer/artWork';
 import { getPurchasedArtworksQuery } from '@/constants/queryKeys';
-import { TPurchasedArtworkResponse } from '@/apis/artBuyerPage/type';
+import { TPurchasedArtwork } from '@/apis/mypage-buyer/type';
 
 /**
  * 구매한 작품 리스트를 가져오는 커스텀 훅
@@ -17,7 +17,7 @@ export const useGetPurchasedArtworks = () => {
     data: purchasedArtworksData,
     isLoading,
     error,
-  } = useSuspenseQuery<TPurchasedArtworkResponse>({
+  } = useSuspenseQuery<TPurchasedArtwork>({
     queryKey: getPurchasedArtworksQuery().queryKey,
     queryFn: getPurchasedArtworks,
     staleTime: 1000 * 60 * 60, // 1시간
@@ -25,7 +25,7 @@ export const useGetPurchasedArtworks = () => {
   });
 
   if (error) {
-    const axiosError = error as AxiosError<TPurchasedArtworkResponse>;
+    const axiosError = error as AxiosError<{ message?: string }>;
     const errorMessage =
       axiosError.response?.data?.message ||
       '구매한 작품 리스트를 불러오는데 실패했습니다.';

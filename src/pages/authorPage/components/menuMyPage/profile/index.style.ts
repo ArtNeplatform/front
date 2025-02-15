@@ -32,12 +32,6 @@ export const Name = styled.span`
   color: ${theme.colors.black};
 `;
 
-export const Affiliation = styled.span`
-  ${(theme) => theme.theme.typography['13']}
-  font-weight: 400;
-  color: ${theme.colors.fontGray};
-`;
-
 export const EditButton = styled.button`
   display: flex;
   width: 180px;

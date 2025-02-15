@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import theme from '@styles/theme.ts';
+import theme from '@styles/theme.ts';
 
 export const Container = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ export const AuthorContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 80px;
-  background-color: #f8f8fa;
+  background-color: ${theme.colors.background};
   margin-left: -28px;
 `;
 
@@ -50,7 +50,6 @@ export const AuthorInformContainer = styled.div`
   padding: 40px 0 8px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   gap: 100px;
 `;
 
@@ -76,7 +75,9 @@ export const FiveAuthorContainer = styled.div`
 export const AuthorName = styled.div<{ $isSelected: boolean }>`
   padding: 6px 0;
   border-bottom: ${({ $isSelected, theme }) =>
-    $isSelected ? `1px solid ${theme.colors.black}` : `1px solid #f8f8fa`};
+    $isSelected
+      ? `1px solid ${theme.colors.black}`
+      : `1px solid ${theme.colors.background}`};
   cursor: pointer;
 `;
 
@@ -90,7 +91,6 @@ export const ExhibitContainer = styled.div`
 export const ExhibitRightContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   column-gap: 20px;
   row-gap: 40px;
 `;

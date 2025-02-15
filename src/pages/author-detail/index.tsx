@@ -1,6 +1,5 @@
 import { PageLayout } from '@/components/common/PageLayout';
 import { AuthorContainer, Banner, Content } from './index.style';
-import AuthorProfile from '@/components/common/AuthorProfile';
 import { AuthorDetailCategory } from '@/components/common/AuthorDetailCategory';
 import { useState } from 'react';
 import { AuthorExhibition } from './components/AuthorExhibition';
@@ -9,6 +8,7 @@ import { AuthorArtwork } from './components/AuthorArtwork';
 import { useGetAuthorDetail } from './hooks/useGetAuthorDetail';
 import { useParams } from 'react-router-dom';
 import { PagingButtons } from '@/components/common/PagingButtons';
+import AuthorProfile from './components/AuthorProfile';
 
 export const AuthorDetail = () => {
   const { id } = useParams<{ id: string }>();

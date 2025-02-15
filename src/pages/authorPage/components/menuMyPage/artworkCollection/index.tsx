@@ -10,16 +10,14 @@ import {
 } from './index.style';
 
 import { Artwork } from '@/components/common/ArtWork';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-const ArtworkCollection = ({ userId }: { userId: number }) => {
-  const { userMypageData } = useGetUserMypage(userId);
-  const { result } = userMypageData;
+import { useGetAuthorMypage } from '@/pages/authorPage/hooks/useGetAuthorMypage';
 
-  // 구매자일 경우 작품 & 전시 데이터 가져오기
-  const artworks = 'myCollection' in result ? result.myCollection.artworks : [];
-  const exhibitions =
-    'myCollection' in result ? result.myCollection.exhibitions : [];
+const ArtworkCollection = () => {
+  const { userMypageData } = useGetAuthorMypage();
+
+  const artworks = userMypageData.storage.artworks;
+  const exhibitions = userMypageData.storage.exhibitions;
 
   return (
     <MyCollectionContainer>
@@ -31,10 +29,12 @@ const ArtworkCollection = ({ userId }: { userId: number }) => {
           {artworks.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
               artist={artwork.author?.name}
-              artworkSize={artwork.size}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
+              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>
@@ -44,7 +44,7 @@ const ArtworkCollection = ({ userId }: { userId: number }) => {
         <SectionTitle>전시</SectionTitle>
         <ExhibitionGrid>
           {exhibitions.map((exhibition) => (
-            <ExhibitionItem key={exhibition.exhi_id}>
+            <ExhibitionItem key={exhibition.id}>
               <ExhibitionImage
                 src={exhibition.image_url}
                 alt={exhibition.title}

@@ -32,8 +32,8 @@ const TestComponents = () => {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqV-EpDA9QlYzrKkI-xVr6FFolVlQaqZQQbw&s',
     artist: 'Sample Artist',
     title: 'Sample Title',
-    artworkWidth: 100,
-    artworkHeight: 100,
+    artworkWidth: '100',
+    artworkHeight: '100',
     price: 1000000,
   };
 
@@ -101,7 +101,12 @@ const TestComponents = () => {
       </ComponentSection>
 
       <SubTitle>AuthorDetailCategory</SubTitle>
-      <AuthorDetailCategory />
+      <AuthorDetailCategory
+        activeTab={''}
+        setActiveTab={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
       <SubTitle>CommonInput</SubTitle>
       <CommonInput {...sampleInputData} />
       <SubTitle>MyPageSideBar</SubTitle>
@@ -128,7 +133,7 @@ const TestComponents = () => {
 
       <Spacing />
       <SubTitle>Author Profile</SubTitle>
-      <AuthorProfile {...sampleProfileData} />
+      <AuthorProfile authorName={'홍길동'} {...sampleProfileData} />
       <Spacing />
 
       <Spacing />

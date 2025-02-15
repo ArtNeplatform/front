@@ -1,18 +1,21 @@
 import { getAuctionDetail } from '@/apis/auction/getAuctionDetail';
 import { getAuctionLists } from '@/apis/auction/getAuctionList';
-import { getPurchasedArtworks } from '@/apis/artBuyerPage/artWork';
+import { getPurchasedArtworks } from '@/apis/mypage-buyer/artWork';
 import {
   getAuthorArtworksExhibitions,
   getAuthorProfile,
-} from '@/apis/authorPage/author';
-import { AuthorProfileType } from '@/apis/authorPage/type';
+} from '@/apis/mypage-author/author';
+import { AuthorProfileType } from '@/apis/mypage-author/type';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getAuthorDetail } from '@/apis/author/getAuthorDetail';
 import { getAuthorLists } from '@/apis/author/getAuthorLists';
 import { getArtistList } from '@/apis/Example/artist';
 import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getMainData } from '@/apis/main/main';
-import { getUserMypage } from '@/apis/myPage/myPage';
+
+import { getBuyerMypage } from '@/apis/mypage-buyer/myPage/myPage';
+import { getAuthorMypage } from '@/apis/mypage-author/myPage/myPage';
+
 import { getExhibitions } from '@/apis/exhibition/getExhibitionList';
 import { getExhibitionDetail } from '@/apis/exhibition/getExhibitionDetail';
 import { getExhibitAvailableArtwork } from '@/apis/exhibit-register/getExhibitAvailableArtwork';
@@ -33,24 +36,42 @@ export const getArtistListQuery = () => {
 };
 
 /**
- * 사용자 마이페이지 조회를 위한 쿼리 키 반환 함수
- * @param userId - 조회할 사용자 ID
- * @returns 쿼리 키 배열 ['userMypage', userId]을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
+ * 작품 구매자 마이페이지 조회를 위한 쿼리 키 반환 함수
+ * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
  * @author 노찬영
  */
-export const getUserMypageQueryKey = (userId: number) => ['userMypage', userId];
+export const getBuyerMypageQueryKey = () => ['buyerMypage'];
 
 /**
- * 사용자 마이페이지 조회 API를 위한 React Query 설정 함수
- * @param userId - 조회할 사용자 ID
+ * 작품 구매자 마이페이지 조회 API를 위한 React Query 설정 함수
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
  * @example - const { data } = useQuery(getUserMypageQuery(123));
  * @author 노찬영
  */
-export const getUserMypageQuery = (userId: number) => {
+export const getBuyerMypageQuery = () => {
   return {
-    queryKey: getUserMypageQueryKey(userId), // 사용자별로 캐싱을 관리할 수 있도록 설정
-    queryFn: () => getUserMypage(userId), // 해당 userId의 마이페이지 데이터를 조회하는 함수
+    queryKey: getBuyerMypageQueryKey(),
+    queryFn: () => getBuyerMypage(), // 마이페이지 데이터를 조회하는 함수
+  };
+};
+
+/**
+ * 작가 마이페이지 조회를 위한 쿼리 키 반환 함수
+ * @returns 쿼리 키 배열 ['userMypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
+ * @author 노찬영
+ */
+export const getAuthorMypageQueryKey = () => ['authorMypage'];
+
+/**
+ * 작가 마이페이지 조회 API를 위한 React Query 설정 함수
+ * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
+ * @example - const { data } = useQuery(getUserMypageQuery(123));
+ * @author 노찬영
+ */
+export const getAuthorMypageQuery = () => {
+  return {
+    queryKey: getAuthorMypageQueryKey(),
+    queryFn: () => getAuthorMypage(), // 마이페이지 데이터를 조회하는 함수
   };
 };
 

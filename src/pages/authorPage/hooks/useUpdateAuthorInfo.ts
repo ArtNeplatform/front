@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { updateAuthorInfo } from '@/apis/authorPage/author';
+import { updateAuthorInfo } from '@/apis/mypage-author/author';
 import { getUpdateAuthorInfoQueryKey } from '@/constants/queryKeys';
 import { getQueryClient } from '@/contexts/query/getQueryClient';
-import { TUpdateAuthorInfo } from '@/apis/authorPage/type';
+import { TUpdateAuthorInfo } from '@/apis/mypage-author/type';
 
 /**
  * 작가 계정 정보 수정을 위한 React Query 훅

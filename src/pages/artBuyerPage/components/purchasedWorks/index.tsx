@@ -5,17 +5,15 @@ import {
   ArtworkContainer,
 } from './index.style';
 
-import { ArtBuyerDataProps } from '@/types/artBuyer';
-
-import { artBuyerData as rawArtBuyerData } from '@/constants/mocks';
-
 import { Artwork } from '@/components/common/ArtWork';
 
-// 명시적으로 ArtBuyerDataProps 타입 지정
-const artBuyerData: ArtBuyerDataProps = rawArtBuyerData;
-const { artworks } = artBuyerData.result.myCollection;
+import { useGetBuyerMypage } from '../../hooks/useGetBuyerMypage';
 
 const PurchasedWorks = () => {
+  const { userMypageData } = useGetBuyerMypage();
+
+  const artworks = userMypageData.myCollection.artworks;
+
   return (
     <PurchasedWorksContainer>
       <h1>구매 작품</h1>
@@ -23,13 +21,15 @@ const PurchasedWorks = () => {
       <ArtworkContainer>
         <SectionTitle>작품</SectionTitle>
         <ArtworkGrid>
-          {artworks.map((artwork) => (
+          {artworks?.map((artwork) => (
             <Artwork
               key={artwork.id}
-              imageUrl={artwork.image_url}
+              imageUrl={artwork.thumbnail_image_url}
               title={artwork.title}
-              artist={artwork.author.name}
-              artworkSize={artwork.size}
+              artist={artwork.author?.author_name}
+              artworkWidth={artwork.width}
+              artworkHeight={artwork.height}
+              artworkId={artwork.id}
             />
           ))}
         </ArtworkGrid>

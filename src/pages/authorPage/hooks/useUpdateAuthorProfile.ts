@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { AxiosError } from 'axios';
-import { updateAuthorProfile } from '@/apis/authorPage/profile';
-import { TUpdateAuthorProfile } from '@/apis/authorPage/type';
+import { updateAuthorProfile } from '@/apis/mypage-author/profile';
+import { TUpdateAuthorProfile } from '@/apis/mypage-author/type';
 import { getUpdateAuthorProfileQueryKey } from '@/constants/queryKeys';
 import { getQueryClient } from '@/contexts/query/getQueryClient';
 

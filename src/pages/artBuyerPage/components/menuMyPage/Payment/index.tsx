@@ -4,29 +4,25 @@ import {
   TableHeader,
   TableRow,
   TableCell,
+  PaymentButton,
 } from './index.style';
-import { useGetUserMypage } from '@/pages/artBuyerPage/hooks/useGetUserMypage';
 
-interface PaymentProps {
-  userId: number;
-}
+import { useGetBuyerMypage } from '@/pages/artBuyerPage/hooks/useGetBuyerMypage';
+import { useKakaoPay } from '@/pages/artBuyerPage/hooks/useKakaoPay';
 
 /**
  * @description 작품 구매자의 결제 내역을 표시하는 컴포넌트
- * @param {number} userId - 사용자 ID
  * @author 노찬영
  */
-export const Payment = ({ userId }: PaymentProps) => {
-  const { userMypageData } = useGetUserMypage(userId);
+export const Payment = () => {
+  const { userMypageData } = useGetBuyerMypage();
+  const { initiatePayment } = useKakaoPay();
 
-  const { result } = userMypageData;
+  const { payments } = userMypageData;
 
-  // result가 TBuyerMypage인지 확인
-  if (!('payments' in result)) {
-    return <p>결제 정보가 없습니다.</p>;
-  }
-
-  const { payments } = result;
+  const handleBtnClick = (paymentId: number) => {
+    initiatePayment(paymentId);
+  };
 
   return (
     <PaymentContainer>
@@ -38,17 +34,27 @@ export const Payment = ({ userId }: PaymentProps) => {
             <TableHeader>금액</TableHeader>
             <TableHeader>입찰정보</TableHeader>
             <TableHeader>진행상황</TableHeader>
+            <TableHeader></TableHeader>
           </TableRow>
         </thead>
         <tbody>
-          {payments.map((payment) => (
-            <TableRow key={payment.artwork_id}>
-              <TableCell>{`${payment.title} - ${payment.author.name}`}</TableCell>
-              <TableCell>{`₩${payment.price.toLocaleString()}`}</TableCell>
+          {payments?.map((payment) => (
+            <TableRow key={payment.id}>
+              <TableCell>{`${payment.auction.artwork.title} - ${payment.auction.artwork.author.author_name}`}</TableCell>
+              <TableCell>{`₩${payment.payment_price.toLocaleString()}`}</TableCell>
               <TableCell>
                 {new Date(payment.created_at).toLocaleDateString('ko-KR')}
               </TableCell>
-              <TableCell>{payment.status}</TableCell>
+              <TableCell>{payment.payment_status}</TableCell>
+              <TableCell>
+                {payment.payment_status === '결제 대기중' && (
+                  <PaymentButton
+                    onClick={() => handleBtnClick(payment.auction_id)}
+                  >
+                    결제하기
+                  </PaymentButton>
+                )}
+              </TableCell>
             </TableRow>
           ))}
         </tbody>

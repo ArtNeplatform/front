@@ -5,6 +5,7 @@ import {
   ProfileInfo,
   Stats,
 } from './index.style';
+import DefaultImage from '@assets/svg/Icon_Profile.svg';
 
 interface AuthorProfileProps {
   authorName: string;
@@ -27,7 +28,10 @@ export const AuthorProfile = ({
 }: AuthorProfileProps) => {
   return (
     <ProfileContainer>
-      <ProfileImage src={profileImage} alt={`${authorName}의 프로필 이미지`} />
+      <ProfileImage
+        src={profileImage || DefaultImage}
+        alt={`${authorName}의 프로필 이미지`}
+      />
       <ProfileInfo>
         <Name>{authorName}</Name>
         <Stats>

@@ -8,8 +8,8 @@ export type TGetAuctionListResponse = {
   thumbnail_image_url: string;
   author_name: string;
   title: string;
-  height: number;
-  width: number;
+  height: string;
+  width: string;
   size: string;
   start_price?: number; // 경매 완료된 항목에는 없음
   current_price?: number; // 경매 진행 중인 항목에만 있음
