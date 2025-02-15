@@ -27,31 +27,44 @@ const StepThree = ({
     );
   };
 
+  const convertToBase64 = async (url: string): Promise<string> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };
+  const loadImage = async (base64String: string) => {
+    const img = new Image();
+    img.src = base64String;
+    await img.decode();
+    return img;
+  };
+
   const combineAndSendImages = async () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     try {
-      // 이미지를 Blob으로 가져오기
-      const loadImageAsBlob = async (url: string) => {
-        const response = await fetch(url);
-        const blob = await response.blob();
-        return createImageBitmap(blob);
-      };
-
-      // 두 이미지를 비동기로 로드
-      const [bgBitmap, overlayBitmap] = await Promise.all([
-        loadImageAsBlob(backgroundImage),
-        loadImageAsBlob(overlayImage),
+      const [bgBase64, overlayBase64] = await Promise.all<string>([
+        convertToBase64(backgroundImage),
+        convertToBase64(overlayImage),
       ]);
 
-      // 캔버스 크기 설정
-      canvas.width = bgBitmap.width;
-      canvas.height = bgBitmap.height;
+      const [bgImage, changedOverlayImage] = await Promise.all([
+        loadImage(bgBase64 as string),
+        loadImage(overlayBase64 as string),
+      ]);
+
+      canvas.width = bgImage.width;
+      canvas.height = bgImage.height;
 
       // 배경 이미지 그리기
-      ctx.drawImage(bgBitmap, 0, 0);
+      ctx.drawImage(bgImage, 0, 0);
 
       // 오버레이 이미지 그리기
       const overlayX = (position.x / 100) * canvas.width;
@@ -60,32 +73,26 @@ const StepThree = ({
       const overlayHeight = (position.height / 100) * canvas.height;
 
       ctx.drawImage(
-        overlayBitmap,
+        changedOverlayImage,
         overlayX,
         overlayY,
         overlayWidth,
         overlayHeight
       );
 
-      // Canvas를 Blob으로 직접 변환
-      return new Promise<void>((resolve, reject) => {
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const file = new File([blob], 'combined-image.png', {
-              type: 'image/png',
-            });
-            handleSubmit(file, title);
-            resolve();
-          } else {
-            reject(new Error('Failed to create blob from canvas'));
-          }
-        }, 'image/png');
-      });
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const file = new File([blob], 'combined-image.png', {
+            type: 'image/png',
+          });
+          handleSubmit(file, title);
+        }
+      }, 'image/png');
     } catch (error) {
       console.error('이미지 처리 중 오류 발생:', error);
-      // 에러 처리 로직 추가
     }
   };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div
