@@ -86,7 +86,7 @@ export const ArtWork = () => {
     <PageLayout>
       <Container>
         <TextWrapper>
-          <Text size={48} color="black" weight="semibold">
+          <Text size={32} color="black" weight="semibold">
             Artwork
           </Text>
         </TextWrapper>
