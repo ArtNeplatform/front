@@ -26,7 +26,7 @@ export const Payment = () => {
 
   const getPaymentStatus = (status: string) => {
     if (status === 'COMPLETED') return '결제 완료';
-    if (status === 'PENDING') return '낙찰';
+    if (status === 'PENDING') return '결제 대기중';
     return status;
   };
 
