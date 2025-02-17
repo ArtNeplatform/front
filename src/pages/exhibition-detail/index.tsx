@@ -12,8 +12,8 @@ import {
   SubTitle,
 } from './index.style';
 import { useNavigate, useParams } from 'react-router-dom';
-import { GalleryBox } from './GalleryBox';
-import { useGetExhibitionDetail } from './hooks/useGetExhibitionDetail';
+import { GalleryBox } from '@/pages/exhibition-detail/components/GalleryBox';
+import { useGetExhibitionDetail } from '@/pages/exhibition-detail/hooks/useGetExhibitionDetail';
 
 // const exhibitionData = {
 //   id: 1,

@@ -1,7 +1,6 @@
 import { getExhibitionDetailQeury } from '@/constants/queryKeys';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import { AxiosError } from 'axios';
+import { handleError } from '@/utils/handleError';
 import { TGetExhibitionDetailResponse } from '@/apis/exhibition/type';
 
 /**
@@ -11,7 +10,7 @@ import { TGetExhibitionDetailResponse } from '@/apis/exhibition/type';
  * @param exhibitionId - 전시 id
  * @returns {object} data, error 상태 반환
  * @example const { data } = useGetAuctionLists('title');
- * @author 이하늘
+ * @author 이하늘, 홍규진
  **/
 export const useGetExhibitionDetail = (exhibitionId: number) => {
   const { data, isLoading, error } =
@@ -23,11 +22,7 @@ export const useGetExhibitionDetail = (exhibitionId: number) => {
     });
 
   if (error) {
-    const axiosError = error as AxiosError<{ message?: string }>;
-    const errorMessage =
-      axiosError.response?.data?.message ||
-      '전시 상세를를 불러오는데 실패했습니다.';
-    toast.error(errorMessage);
+    handleError(error);
   }
 
   return { data, isLoading, error };
