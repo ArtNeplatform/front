@@ -21,7 +21,7 @@ export const usePostAuthRegister = () => {
       navigate('/'); // 성공 페이지로 이동
     },
     onError: (error: Error) => {
-      toast.error(error.message); // 오류 메시지 표시
+      toast.error(`회원가입에 실패했습니다. ${error.message}`);
     },
   });
 };

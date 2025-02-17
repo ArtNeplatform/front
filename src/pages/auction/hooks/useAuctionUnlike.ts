@@ -6,7 +6,7 @@ import { postAuctionUnlike } from '@/apis/auction/postAuctionUnlike';
 /**
  * 경매 좋아요 취소 커스텀 훅
  * @returns null
- * @author 이하늘
+ * @author 이하늘, 홍규진
  */
 export const useAuctionUnlike = () => {
   const queryClient = useQueryClient();
@@ -17,11 +17,11 @@ export const useAuctionUnlike = () => {
     onSuccess: () => {
       toast.success(`좋아요 변경 성공`);
       queryClient.invalidateQueries({
-        queryKey: ['auctionDetails'],
+        queryKey: postAuctionUnlikeMutation().successMutationKey,
       });
     },
-    onError: () => {
-      toast.error('좋아요를 변경하는 데 실패했습니다.');
+    onError: (error) => {
+      toast.error(`좋아요 변경에 실패했습니다. ${error.message}`);
     },
   });
 

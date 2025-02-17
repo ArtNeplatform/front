@@ -22,7 +22,7 @@ import {
 } from './index.style.ts';
 import { Text } from '@/styles/text';
 import useMySpaceForm from '@/pages/artwork-detail/hooks/useMySpaceForm.ts';
-import { TMySpaceFormData } from '@/apis/artwork-detail/type';
+import { TMySpaceFormData } from '@/apis/artworkDetail/type.ts';
 import Close from '@/assets/svg/icon-close.svg';
 import Upload from '@/assets/svg/space-register.svg';
 

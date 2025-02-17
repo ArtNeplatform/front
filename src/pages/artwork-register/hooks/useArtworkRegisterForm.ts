@@ -3,11 +3,31 @@ import { postArtworkRegisterMutation } from '@/constants/mutationKey';
 import { TArtworkRegisterFormData } from '@/apis/artworkRegister/type';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { getAvailableArtworksQuery } from '@/constants/queryKeys';
 import { useNavigate } from 'react-router-dom';
 const useArtworkRegisterForm = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  /**
+   * 작품 등록 뮤테이션
+   * @author 홍규진
+   */
+  const mutation = useMutation({
+    mutationKey: postArtworkRegisterMutation().mutationKey,
+    mutationFn: (data: TArtworkRegisterFormData) =>
+      postArtworkRegisterMutation().mutationFn(data),
+    onSuccess: async () => {
+      toast.success('작품 등록이 성공적으로 완료되었습니다.');
+      queryClient.invalidateQueries({
+        queryKey: postArtworkRegisterMutation().successMutationKey,
+      });
+      navigate('/');
+    },
+    onError: (error: Error) => {
+      toast.error(`작품 등록 실패: ${error.message}`);
+    },
+  });
+
   const [formData, setFormData] = useState<TArtworkRegisterFormData>({
     images: [],
     theme: '',
@@ -60,27 +80,6 @@ const useArtworkRegisterForm = () => {
     }
     return true;
   };
-
-  /**
-   * 작품 등록 뮤테이션
-   * @author 홍규진
-   */
-  const mutation = useMutation({
-    mutationKey: postArtworkRegisterMutation().mutationKey,
-    mutationFn: (data: TArtworkRegisterFormData) =>
-      postArtworkRegisterMutation().mutationFn(data),
-    onSuccess: async () => {
-      toast.success('작품 등록이 성공적으로 완료되었습니다.');
-      queryClient.invalidateQueries({
-        queryKey: postArtworkRegisterMutation().mutationKey,
-      });
-      await getAvailableArtworksQuery().queryFn();
-      navigate('/');
-    },
-    onError: (error: Error) => {
-      toast.error(`작품 등록 실패: ${error.message}`);
-    },
-  });
 
   /**
    * 작품 등록 폼 제출 함수

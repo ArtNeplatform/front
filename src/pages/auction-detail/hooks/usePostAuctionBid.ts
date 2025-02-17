@@ -4,10 +4,10 @@ import {
 } from '@/apis/auction/type';
 import { postAuctionBidMutation } from '@/constants/mutationKey';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
+//TODO-[규진] 폼데이터 및 뮤테이션 관심사 분리 필요
 export const usePostAuctionBid = () => {
   const [formData, setFormData] = useState<TAuctionBidFormData>({
     auction_id: null,
@@ -25,22 +25,11 @@ export const usePostAuctionBid = () => {
     onSuccess: (data: TPostAuctionBidResponse) => {
       toast.success(`입찰 성공: ${data.message}`);
       queryClient.invalidateQueries({
-        queryKey: ['auctionDetails', data.current_price],
+        queryKey: postAuctionBidMutation().mutationKey,
       });
     },
     onError: (error: Error) => {
-      if (axios.isAxiosError(error)) {
-        // AxiosError인 경우
-        if (error.response) {
-          // 서버 응답에서 message를 추출하여 사용
-          const message = error.response.data.message;
-          toast.error(`입찰 실패: ${message}`); // 사용자에게 오류 메시지 표시
-        } else {
-          toast.error('서버 응답을 받을 수 없습니다.');
-        }
-      } else {
-        toast.error('입찰에 실패했습니다. 다시 시도해주세요.');
-      }
+      toast.error(`입찰 실패: ${error.message}`);
     },
   });
 
@@ -70,10 +59,9 @@ export const usePostAuctionBid = () => {
     if (validateForm(data)) {
       try {
         await mutation.mutateAsync(data); // 입찰 요청
-        console.log('입찰 성공1');
+        toast.success('입찰 성공');
       } catch (error) {
-        console.error('입찰 실패', error);
-        alert('입찰에 실패했습니다. 다시 시도해주세요.');
+        console.log(error);
       }
     } else {
       console.log('유효성 검사 실패');

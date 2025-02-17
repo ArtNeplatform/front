@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toggleArtworkLike } from '@/apis/artwork-like/like';
-import { TToggleLikeResult } from '@/apis/artwork-like/type';
+import { toggleArtworkLike } from '@/apis/artworkLike/like';
+import { TToggleLikeResult } from '@/apis/artworkLike/type';
 import { toast } from 'sonner';
 import { toggleArtworkLikeMutation } from '@/constants/mutationKey';
 
@@ -25,10 +25,12 @@ export const useToggleArtworkLike = () => {
     },
     onSuccess: (data, { artworkId }) => {
       toast.success(data.message);
-      queryClient.invalidateQueries({ queryKey: ['artworkDetail', artworkId] });
+      queryClient.invalidateQueries({
+        queryKey: [...toggleArtworkLikeMutation(artworkId).mutationKey],
+      });
     },
-    onError: () => {
-      toast.error('좋아요를 변경하는 데 실패했습니다.');
+    onError: (error: Error) => {
+      toast.error(`좋아요 변경에 실패했습니다. ${error.message}`);
     },
   });
 

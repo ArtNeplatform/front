@@ -17,11 +17,11 @@ export const useAuctionLike = () => {
     onSuccess: () => {
       toast.success(`좋아요 변경 성공`);
       queryClient.invalidateQueries({
-        queryKey: ['auctionDetails'],
+        queryKey: postAuctionLikeMutation().successMutationKey,
       });
     },
-    onError: () => {
-      toast.error('좋아요를 변경하는 데 실패했습니다.');
+    onError: (error) => {
+      toast.error(`좋아요 변경에 실패했습니다. ${error.message}`);
     },
   });
 

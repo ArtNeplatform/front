@@ -1,8 +1,7 @@
 import { getExhibitionListQuery } from '@/constants/queryKeys';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import { AxiosError } from 'axios';
 import { TExhibition } from '@/apis/exhibition/type';
+import { handleError } from '@/utils/handleError';
 
 /**
  * 전시 리스트를 가져오는 커스텀 훅
@@ -11,7 +10,7 @@ import { TExhibition } from '@/apis/exhibition/type';
  * @param { 'title' | 'popular' | 'latest' } sort - 정렬 기준
  * @returns {object} data, error 상태 반환
  * @example const { data } = useGetAuctionLists('title');
- * @author 이하늘
+ * @author 이하늘, 홍규진
  **/
 export const useGetExhibitionList = (sort: string) => {
   const { data, isLoading, error } = useSuspenseQuery<TExhibition[]>({
@@ -22,11 +21,7 @@ export const useGetExhibitionList = (sort: string) => {
   });
 
   if (error) {
-    const axiosError = error as AxiosError<{ message?: string }>;
-    const errorMessage =
-      axiosError.response?.data?.message ||
-      '전시 목록을 불러오는데 실패했습니다.';
-    toast.error(errorMessage);
+    handleError(error);
   }
 
   return { data, isLoading, error };
