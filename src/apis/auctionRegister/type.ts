@@ -13,6 +13,6 @@ export type TGetAvailableArtworksResponse = {
  * @author 홍규진
  */
 export type TAuctionRegisterFormData = {
-  artwork_id: number | null;
-  start_price: number | null;
+  artwork_id: number;
+  start_price: number;
 };

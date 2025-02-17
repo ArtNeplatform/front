@@ -1,6 +1,13 @@
 import { instance } from '../axios';
 import { TGetResponse } from '../type';
 import { TOauthLoginWithCode } from './type';
+
+/**
+ * 소셜 로그인 완료 응답 데이터 타입
+ * isComplete: 회원가입 완료 여부
+ * token: 인가 토큰
+ * @author 홍규진
+ */
 type TAuthResponse = {
   isComplete: boolean;
   token: string;

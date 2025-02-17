@@ -2,8 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import { AuthCheckRoute } from '@components/common/AuthCheckRoute';
 import NotFound from './pages/not-found';
 import Test from '@pages/test.tsx';
-import ArtBuyerPage from './pages/artBuyerPage/ArtBuyerPage';
-import AuthorPage from './pages/authorPage/AuthorPage';
+import { MypageBuyerPage } from './pages/mypage-buyer-page';
+import { MypageAuthorPage } from './pages/mypage-author-page';
 
 import { Login } from '@/pages/login';
 import { ArtworkRegister } from '@/pages/artwork-register';
@@ -13,7 +13,7 @@ import { AuthorDetail } from './pages/author-detail';
 import { Exhibition } from './pages/exhibition';
 import { ExhibitionDetail } from './pages/exhibition-detail';
 import { Register } from '@/pages/register';
-import { ExhibitRegister } from '@/pages/exhibit-register';
+import { ExhibitionRegister } from '@/pages/exhibition-register';
 import { Auction } from './pages/auction';
 import { Main } from '@/pages/main';
 import { ArtWork } from '@/pages/artwork';
@@ -32,16 +32,16 @@ type TRoutes = {
  * */
 
 /**
- * 작품구매자_마이페이지는 /artBuyerPage 이고,
- * 작가_마이페이지는 /authorPage 로 구분했습니다.
- * @author 노찬영
+ * 작품구매자_마이페이지는 /mypage/buyer 이고,
+ * 작가_마이페이지는 /mypage/author 로 구분했습니다.
+ * @author 노찬영, 홍규진
  * */
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const routes: TRoutes[] = [
   { path: '/', element: <Main />, isTabBar: true },
-  { path: '/mypage/art-buyer', element: <ArtBuyerPage />, isTabBar: true },
-  { path: '/mypage/author', element: <AuthorPage />, isTabBar: true },
+  { path: '/mypage/buyer', element: <MypageBuyerPage />, isTabBar: true },
+  { path: '/mypage/author', element: <MypageAuthorPage />, isTabBar: true },
 
   { path: '/test', element: <Test />, isTabBar: true },
   { path: '/login', element: <Login />, isTabBar: true },
@@ -79,8 +79,8 @@ export const routes: TRoutes[] = [
     isTabBar: true,
   },
   {
-    path: '/exhibit-register',
-    element: <ExhibitRegister />,
+    path: '/exhibition-register',
+    element: <ExhibitionRegister />,
     isTabBar: true,
   },
   {

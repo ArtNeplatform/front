@@ -11,6 +11,10 @@ import { TAuctionRegisterFormData } from './type';
 export const postAuctionRegister = async (
   data: TAuctionRegisterFormData
 ): Promise<TGetResponse<void>> => {
-  const response = await instance.post('/api/auction/register', data);
+  const formData = new FormData();
+  formData.append('artwork_id', data.artwork_id.toString());
+  formData.append('start_price', data.start_price.toString());
+
+  const response = await instance.post('/api/auction/register', formData);
   return response.data;
 };

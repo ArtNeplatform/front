@@ -1,9 +1,7 @@
 import { getAuthorListQuery } from '@/constants/queryKeys';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import { AxiosError } from 'axios';
 import { TGetAuthorListApiResponse } from '@/apis/author/type';
-
+import { handleError } from '@/utils/handleError';
 /**
  * 작가 리스트를 가져오는 커스텀 훅
  * React Query의 useSuspenseQuery를 활용해 데이터를 가져오고, 오류 발생 시 toast 알림을 띄움
@@ -13,7 +11,7 @@ import { TGetAuthorListApiResponse } from '@/apis/author/type';
  * @param {number} limit - 페이지당 항목 수
  * @returns {object} data, isLoading, error 상태 반환
  * @example const { data } = useGetAuthorLists('popularity', 1, 5);
- * @author 이하늘
+ * @author 이하늘, 홍규진
  **/
 export const useGetAuthorLists = (
   sort: string,
@@ -29,11 +27,7 @@ export const useGetAuthorLists = (
     });
 
   if (error) {
-    const axiosError = error as AxiosError<{ message?: string }>;
-    const errorMessage =
-      axiosError.response?.data?.message ||
-      '작가 목록을 불러오는데 실패했습니다.';
-    toast.error(errorMessage);
+    handleError(error);
   }
 
   return { data, isLoading, error };

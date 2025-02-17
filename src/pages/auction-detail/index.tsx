@@ -77,13 +77,6 @@ export const AuctionDetail = () => {
     }
   }, [currentPrice]);
 
-  // 입찰 실패 시 오류 메시지 표시
-  // useEffect(() => {
-  //   if (isError && bidError?.response?.data?.message) {
-  //     toast.error(`입찰 실패: ${bidError.response.data.message}`);
-  //   }
-  // }, [isError, bidError]);
-
   if (!auctionId) {
     return (
       <PageLayout>

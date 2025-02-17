@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postMySpaceMutation } from '@/constants/mutationKey';
-import { TMySpaceFormData } from '@/apis/artwork-detail/type';
+import { TMySpaceFormData } from '@/apis/artworkDetail/type';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { getAvailableArtworksQuery } from '@/constants/queryKeys';
+import { handleError } from '@/utils/handleError';
+
 const useMySpaceForm = () => {
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState<TMySpaceFormData>({
@@ -39,12 +41,12 @@ const useMySpaceForm = () => {
     onSuccess: async () => {
       toast.success('공간 등록이 성공적으로 완료되었습니다.');
       queryClient.invalidateQueries({
-        queryKey: postMySpaceMutation().mutationKey,
+        queryKey: postMySpaceMutation().successMutationKey,
       });
       await getAvailableArtworksQuery().queryFn();
     },
     onError: (error: Error) => {
-      toast.error(`공간 등록 실패: ${error.message}`);
+      handleError(error);
     },
   });
 
