@@ -126,7 +126,7 @@
  ### 1. 기본 (Default)
 
 1. 컴포넌트 / class `PascalCase`
-2. 폴더명 `carmelCase`
+2. 폴더명 `carmelCase` 단 페이지일 경우엔, `kebab-case`
 3. 파일 명 _(컴포넌트 제외)_ `carmelCase`
 4. 변수, 함수 `carmelCase`
 5. 파라미터 `carmelCase`
