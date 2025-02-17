@@ -24,10 +24,9 @@ export default function DefaultErrorFallbackUI({
         <LogoImage src={MainLogo} alt="Main Logo" />
         <ErrorIcon>⚠️</ErrorIcon>
         <ErrorMessage>잠시 문제가 발생했어요</ErrorMessage>
+        <ErrorDetail>{error.name}</ErrorDetail>
         <ErrorDetail>{error.message}</ErrorDetail>
-        <RetryButton onClick={resetErrorBoundary}>
-          다시 시도하기
-        </RetryButton>
+        <RetryButton onClick={resetErrorBoundary}>다시 시도하기</RetryButton>
       </ErrorContent>
     </ErrorContainer>
   );
