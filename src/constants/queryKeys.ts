@@ -1,47 +1,26 @@
 import { getAuctionDetail } from '@/apis/auction/getAuctionDetail';
 import { getAuctionLists } from '@/apis/auction/getAuctionList';
-import { getPurchasedArtworks } from '@/apis/mypage-buyer/artWork';
+import { getPurchasedArtworks } from '@/apis/mypageBuyer/artWork';
 import {
   getAuthorArtworksExhibitions,
   getAuthorProfile,
-} from '@/apis/mypage-author/author';
-import { AuthorProfileType } from '@/apis/mypage-author/type';
+} from '@/apis/mypageAuthor/author';
+import { AuthorProfileType } from '@/apis/mypageAuthor/type';
 import { getAvailableArtworks } from '@/apis/auctionRegister/getAvailableArtworks';
 import { getAuthorDetail } from '@/apis/author/getAuthorDetail';
 import { getAuthorLists } from '@/apis/author/getAuthorLists';
-import { getArtistList } from '@/apis/Example/artist';
-import { TGetArtistListRequestParams } from '@/apis/Example/type';
 import { getMainData } from '@/apis/main/main';
 
-import { getBuyerMypage } from '@/apis/mypage-buyer/myPage/myPage';
-import { getAuthorMypage } from '@/apis/mypage-author/myPage/myPage';
+import { getBuyerMypage } from '@/apis/mypageBuyer/myPage/myPage';
+import { getAuthorMypage } from '@/apis/mypageAuthor/myPage/myPage';
 
 import { getExhibitions } from '@/apis/exhibition/getExhibitionList';
 import { getExhibitionDetail } from '@/apis/exhibition/getExhibitionDetail';
-import { getExhibitAvailableArtwork } from '@/apis/exhibit-register/getExhibitAvailableArtwork';
-import { getExhibitBackgroundImages } from '@/apis/exhibit-register/getExhibitBackgroundImages';
-
-/**
- * 아티스트들의 정보를 받아오고, 관리하기 위한 쿼리 키로 함수와 묶어서 사용합니다.
- * 단, pagenation 이 필요한 경우엔 다음과 같이 page 와 keyword 를 이용해 작성합니다. 이 때, queryKey 지정 여부에 따라서 데이터를 다시 못 받아오는 경우도 있으니, 검색이 필요한 경우엔 keyword 와 연관되게 키를 지정 후 데이터를 가져옵니다.
- * @author 홍규진
- * */
-
-export const getArtistListQuery = () => {
-  return {
-    queryKey: ['artistList'],
-    queryFn: ({ page, keyword }: TGetArtistListRequestParams) =>
-      getArtistList({ page, keyword }),
-  };
-};
-
-/**
- * 마이페이지 조회를 위한 쿼리 키 반환 함수
- * @returns 쿼리 키 배열 ['Mypage']을 반환하여 캐시를 사용자별로 관리할 수 있도록 설정
- * @author 노찬영
- */
-export const getMypageQueryKey = (role: 'author' | 'buyer') => ['Mypage', role];
-
+import { getExhibitAvailableArtwork } from '@/apis/exhibitRegister/getExhibitAvailableArtwork';
+import { getExhibitBackgroundImages } from '@/apis/exhibitRegister/getExhibitBackgroundImages';
+import { getArtworkDetail } from '@/apis/artworkDetail/artwork';
+import { getArtworks } from '@/apis/artwork/artwork';
+import { saveAuthorBankInfo } from '@/apis/mypageAuthor/account';
 /**
  * 작품 구매자 마이페이지 조회 API를 위한 React Query 설정 함수
  * @returns queryKey와 queryFn을 포함한 객체를 반환하여 React Query에서 사용 가능하도록 설정
@@ -49,7 +28,7 @@ export const getMypageQueryKey = (role: 'author' | 'buyer') => ['Mypage', role];
  */
 export const getBuyerMypageQuery = () => {
   return {
-    queryKey: getMypageQueryKey('buyer'),
+    queryKey: ['Mypage', 'buyer'],
     queryFn: () => getBuyerMypage(), // 작품 구매자 마이페이지 데이터를 조회하는 함수
   };
 };
@@ -61,7 +40,7 @@ export const getBuyerMypageQuery = () => {
  */
 export const getAuthorMypageQuery = () => {
   return {
-    queryKey: getMypageQueryKey('author'),
+    queryKey: ['Mypage', 'author'],
     queryFn: () => getAuthorMypage(), // 작가 마이페이지 데이터를 조회하는 함수
   };
 };
@@ -102,14 +81,6 @@ export const getAuthorArtworksExhibitionsQuery = () => {
 };
 
 /**
- * 작품 구매자 계정 정보 수정 쿼리 키 함수
- * @returns ['updateUserInfo'] 형태의 배열 반환
- * @example - queryClient.invalidateQueries(getUpdateUserInfoQueryKey());
- * @author 노찬영
- */
-export const getUpdateUserInfoQueryKey = () => ['updateUserInfo'];
-
-/**
  * 작가 계정 정보 수정 쿼리 키 함수
  * @returns ['updateAuthorInfo'] 형태의 배열 반환
  * @example - queryClient.invalidateQueries(getUpdateAuthorInfoQueryKey());
@@ -132,6 +103,21 @@ export const getUpdateAuthorProfileQueryKey = () => ['updateAuthorProfile'];
  * @example - const { data } = useQuery(getAuthorProfileQuery('intro'));
  * @author 노찬영
  */
+
+/**
+ * 작가 은행 정보 수정 쿼리
+ * @param type 
+ * @returns 
+ * @author 홍규진
+ */
+export const saveAuthorBankInfoMutation = () => {
+  return {
+    mutationKey: ['saveAuthorBankInfo'],
+    mutationFn: saveAuthorBankInfo,
+  };
+};
+
+
 
 export const getAuthorProfileQuery = (type: AuthorProfileType) => {
   return {
@@ -270,5 +256,35 @@ export const getExhibitAvailableArtworkQuery = () => {
   return {
     queryKey: ['exhibitAvailableArtwork'],
     queryFn: getExhibitAvailableArtwork,
+  };
+};
+
+/**
+ * 작품 상세 조회 쿼리
+ * @author 홍규진
+ * */
+export const getArtworkDetailQuery = (artworkId: number) => {
+  return {
+    queryKey: ['artworkDetail', artworkId],
+    queryFn: () => getArtworkDetail(artworkId),
+  };
+};
+
+/**
+ * 작품 리스트 조회 쿼리
+ * @author 홍규진
+ * */
+export const getArtworkListQuery = (
+  page: number,
+  pageSize: number,
+  themes: string[],
+  sizes: string[],
+  forms: string[],
+  sortingKey?: 'latest' | 'popular'
+) => {
+  return {
+    queryKey: ['artworkList', page, pageSize, themes, sizes, forms, sortingKey],
+    queryFn: () =>
+      getArtworks(page, pageSize, themes, sizes, forms, sortingKey),
   };
 };
