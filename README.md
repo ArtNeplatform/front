@@ -89,7 +89,7 @@
             └── 📁components
             └── 📁hooks
             └── 📁utils
-        └── 📁notFound
+        └── 📁not-found
             └── index.tsx
             └── 📁components
             └── 📁hooks
